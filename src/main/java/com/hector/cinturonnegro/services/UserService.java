@@ -34,4 +34,7 @@ public class UserService extends BaseService<User> {
         }
     }
 
+    public boolean emailExist(String email) {
+        return userRepository.existsByEmail(email);
+    }
 }
