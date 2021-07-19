@@ -24,7 +24,7 @@ public class User extends BaseModel{
     @NotBlank( message = "Must have a Last Name")
     @Size( min = 2, max = 20, message = "Enter a Last Name between 2 and 20 characters" )
     private String lastname;
-    //FOTO
+    //FOTO USUARIO
     private String photo;
     //TELEFONO
     @NotNull
