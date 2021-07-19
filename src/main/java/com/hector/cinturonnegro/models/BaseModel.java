@@ -13,7 +13,7 @@ import java.util.Date;
 public abstract class BaseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;//id
 
     @Column(updatable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
