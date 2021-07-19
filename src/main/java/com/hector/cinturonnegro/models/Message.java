@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table( name = "messages" )
 public class Message extends BaseModel{
+    //MENSAJE
     @NotNull
     @NotBlank( message = "Must have a Text" )
     @Size( min = 5, max = 255, message = "Enter a Message between 5 to 255 characters" )
