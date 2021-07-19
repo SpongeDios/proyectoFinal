@@ -12,7 +12,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table( name = "users", uniqueConstraints = @UniqueConstraint( columnNames = "email" ) )
+@Table( name = "users", uniqueConstraints = @UniqueConstraint( columnNames = "email" ) )//Hola holaa
 public class User extends BaseModel{
     //NOMBRE
     @NotNull
