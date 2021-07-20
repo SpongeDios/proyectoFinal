@@ -21,9 +21,10 @@ import java.util.List;
 @Entity
 @Table( name = "categories" )
 public class Category extends BaseModel{
+    //NOMBRE DE LA CATEGORIA
     @NotNull
     @NotBlank( message = "Must have a Name" )
-    @Size( min = 5, max = 25, message = "Enter a Nitle between 5 to 25 characters" )
+    @Size( min = 5, max = 25, message = "Enter a Name between 5 to 25 characters" )
     private String name;
 
     //RELACION CON PUBLICACION

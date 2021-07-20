@@ -18,20 +18,25 @@ import java.util.List;
 @Entity
 @Table( name = "publications" )
 public class Publication extends BaseModel{
+    //TITULO
     @NotNull
     @NotBlank( message = "Must have a Title")
     @Size( min = 5, max = 25, message = "Enter a Title between 5 to 25 characters" )
     private String title;
+    //DESCRIPCION
     @NotNull
     @NotBlank( message = "Must have a Description")
     @Size( min = 5, max = 255, message = "Enter a Description between 5 to 255 characters" )
     private String description;
+    //PRECIO
     @NotNull
     @NotBlank
     private Integer price;
+    //FOTO PUBLICACION
     @NotNull
     @NotBlank
     private String photo_publication;
+    //TIPO DE PUBLICACION
     @NotNull
     @NotBlank
     private Integer type_publication;
