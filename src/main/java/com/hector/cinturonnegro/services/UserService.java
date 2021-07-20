@@ -1,7 +1,7 @@
 package com.hector.cinturonnegro.services;
 
 import com.hector.cinturonnegro.models.User;
-import com.hector.cinturonnegro.repositories.BaseRepository;
+
 import com.hector.cinturonnegro.repositories.UserRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;

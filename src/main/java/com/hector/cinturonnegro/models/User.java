@@ -31,7 +31,7 @@ public class User extends BaseModel{
     //TELEFONO
     @NotNull
     @NotBlank( message = "Must have a Phone Number" )
-    @Size( min = 12 )
+    @Size( min = 12, message = "The Phone Number must have 12 characters")
     private String phone;
     //EMAIL
     @NotNull
@@ -45,13 +45,14 @@ public class User extends BaseModel{
     //PASSWORD CONFIRMATION
     @Transient
     private String passwordConfirmation;
-    //REGION
-    @NotNull
-    private String region;
-    //COMUNA
-    @NotNull
-    private String comuna;
+//    //REGION
+//    @NotNull
+//    private String region;
+//    //COMUNA
+//    @NotNull
+//    private String comuna;
     //ROL
+    @NotNull
     @Min( 1 )
     private int rol;
 
