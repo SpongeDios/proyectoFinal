@@ -28,7 +28,6 @@ public class UserController {
     //ROL = 1 => Prestador de servicios
     //ROL = 2 => Buscador de servicios
 
-
     ///////////////////////////////////////////////////////
     ///////////////////////REGISTRATION////////////////////
     ///////////////////////////////////////////////////////
@@ -103,19 +102,5 @@ public class UserController {
         session.invalidate();
         return "redirect:/";
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
