@@ -52,6 +52,7 @@
                 <p class="form-group">
                     <form:label path="rol">Rol: </form:label>
                     <form:select cssClass="form-control" path="rol">
+                        <option disabled selected value="">Selecciona una</option>
                         <form:option value="1">Prestar Servicios</form:option>
                         <form:option value="2">Contratar Servicios</form:option>
                     </form:select>
