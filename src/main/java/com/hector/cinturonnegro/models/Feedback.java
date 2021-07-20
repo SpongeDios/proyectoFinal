@@ -15,14 +15,17 @@ import javax.validation.constraints.*;
 @Entity
 @Table( name = "feedbacks" )
 public class Feedback extends BaseModel{
+    //PUNTUACION
     @NotNull
     @Min(1)
     @Max(5)
     private Integer rating;
+    //COMENTARIO
     @NotNull
     @NotBlank( message = "Must have a Comment" )
     @Size( min = 5, max = 255, message = "Enter a Comment between 5 to 255" )
     private String comment;
+    //FOTO RETROALIMENTACION
     private String photo_feedback;
 
     //RELACION CON USER

@@ -1,7 +1,6 @@
 package com.hector.cinturonnegro.services;
 
 import com.hector.cinturonnegro.models.Publication;
-import com.hector.cinturonnegro.repositories.BaseRepository;
 import com.hector.cinturonnegro.repositories.PublicationRepository;
 import org.springframework.stereotype.Service;
 
