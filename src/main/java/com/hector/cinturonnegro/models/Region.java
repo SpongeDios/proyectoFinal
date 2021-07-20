@@ -24,5 +24,5 @@ public class Region extends BaseModel{
 
     ///////////RELACION CON COMUNAS////////////////
     @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
-    private List<Region> regiones;
+    private List<Comuna> comunas;
 }

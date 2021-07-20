@@ -28,8 +28,8 @@ public class Address extends BaseModel{
     private List<User> userAddress;
 
     ///////////////RELACION CON COMUNAS///////////////////
-    @OneToOne(fetch= FetchType.LAZY)
-    @JoinColumn(name="comuna_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "comuna")
     private Comuna comuna;
 
 }

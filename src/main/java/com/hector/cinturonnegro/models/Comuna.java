@@ -25,6 +25,6 @@ public class Comuna extends BaseModel{
     private Region region;
 
     ///////////////RELACION CON DIRECCION////////////////
-    @OneToOne(mappedBy="comuna", cascade=CascadeType.ALL, fetch= FetchType.LAZY)
-    private Address address;
+    @OneToMany(mappedBy = "comuna", fetch = FetchType.LAZY)
+    private List<Address> userAddress;
 }
