@@ -57,6 +57,7 @@ public class UserController {
             return "registration.jsp";
         } else {
             User u = userService.registerUser(user);
+
             session.setAttribute("userid", u.getId());
             return "redirect:/index";
         }

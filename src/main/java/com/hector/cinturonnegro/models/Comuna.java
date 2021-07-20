@@ -17,7 +17,7 @@ import java.util.List;
 @Table( name = "comunas" )
 public class Comuna extends BaseModel{
     @NotNull
-    private String name_comuna;
+    private String nameComuna;
 
     ///////////////RELACION CON REGIONES//////////////
     @ManyToOne(fetch = FetchType.LAZY)

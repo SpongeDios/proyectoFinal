@@ -15,12 +15,12 @@
             <form:errors path="publication.*"/>
             <form:form method="POST" action="" cssClass="form col border border-1 rounded" modelAttribute="publication" >
                 <p class="form-group col">
-                    <form:label path="title">Title: </form:label>
+                    <form:label path="title">Titulo: </form:label>
                     <form:input cssClass="form-control" path="title"/>
                 </p>
                 <p class="col">
                     <form:label path="description">Descripcion:</form:label>
-                    <form:input cssClass="form-control" path="description"/>
+                    <form:textarea cssClass="form-control" path="description"/>
                 </p>
                 <p class="col">
                     <form:label path="price">Precio estimado:</form:label>
@@ -33,10 +33,6 @@
 
                 <input class="btn btn-warning" type="submit" value="Register!"/>
             </form:form>
-
-
-
-
         </div>
     </div>
 </div>

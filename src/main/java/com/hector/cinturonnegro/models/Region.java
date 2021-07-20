@@ -20,7 +20,7 @@ import java.util.List;
 @Table( name = "regiones" )
 public class Region extends BaseModel{
     @NotNull
-    private String name_region;
+    private String nameRegion;
 
     ///////////RELACION CON COMUNAS////////////////
     @OneToMany(mappedBy = "region", fetch = FetchType.LAZY)
