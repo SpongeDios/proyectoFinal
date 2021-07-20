@@ -1,7 +1,6 @@
 package com.hector.cinturonnegro.services;
 
 import com.hector.cinturonnegro.models.Message;
-import com.hector.cinturonnegro.repositories.BaseRepository;
 import com.hector.cinturonnegro.repositories.MessageRepository;
 import org.springframework.stereotype.Service;
 
