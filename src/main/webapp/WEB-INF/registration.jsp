@@ -22,7 +22,7 @@
 
             <p><form:errors path="user.*"/></p>
             <h1>Registrando al socio</h1>
-            <form:form method="POST" action="/" cssClass="form" modelAttribute="user">
+            <form:form method="POST" action="" cssClass="form" modelAttribute="user">
 
                 <p class="form-group">
                     <form:label path="firstName">first Name: </form:label>
@@ -32,6 +32,29 @@
                 <p class="form-group">
                     <form:label path="lastName">Last Name: </form:label>
                     <form:input cssClass="form-control" path="lastName"/>
+                </p>
+
+                <p class="form-group">
+                    <form:label path="region">Region: </form:label>
+                    <form:input cssClass="form-control" path="region"/>
+                </p>
+
+                <p class="form-group">
+                    <form:label path="comuna">Comuna: </form:label>
+                    <form:input cssClass="form-control" path="comuna"/>
+                </p>
+
+                <p class="form-group">
+                    <form:label path="phone">Phone: </form:label>
+                    <form:input cssClass="form-control" path="phone"/>
+                </p>
+
+                <p class="form-group">
+                    <form:label path="rol">Rol: </form:label>
+                    <form:select cssClass="form-control" path="rol">
+                        <form:option value="1">Prestar Servicios</form:option>
+                        <form:option value="2">Contratar Servicios</form:option>
+                    </form:select>
                 </p>
 
                 <p>
