@@ -24,12 +24,19 @@
                 </p>
                 <p class="col">
                     <form:label path="price">Precio estimado:</form:label>
-                    <form:input cssClass="form-control" type="email" path="price"/>
+                    <form:input cssClass="form-control" path="price"/>
                 </p>
                 <p class="col">
-                    <form:label path="category">Categoria:</form:label>
-                    <form:input cssClass="form-control" type="email" path="category"/>
+                    <form:label path="type_publication">Tipo de publicacion:</form:label>
+                    <form:select cssClass="form-control" path="type_publication">
+                        <form:option value="1">Quiero contratar a un weon</form:option>
+                        <form:option value="2">Quiero trabajar</form:option>
+                    </form:select>
                 </p>
+<%--                <p class="col">--%>
+<%--                    <form:label path="category">Categoria:</form:label>--%>
+<%--                    <form:input cssClass="form-control" path="category"/>--%>
+<%--                </p>--%>
 
                 <input class="btn btn-warning" type="submit" value="Register!"/>
             </form:form>

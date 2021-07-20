@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Getter
@@ -29,17 +27,18 @@ public class Publication extends BaseModel{
     @Size( min = 5, max = 255, message = "Enter a Description between 5 to 255 characters" )
     private String description;
     //PRECIO
-    @NotNull
-    @NotBlank
-    private Integer price;
+
+    @Min(1)
+    @Max(999999999)
+    private int price;
     //FOTO PUBLICACION
-    @NotNull
-    @NotBlank
+
     private String photo_publication;
     //TIPO DE PUBLICACION
-    @NotNull
-    @NotBlank
-    private Integer type_publication;
+
+    @Min(1)
+    @Max(2)
+    private int type_publication;
 
     ///////////////RELACIONES///////////////
 

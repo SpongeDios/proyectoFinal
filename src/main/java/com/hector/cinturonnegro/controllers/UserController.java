@@ -1,6 +1,9 @@
 package com.hector.cinturonnegro.controllers;
 
+import com.hector.cinturonnegro.models.Address;
+import com.hector.cinturonnegro.models.Comuna;
 import com.hector.cinturonnegro.models.User;
+import com.hector.cinturonnegro.services.ComunaService;
 import com.hector.cinturonnegro.services.UserService;
 import com.hector.cinturonnegro.validator.UserValidator;
 import org.springframework.stereotype.Controller;
@@ -19,10 +22,12 @@ import javax.validation.Valid;
 public class UserController {
     private final UserValidator userValidator;
     private final UserService userService;
+    private final ComunaService comunaService;
 
-    public UserController(UserValidator userValidator, UserService userService) {
+    public UserController(UserValidator userValidator, UserService userService, ComunaService comunaService) {
         this.userValidator = userValidator;
         this.userService = userService;
+        this.comunaService = comunaService;
     }
 
     //ROL = 1 => Prestador de servicios
@@ -57,7 +62,6 @@ public class UserController {
             return "registration.jsp";
         } else {
             User u = userService.registerUser(user);
-
             session.setAttribute("userid", u.getId());
             return "redirect:/index";
         }

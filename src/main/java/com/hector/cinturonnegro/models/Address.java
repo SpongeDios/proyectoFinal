@@ -23,13 +23,14 @@ public class Address extends BaseModel{
     @NotBlank(message = "Must have an Address")
     private String nameCalle;
 
-    ///////////////RELACION CON USUARIOS/////////////////
-    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
-    private List<User> userAddress;
+//    ///////////////RELACION CON USUARIOS/////////////////
+//    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+//    private List<User> userAddress;
 
     ///////////////RELACION CON COMUNAS///////////////////
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "comuna")
     private Comuna comuna;
+
 
 }

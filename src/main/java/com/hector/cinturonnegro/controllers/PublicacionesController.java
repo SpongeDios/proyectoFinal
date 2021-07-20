@@ -1,7 +1,9 @@
 package com.hector.cinturonnegro.controllers;
 
+import com.hector.cinturonnegro.models.Category;
 import com.hector.cinturonnegro.models.Publication;
 import com.hector.cinturonnegro.models.User;
+import com.hector.cinturonnegro.services.CategoryService;
 import com.hector.cinturonnegro.services.PublicationService;
 import com.hector.cinturonnegro.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -18,12 +20,13 @@ import javax.validation.Valid;
 public class PublicacionesController {
     private final UserService userService;
     private final PublicationService publicationService;
+    private final CategoryService categoryService;
 
-    public PublicacionesController(UserService userService, PublicationService publicationService) {
+    public PublicacionesController(UserService userService, PublicationService publicationService, CategoryService categoryService) {
         this.userService = userService;
         this.publicationService = publicationService;
+        this.categoryService = categoryService;
     }
-
 
     @GetMapping("/publicaciones")
     public String allPublicaciones(Model model, HttpSession session){
@@ -40,6 +43,7 @@ public class PublicacionesController {
     /////////////////////////////////////////////////////////
     ///////////////////Crear publicacion/////////////////////
     /////////////////////////////////////////////////////////
+
     @GetMapping("/publicaciones/add")
     public String publicaciones(
             @ModelAttribute("publication") Publication publication,
@@ -66,10 +70,14 @@ public class PublicacionesController {
         if(result.hasErrors()){
             return "addpublicacion.jsp";
         } else{
+            Category category = new Category();
+            category.setName("ceramica");
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
+            publication.setCategory(category);
             model.addAttribute("user", user);
             publication.setUser(user);
+            categoryService.create(category);
             publicationService.create(publication);
             return "redirect:/publicaciones";
         }
