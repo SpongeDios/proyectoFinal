@@ -8,4 +8,7 @@ import java.util.List;
 @Repository
 public interface PublicationRepository extends BaseRepository<Publication>{
 
+    // Buscar publicaciones por titulo
+    List<Publication> findByTitle(String title);
+
 }

@@ -4,6 +4,8 @@ import com.hector.cinturonnegro.models.Publication;
 import com.hector.cinturonnegro.repositories.PublicationRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PublicationService extends BaseService<Publication>{
     private final PublicationRepository publicationRepository;
@@ -11,5 +13,8 @@ public class PublicationService extends BaseService<Publication>{
     public PublicationService(PublicationRepository publicationRepository) {
         super(publicationRepository);
         this.publicationRepository = publicationRepository;
+    }
+    public List<Publication> publicationList(String title) {
+        return publicationRepository.findByTitle(title);
     }
 }
