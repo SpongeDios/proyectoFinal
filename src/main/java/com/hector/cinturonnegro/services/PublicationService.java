@@ -1,6 +1,8 @@
 package com.hector.cinturonnegro.services;
 
+import com.hector.cinturonnegro.models.Comuna;
 import com.hector.cinturonnegro.models.Publication;
+import com.hector.cinturonnegro.models.Region;
 import com.hector.cinturonnegro.repositories.PublicationRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +18,11 @@ public class PublicationService extends BaseService<Publication>{
     }
     public List<Publication> publicationList(String title) {
         return publicationRepository.findByTitle(title);
+    }
+    public List<Comuna> comunaList(String nameComuna) {
+        return publicationRepository.findByNameComunaContaining(nameComuna);
+    }
+    public List<Region> regionList(String nameRegion) {
+        return publicationRepository.findByNameRegionContaining(nameRegion);
     }
 }
