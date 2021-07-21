@@ -27,20 +27,20 @@
                     <form:input cssClass="form-control" path="lastName"/>
                 </p>
 
-<%--                <p class="form-group">--%>
-<%--                    <form:label path="address.comuna.region">Region: </form:label>--%>
-<%--                    <form:input cssClass="form-control" path="address.comuna.region.nameRegion"/>--%>
-<%--                </p>--%>
+                <p class="form-group">
+                    <form:label path="address.comuna.region">Region: </form:label>
+                    <form:input cssClass="form-control" path="address.comuna.region.nameRegion"/>
+                </p>
 
-<%--                <p class="form-group">--%>
-<%--                    <form:label path="address.comuna">Comuna: </form:label>--%>
-<%--                    <form:input cssClass="form-control" path="address.comuna.nameComuna"/>--%>
-<%--                </p>--%>
+                <p class="form-group">
+                    <form:label path="address.comuna">Comuna: </form:label>
+                    <form:input cssClass="form-control" path="address.comuna.nameComuna"/>
+                </p>
 
-<%--                <p class="form-group">--%>
-<%--                    <form:label path="address.nameCalle">calle: </form:label>--%>
-<%--                    <form:input cssClass="form-control" path=""/>--%>
-<%--                </p>--%>
+                <p class="form-group">
+                    <form:label path="address.nameCalle">calle: </form:label>
+                    <form:input cssClass="form-control" path="address.nameCalle"/>
+                </p>
 
                 <p class="form-group">
                     <form:label path="phone">Celular: </form:label>

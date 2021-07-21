@@ -38,10 +38,11 @@ public class UserController {
     ///////////////////////////////////////////////////////
 
     @GetMapping("/registration")
-    public String registerForm(@ModelAttribute("user") User user, HttpSession session){
+    public String registerForm(@ModelAttribute("user") User user, HttpSession session, Model model){
         if(session.getAttribute("userid") != null){
             return "redirect:/index";
         } else {
+            model.addAttribute("regiones", comunaService.allData());
             return "registration.jsp";
         }
     }
@@ -61,6 +62,7 @@ public class UserController {
             result.addError(error);
             return "registration.jsp";
         } else {
+
             User u = userService.registerUser(user);
             session.setAttribute("userid", u.getId());
             return "redirect:/index";
