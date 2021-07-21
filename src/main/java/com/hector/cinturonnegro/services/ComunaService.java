@@ -14,7 +14,7 @@ public class ComunaService extends BaseService<Comuna>{
         super(comunaRepository);
         this.comunaRepository = comunaRepository;
     }
-    public List<Comuna> comunaList(String nameComuna) {
-        return comunaRepository.findByNameComunaContaining(nameComuna);
-    }
+//    public List<Comuna> comunaList(String nameComuna) {
+//        return comunaRepository.findByNameComunaContaining(nameComuna);
+//    }
 }
