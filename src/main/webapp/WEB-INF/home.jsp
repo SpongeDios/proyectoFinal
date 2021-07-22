@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Inicio</title>
@@ -7,8 +8,8 @@
 </head>
 <body class="container">
 <header>
-    <a href="/login">Login</a>
-    <a href="/registration">Registration</a>
+    <a href="/login">Iniciar Sesión</a>
+    <a href="/registration">Registrarse</a>
 </header>
     <div class="row">
         <ul class="col">
@@ -18,7 +19,7 @@
             <li> <a href="/atacama">Región de Atacama</a> </li>
             <li> <a href="/coquimbo">Región de Coquimbo</a> </li>
             <li> <a href="/valparaiso">Región de Valparaíso</a> </li>
-            <li> <a href="/santiago">Región Metropolitana de Santiago</a> </li>
+            <li> <a href="/metropolitana">Región Metropolitana de Santiago</a> </li>
             <li> <a href="/ohiggins">Región O'Higgins</a> </li>
             <li> <a href="/maule">Región del Maule</a> </li>
             <li> <a href="/nuble">Región del Ñuble</a> </li>
@@ -29,11 +30,12 @@
             <li> <a href="/aysen">Región de Aysén</a> </li>
             <li> <a href="/magallanes">Región de Magallanes</a> </li>
         </ul>
-
+        <ul class="col">
+            <c:forEach items="${comunas}" var="comuna">
+                <c:out value="${comuna}"></c:out>
+            </c:forEach>
+        </ul>
     </div>
-
-
-
     <div class="input-group">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                aria-describedby="search-addon" />

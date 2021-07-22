@@ -14,35 +14,35 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table( name = "users", uniqueConstraints = @UniqueConstraint( columnNames = "email" ) )//Hola holaa
+@Table( name = "users", uniqueConstraints = @UniqueConstraint( columnNames = "email" ) )
 public class User extends BaseModel{
     //NOMBRE
     @NotNull
-    @NotBlank( message = "Must have a First Name")
-    @Size( min = 2, max = 20, message = "Enter a Name between 2 and 20 characters" )
+    @NotBlank( message = "Debe tener un nombre")
+    @Size( min = 2, max = 20, message = "Ingresa un Nombre entre 2 a 20 caracteres" )
     private String firstName;
     //APELLIDO
     @NotNull
-    @NotBlank( message = "Must have a Last Name")
-    @Size( min = 2, max = 20, message = "Enter a Last Name between 2 and 20 characters" )
+    @NotBlank( message = "Debe tener un Apellido")
+    @Size( min = 2, max = 20, message = "Ingresa un Apellido entre 2 a 20 caracteres" )
     private String lastName;
     //FOTO
     private String photo;
     //TELEFONO
     @NotNull
-    @NotBlank( message = "Must have a Phone Number" )
-    @Size( min = 12, message = "The Phone Number must have 12 characters")
+    @NotBlank( message = "Debe tener un número de Celular" )
+    @Size( min = 12, message = "El número telefónico debe tener 12 caracteres")
     private String phone;
     //EMAIL
     @NotNull
     @Column( unique = true )
-    @Email( message = "Email must be valid" )
+    @Email( message = "El Email debe ser válido" )
     private String email;
-    //PASSWORD
+    //CONTRASEÑA
     @NotNull
-    @Size( min = 8, message = "Password must be greater than 8 characters" )
+    @Size( min = 8, message = "La Contraseña debe ser mayor a 8 caracteres" )
     private String password;
-    //PASSWORD CONFIRMATION
+    //CONFIRMAR CONTRASEÑA
     @Transient
     private String passwordConfirmation;
 //    //REGION

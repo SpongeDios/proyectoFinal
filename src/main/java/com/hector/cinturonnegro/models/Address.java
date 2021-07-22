@@ -20,7 +20,7 @@ import java.util.List;
 public class Address extends BaseModel{
     @Max(45)
     @NotNull
-    @NotBlank(message = "Must have an Address")
+    @NotBlank(message = "Debe tener una Dirección")
     private String nameCalle;
 
 //    ///////////////RELACION CON USUARIOS/////////////////

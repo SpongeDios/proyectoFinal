@@ -23,8 +23,8 @@ import java.util.List;
 public class Category extends BaseModel{
     //NOMBRE DE LA CATEGORIA
     @NotNull
-    @NotBlank( message = "Must have a Name" )
-    @Size( min = 5, max = 25, message = "Enter a Name between 5 to 25 characters" )
+    @NotBlank( message = "La Categoría debe tener un nombre" )
+    @Size( min = 5, max = 25, message = "Ingresa un nombre para el campo categoría entre 5 a 25 caracteres" )
     private String name;
 
     //RELACION CON PUBLICACION

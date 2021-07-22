@@ -68,7 +68,7 @@
                     <form:label path="passwordConfirmation">Confirmar contraseña:</form:label>
                     <form:password cssClass="form-control" path="passwordConfirmation"/>
                 </p>
-                <input class="btn btn-warning" type="submit" value="Register!"/>
+                <input class="btn btn-warning" type="submit" value="Registrar!"/>
             </form:form>
         </div>
     </div>

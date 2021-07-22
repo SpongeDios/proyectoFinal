@@ -23,7 +23,7 @@
                     <label for="password">Contraseña</label>
                     <input class="form-control" type="password" id="password" name="password"/>
                 </p>
-                <input class="btn btn-warning" type="submit" value="Login!"/>
+                <input class="btn btn-warning" type="submit" value="Iniciar Sesión!"/>
             </form>
         </div>
     </div>

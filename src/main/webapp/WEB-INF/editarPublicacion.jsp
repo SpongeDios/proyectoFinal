@@ -16,11 +16,11 @@
         <form:form method="POST" action="" cssClass="form col border border-1 rounded" modelAttribute="publication">
             <input type="hidden" name="_method" value="PUT">
             <p class="form-group col">
-            <form:label path="title">Titulo: </form:label>
+            <form:label path="title">Título: </form:label>
             <form:input cssClass="form-control" path="title"/>
             </p>
             <p class="col">
-            <form:label path="description">Descripcion:</form:label>
+            <form:label path="description">Descripción:</form:label>
             <form:textarea cssClass="form-control" path="description"/>
             </p>
             <p class="col">
@@ -28,13 +28,13 @@
             <form:input type="number" cssClass="form-control" path="price"/>
             </p>
             <p class="col">
-                <form:label path="type_publication">Tipo de publicacion:</form:label>
+                <form:label path="type_publication">Tipo de publicación:</form:label>
                 <form:select cssClass="form-control" path="type_publication">
-                    <form:option value="1">Quiero contratar a un weon</form:option>
+                    <form:option value="1">Quiero contratar a una perosna</form:option>
                     <form:option value="2">Quiero trabajar</form:option>
                 </form:select>
             </p>
-            <input class="btn btn-warning" type="submit" value="Register!"/>
+            <input class="btn btn-warning" type="submit" value="Publicar!"/>
         </form:form>
     </div>
 </div>

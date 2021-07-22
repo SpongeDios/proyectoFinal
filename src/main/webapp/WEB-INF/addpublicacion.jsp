@@ -19,7 +19,7 @@
                     <form:input cssClass="form-control" path="title"/>
                 </p>
                 <p class="col">
-                    <form:label path="description">Descripcion:</form:label>
+                    <form:label path="description">Descripción:</form:label>
                     <form:textarea cssClass="form-control" path="description"/>
                 </p>
                 <p class="col">
@@ -38,7 +38,7 @@
 <%--                    <form:input cssClass="form-control" path="category"/>--%>
 <%--                </p>--%>
                 <input multiple type="file" name="file">
-                <input class="btn btn-warning" type="submit" value="Register!"/>
+                <input class="btn btn-warning" type="submit" value="Publicar!"/>
             </form:form>
         </div>
     </div>

@@ -16,8 +16,8 @@ import javax.validation.constraints.Size;
 public class Message extends BaseModel{
     //MENSAJE
     @NotNull
-    @NotBlank( message = "Must have a Text" )
-    @Size( min = 5, max = 255, message = "Enter a Message between 5 to 255 characters" )
+    @NotBlank( message = "El mensaje debe contener texto" )
+    @Size( min = 5, max = 255, message = "Ingresa un mensaje entre 5 a 255 caracteres" )
     private String text;
 
     //RELACION CON USER

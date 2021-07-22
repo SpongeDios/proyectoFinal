@@ -15,11 +15,11 @@
         <table class="table">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">Titulo</th>
+                <th scope="col">Título</th>
                 <th scope="col">Precio</th>
-                <th scope="col">Categoria</th>
-                <th scope="col">Tipo de publicacion</th>
-                <th scope="col">Action | Status</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Tipo de publicación</th>
+                <th scope="col">Acción | Estado</th>
             </tr>
             </thead>
             <tbody>

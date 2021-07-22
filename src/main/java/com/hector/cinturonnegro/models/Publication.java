@@ -18,13 +18,13 @@ import java.util.List;
 public class Publication extends BaseModel{
     //TITULO
     @NotNull
-    @NotBlank( message = "Must have a Title")
-    @Size( min = 5, max = 25, message = "Enter a Title between 5 to 25 characters" )
+    @NotBlank( message = "Debe tener un Título")
+    @Size( min = 5, max = 25, message = "Ingresa un Título entre 5 a 25 caracteres" )
     private String title;
     //DESCRIPCION
     @NotNull
-    @NotBlank( message = "Must have a Description")
-    @Size( min = 5, max = 255, message = "Enter a Description between 5 to 255 characters" )
+    @NotBlank( message = "Debe tener una descripción")
+    @Size( min = 5, max = 255, message = "Ingresa una descripción entre 5 a 255 caracteres" )
     private String description;
     //PRECIO
 
