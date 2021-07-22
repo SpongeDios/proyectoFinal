@@ -9,6 +9,9 @@ import java.util.List;
 public interface RegionRepository extends BaseRepository<Region>{
 
     //Buscar region por nombre de region
-    List<Region> findByNameRegionContaining(String nameRegion);
+    Region findByNameRegionContaining(String nameRegion);
+
+    List<Region> findByNameRegion(String listRegion);
+
 
 }

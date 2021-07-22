@@ -127,7 +127,4 @@ public class RegionController {
         model.addAttribute("regiones",regiones);
         return "/home.jsp";
     }
-
-
-
 }

@@ -10,5 +10,6 @@ public interface ComunaRepository extends BaseRepository<Comuna>{
 
         //Busca comunas por nombre de comunas
     List<Comuna> findByNameComunaContaining(String nameComuna);
+    List<Comuna> findAllByRegionId(Long id);
 
 }

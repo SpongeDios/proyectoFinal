@@ -20,4 +20,8 @@ public class ComunaService extends BaseService<Comuna>{
         return comunaRepository.findByNameComunaContaining(nameComuna);
     }
 
+    public List<Comuna> comunasRegion(Long id){
+        return comunaRepository.findAllByRegionId(id);
+    }
+
 }
