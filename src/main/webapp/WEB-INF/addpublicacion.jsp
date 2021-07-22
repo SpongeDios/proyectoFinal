@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col">
             <form:errors path="publication.*"/>
-            <form:form method="POST" action="" cssClass="form col border border-1 rounded" modelAttribute="publication" >
+            <form:form method="POST" action="" cssClass="form col border border-1 rounded" enctype="multipart/form-data" modelAttribute="publication" >
                 <p class="form-group col">
                     <form:label path="title">Titulo: </form:label>
                     <form:input cssClass="form-control" path="title"/>
@@ -37,7 +37,7 @@
 <%--                    <form:label path="category">Categoria:</form:label>--%>
 <%--                    <form:input cssClass="form-control" path="category"/>--%>
 <%--                </p>--%>
-
+                <input multiple type="file" name="file">
                 <input class="btn btn-warning" type="submit" value="Register!"/>
             </form:form>
         </div>

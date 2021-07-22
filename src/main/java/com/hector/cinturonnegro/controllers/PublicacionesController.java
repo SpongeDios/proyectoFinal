@@ -12,9 +12,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 @Controller
 public class PublicacionesController {
@@ -86,7 +90,8 @@ public class PublicacionesController {
             @Valid @ModelAttribute("publication") Publication publication,
             BindingResult result,
             HttpSession session,
-            Model model
+            Model model,
+            @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
             return "addpublicacion.jsp";
@@ -96,6 +101,24 @@ public class PublicacionesController {
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
             publication.setCategory(category);
+            String name = file.getOriginalFilename();
+            if (!file.isEmpty()) {
+                File directorio = new File("archivos/" + user.getId());//Reemplazar 1 por user.getId()
+                if(!directorio.exists()){
+                    directorio.mkdirs();
+                }
+                try {
+                    byte[] bytes = file.getBytes();
+                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
+                    stream.write(bytes);
+                    stream.close();
+                    System.out.println("You successfully uploaded " + name + "!");
+                } catch (Exception e) {
+                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
+                }
+            } else {
+                System.out.println("You failed to upload " + name + " because the file was empty.");
+            }
             model.addAttribute("user", user);
             publication.setUser(user);
             categoryService.create(category);
