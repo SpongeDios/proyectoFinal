@@ -14,7 +14,8 @@ public class RegionService extends BaseService<Region>{
         super(regionRepository);
         this.regionRepository = regionRepository;
     }
-//    public List<Region> regionList(String nameRegion) {
-//        return regionRepository.findByNameRegionContaining(nameRegion);
-//    }
+
+    public List<Region> regionList(String nameRegion) {
+        return regionRepository.findByNameRegionContaining(nameRegion);
+    }
 }

@@ -8,6 +8,7 @@ import java.util.List;
 @Repository
 public interface ComunaRepository extends BaseRepository<Comuna>{
 
-//    //Buscar comunas por nombre
-//    List<Comuna> findByNameComunaContaining(String nameComuna);
+        //Busca comunas por nombre de comunas
+    List<Comuna> findByNameComunaContaining(String nameComuna);
+
 }
