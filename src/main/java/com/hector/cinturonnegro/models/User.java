@@ -66,22 +66,13 @@ public class User extends BaseModel{
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Feedback> feedbacks;
 
-    //SELF-JOIN CON MESSAGES
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "messages",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "receptor_id")
-    )
-    private List<User> receptor;
+    //RELACION CON MESSAGES
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Message> messages;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "messages",
-            joinColumns = @JoinColumn(name = "receptor_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private List<User> userSender;
+    @OneToMany(mappedBy = "receptor", fetch = FetchType.LAZY)
+    private List<Message> messagesReceptor;
+
 
 //    //////////////////RELACION CON DIRECCIONES/////////////////
     @ManyToOne(fetch = FetchType.LAZY)

@@ -22,11 +22,11 @@ public class Message extends BaseModel{
 
     //RELACION CON USER
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "receptor_id")
+    @JoinColumn(name = "receptor")
     private User receptor;
 
 }

@@ -10,8 +10,8 @@
     <a href="/login">Login</a>
     <a href="/registration">Registration</a>
 </header>
-    <div>
-        <ul>
+    <div class="row">
+        <ul class="col">
             <li> <a href="/arica">Región de Arica y Parinacota</a> </li>
             <li> <a href="/tarapaca">Región de Tarapacá</a> </li>
             <li> <a href="/antofagasta">Región de Antofagasta</a> </li>
@@ -29,7 +29,11 @@
             <li> <a href="/aysen">Región de Aysén</a> </li>
             <li> <a href="/magallanes">Región de Magallanes</a> </li>
         </ul>
+
     </div>
+
+
+
     <div class="input-group">
         <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                aria-describedby="search-addon" />

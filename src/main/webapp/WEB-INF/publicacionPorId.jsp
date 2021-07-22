@@ -17,6 +17,7 @@
             <li>Descripcion: <c:out value="${publication.description}"/> </li>
             <li>Precio: <c:out value="${publication.price}"/> </li>
             <li>Categoria: <c:out value="${publication.category.name}"/> </li>
+            <li>Telefono: <c:out value="${publication.user.phone}"/> </li>
             <li>Anuncio creado en:<fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
             <li>Foto<c:out value="${publication.photo_publication}"/></li>
         </ul>
