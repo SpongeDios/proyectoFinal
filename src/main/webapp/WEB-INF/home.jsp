@@ -45,9 +45,9 @@
         </ul>
     </div>
     <div class="input-group">
-        <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
                aria-describedby="search-addon" />
-        <button type="button" class="btn btn-primary">search</button>
+        <button type="button" class="btn btn-primary">Buscar</button>
     </div>
 </body>
 </html>
