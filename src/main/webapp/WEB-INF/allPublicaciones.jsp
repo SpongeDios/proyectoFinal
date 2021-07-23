@@ -12,17 +12,15 @@
 <body>
 <header>
     <a class="btn btn-link" href="/">Inicio</a>
-    <a class="btn btn-link" href="/index">Volver atrás</a>
+    <a class="btn btn-link" href="/publicaciones/add">Crear Publicación</a>
     <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
 </header>
 <div class="container">
     <h1> Bienvenido <c:out value="${user.firstName}"/> </h1>
-
-    <div class="input-group">
-        <form class="search" action="/search">
-        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
-               aria-describedby="search-addon" />
-        <button type="button" class="btn btn-primary">Buscar</button>
+    <div class="navbar">
+        <form class="form-inline" action="">
+            <input type="text" class="form-control" placeholder="Buscar" name="busqueda">
+            <input type="submit" class="btn btn-outline-primary" value="Buscar">
         </form>
     </div>
 

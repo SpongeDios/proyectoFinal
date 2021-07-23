@@ -35,7 +35,7 @@
             <p class="col">
                 <form:label path="type_publication">Tipo de publicación:</form:label>
                 <form:select cssClass="form-control" path="type_publication">
-                    <form:option value="1">Quiero contratar a una perosna</form:option>
+                    <form:option value="1">Quiero contratar a una persona</form:option>
                     <form:option value="2">Quiero trabajar</form:option>
                 </form:select>
             </p>

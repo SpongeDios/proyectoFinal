@@ -81,7 +81,7 @@
 <%--                </p>--%>
 
                 <p class="form-group">
-                    <form:label path="address.nameCalle">calle: </form:label>
+                    <form:label path="address.nameCalle">Calle: </form:label>
                     <form:input cssClass="form-control" path="address.nameCalle"/>
                 </p>
 

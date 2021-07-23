@@ -9,13 +9,13 @@
 <body class="container">
 <header>
     <c:if test="${user.id == null}">
-    <a class="btn btn-link" href="/login">Iniciar Sesión</a>
+    <a class="btn btn-link" class="btn btn-link" href="/login">Iniciar Sesión</a>
     <a class="btn btn-link" href="/registration">Registrarse</a>
     </c:if>
     <c:if test="${user.id != null}">
-        <a href="/perfil/${user.id}"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
-        <a href="/publicaciones">Mis Publicaciones</a>
-        <a href="/publicaciones/add">Crear Publicación</a>
+        <a class="btn btn-link" href="/perfil/${user.id}"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+        <a class="btn btn-link" href="/publicaciones">Mis Publicaciones</a>
+        <a class="btn btn-link" href="/publicaciones/add">Crear Publicación</a>
         <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
     </c:if>
 </header>
