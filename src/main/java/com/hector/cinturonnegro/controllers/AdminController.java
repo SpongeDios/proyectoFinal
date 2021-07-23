@@ -6,10 +6,7 @@ import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -23,17 +20,19 @@ public class AdminController {
     private final ComunaService comunaService;
     private final RegionService regionService;
     private final CategoryService categoryService;
+    private final AddressService addressService;
 
     //admin == userRol => 3
 
 
-    public AdminController(UserService userService, PublicationService publicationService, FeedbackService feedbackService, ComunaService comunaService, RegionService regionService, CategoryService categoryService) {
+    public AdminController(UserService userService, PublicationService publicationService, FeedbackService feedbackService, ComunaService comunaService, RegionService regionService, CategoryService categoryService, AddressService addressService) {
         this.userService = userService;
         this.publicationService = publicationService;
         this.feedbackService = feedbackService;
         this.comunaService = comunaService;
         this.regionService = regionService;
         this.categoryService = categoryService;
+        this.addressService = addressService;
     }
 
     @GetMapping("/admin")
@@ -151,6 +150,27 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/admin/comunas/{idComuna}")
+    public String comunaPorId(
+            @PathVariable("idComuna") Long idComuna,
+            HttpSession session,
+            Model model
+    ){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Comuna comuna = comunaService.findById(idComuna);
+            model.addAttribute("comuna", comuna);
+            return "comunaPorIdAdmin.jsp";
+        }
+    }
+
+
     @GetMapping("/admin/comunas/new")
     public String comunaForm(
             HttpSession session,
@@ -210,6 +230,28 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/admin/regiones/{idRegion}")
+    public String regionPorId(
+            @PathVariable("idRegion") Long idRegion,
+            HttpSession session,
+            Model model
+    ){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Region region = regionService.findById(idRegion);
+            model.addAttribute("region", region);
+            return "regionPorIdAdmin.jsp";
+        }
+    }
+
+
+
     @GetMapping("/admin/regiones/new")
     public String formRegion(HttpSession session, Model model, @ModelAttribute("region") Region region){
         if(session.getAttribute("userid") == null){
@@ -257,6 +299,22 @@ public class AdminController {
         }
     }
 
+    @GetMapping("/admin/categories/{idCategory}")
+    public String categoryPorId(@PathVariable("idCategory") Long idCategory, HttpSession session, Model model){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Category category = categoryService.findById(idCategory);
+            model.addAttribute("category", category);
+            return "categoryPorIdAdmin.jsp";
+        }
+    }
+
     @GetMapping("/admin/categories/new")
     public String categoryForm(HttpSession session, @ModelAttribute("category") Category category){
         if(session.getAttribute("userid") == null){
@@ -283,6 +341,180 @@ public class AdminController {
             return "redirect:/admin/categories";
         }
     }
+
+    ///////////////////////////////////////////////////////
+    //////////////////////DELETE X3////////////////////////
+    ///////////////////////////////////////////////////////
+
+    @GetMapping("/admin/categories/{idCategory}/delete")
+    public String deleteCategories(@PathVariable("idCategory") Long idCategory, HttpSession session){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Category category = categoryService.findById(idCategory);
+            for (Publication publication: category.getPublications()) {
+                publicationService.delete(publication.getId());
+            }
+            categoryService.delete(category.getId());
+            return "redirect:/admin/categories";
+        }
+    }
+    @GetMapping("/admin/regiones/{idRegion}/delete")
+    public String deleteRegion(@PathVariable("idRegion") Long idRegion, HttpSession session){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Region region = regionService.findById(idRegion);
+            for (Comuna comuna : region.getComunas()) {
+                comunaService.delete(comuna.getId());
+            }
+            regionService.delete(region.getId());
+            return "redirect:/admin/categories";
+        }
+    }
+    @GetMapping("/admin/comunas/{idComuna}/delete")
+    public String deleteComuna(@PathVariable("idComuna") Long idComuna, HttpSession session){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Comuna comuna = comunaService.findById(idComuna);
+            for (Address address : comuna.getUserAddress()) {
+                addressService.delete(address.getId());
+            }
+            comunaService.delete(comuna.getId());
+            return "redirect:/admin/comunas";
+        }
+    }
+
+    ///////////////////////////////////////////////////////////
+    /////////////////////EDIT X 3//////////////////////////////
+    ///////////////////////////////////////////////////////////
+
+    @GetMapping("/admin/comunas/{idComuna}/edit")
+    public String formComunaEdit(@PathVariable("idComuna") Long idComuna, HttpSession session, @ModelAttribute("comuna") Comuna comuna, Model model){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Comuna c = comunaService.findById(idComuna);
+            List<Region> allRegions = regionService.allData();
+            model.addAttribute("allRegions", allRegions);
+            model.addAttribute("c", c);
+            return "editComunaAdmin.jsp";
+        }
+    }
+
+    @PutMapping("/admin/comunas/{idComuna}/edit")
+    public String editingComuna(
+            @PathVariable("idComuna") Long idComuna,
+            @Valid @ModelAttribute("comuna") Comuna comuna,
+            BindingResult result
+    ){
+        if(result.hasErrors()){
+            return "editComunaAdmin.jsp";
+        }else{
+            Comuna c = comunaService.findById(idComuna);
+            c.setNameComuna(comuna.getNameComuna());
+            c.setRegion(comuna.getRegion());
+            comunaService.update(c);
+            return "redirect:/admin/comunas";
+        }
+    }
+
+
+    @GetMapping("/admin/regiones/{idRegion}/edit")
+    public String formRegionEdit(@PathVariable("idRegion") Long idRegion, HttpSession session, @ModelAttribute("region") Region region, Model model){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Region r = regionService.findById(idRegion);
+            model.addAttribute("r", r);
+            return "editRegionAdmin.jsp";
+        }
+    }
+
+    @PutMapping("/admin/regiones/{idRegion}/edit")
+    public String editRegion(
+        @Valid @ModelAttribute("region") Region region,
+        BindingResult result,
+        @PathVariable("idRegion") Long idRegion
+    ){
+        if(result.hasErrors()){
+            return "editRegionAdmin.jsp";
+        }else{
+            Region r = regionService.findById(idRegion);
+            r.setNameRegion(region.getNameRegion());
+            regionService.update(r);
+            return "redirect:/admin/regiones";
+        }
+    }
+
+    @GetMapping("/admin/categories/{idCategory}/edit")
+    public String formCategory(
+            @PathVariable("idCategory") Long idCategory,
+            HttpSession session,
+            Model model,
+            @ModelAttribute("category") Category category
+    ){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Category c = categoryService.findById(idCategory);
+            model.addAttribute("c", c);
+            return "editCategoryAdmin.jsp";
+        }
+    }
+
+    @PutMapping("/admin/categories/{idCategory}/edit")
+    public String editCategory(
+            @PathVariable("idCategory") Long idCategory,
+            @Valid @ModelAttribute("Category") Category category,
+            BindingResult result,
+            Model model
+    ){
+        if (result.hasErrors()){
+            return "editCategoryAdmin.jsp";
+        } else{
+            Category c = categoryService.findById(idCategory);
+            model.addAttribute("c", c);
+            c.setName(category.getName());
+            categoryService.update(c);
+            return "redirect:/admin/categories";
+        }
+    }
+
+
+
+
 
 
 

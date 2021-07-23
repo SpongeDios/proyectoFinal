@@ -56,7 +56,16 @@ public class Publication extends BaseModel{
     @JoinColumn(name = "category")
     private Category category;
 
+<<<<<<< Updated upstream
     //RELACION CON MESSAGE
     @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY)
     private List<Message> messages;
+=======
+    //RELACION CON ADDRESS
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address")
+    private Address address;
+
+
+>>>>>>> Stashed changes
 }

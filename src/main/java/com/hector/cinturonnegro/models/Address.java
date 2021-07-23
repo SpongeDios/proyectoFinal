@@ -31,7 +31,6 @@ public class Address extends BaseModel{
         this.userAddress.add(user);
     }
 
-
     ///////////////RELACION CON COMUNAS///////////////////
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "comuna")
@@ -41,4 +40,9 @@ public class Address extends BaseModel{
         this.nameCalle = calle;
         this.comuna = comuna;
     }
+
+    /////////////RELACION CON PUBLICACION///////////////////
+    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
+    private List<Publication> publications;
+
 }
