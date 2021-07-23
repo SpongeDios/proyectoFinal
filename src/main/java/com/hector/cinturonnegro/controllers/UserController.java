@@ -55,9 +55,6 @@ public class UserController {
     public String registerUser(
             @Valid @ModelAttribute("user") User user,
             BindingResult result,
-/*            @RequestParam("region") Long idRegion,
-            @RequestParam("comuna") Long idComuna,*/
-            /*            @RequestParam("calle") String calle,*/
             HttpSession session
     ) {
         userValidator.validate(user, result);
@@ -69,11 +66,12 @@ public class UserController {
             result.addError(error);
             return "registration.jsp";
         } else {
+            Address address = new Address();
+            address.setNameCalle(user.getAddress().getNameCalle());
+            address.setComuna(user.getAddress().getComuna());
+            addressService.update(address);
+            user.setAddress(address);
             User u = userService.registerUser(user);
-/*            Comuna comuna = comunaService.findById(idComuna);
-            Address address = new Address(calle, comuna);
-            user.setAddress(address);*/
-            userService.update(u);
             session.setAttribute("userid", u.getId());
             return "redirect:/";
         }

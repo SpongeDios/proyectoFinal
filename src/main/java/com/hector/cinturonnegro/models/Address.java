@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
@@ -18,18 +19,15 @@ import java.util.List;
 @Entity
 @Table( name = "addresses" )
 public class Address extends BaseModel{
-    @Max(45)
     @NotNull
     @NotBlank(message = "Debe tener una Dirección")
+    @Size(min = 2, max = 255)
     private String nameCalle;
 
     ///////////////RELACION CON USUARIOS/////////////////
-    @OneToMany(mappedBy = "address", fetch = FetchType.LAZY)
-    private List<User> userAddress;
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private User userAddress;
 
-    public void addUser(User user){
-        this.userAddress.add(user);
-    }
 
     ///////////////RELACION CON COMUNAS///////////////////
     @ManyToOne(fetch = FetchType.LAZY)

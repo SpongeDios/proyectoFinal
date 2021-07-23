@@ -39,51 +39,51 @@
                 </p>
 
 
-<%--                <p class="form-group">
-                    <label for="region">Region: </label>
-                    <select name="region" id="region">
-                        <c:forEach var="region" items="${regiones}">
-                            <option value="${region.id}"> <c:out value="${region.nameRegion}"/> </option>
-                        </c:forEach>
-                    </select>
-                </p>--%>
-
-<%--               <p class="form-group">--%>
-<%--                   <form:label path="address.comuna.region">Region: </form:label>--%>
-<%--                   <form:select cssClass="form-control" path="address.comuna.region">--%>
-<%--                       <c:forEach var="region" items="${regiones}">--%>
-<%--                           <form:option value="${region.id}"><c:out value="${region.nameRegion}"/> </form:option>--%>
-<%--                       </c:forEach>--%>
-<%--                   </form:select>--%>
-<%--                </p>--%>
-
-<%--                <p class="form-group">
-                    <label for="comuna">Comuna:</label>
-                    <select name="comuna" id="comuna">
-                        <c:forEach var="comuna" items="${comunas}">
-                            <option value="${comuna.id}"> <c:out value="${comuna.nameComuna}"/> </option>
-                        </c:forEach>
-                    </select>
-                </p>--%>
-
 <%--                <p class="form-group">--%>
-<%--                    <form:label path="address.comuna">Comuna: </form:label>--%>
-<%--                    <form:select cssClass="form-control" path="address.comuna">--%>
-<%--                        <c:forEach var="comuna" items="${comunas}">--%>
-<%--                            <form:option value="${comuna.id}"> <c:out value="${comuna.nameComuna}"/> </form:option>--%>
+<%--                    <label for="region">Region: </label>--%>
+<%--                    <select name="region" id="region">--%>
+<%--                        <c:forEach var="region" items="${regiones}">--%>
+<%--                            <option value="${region.id}"> <c:out value="${region.nameRegion}"/> </option>--%>
 <%--                        </c:forEach>--%>
-<%--                    </form:select>--%>
-<%--                </p>--%>
+<%--                    </select>--%>
+<%--                </p>&ndash;%&gt;--%>
 
-<%--                <p class="form-group">
-                    <label for="calle">Calle</label>
-                    <input type="text" id="calle" name="calle"/>
-                </p>--%>
+               <p class="form-group">
+                   <form:label path="address.comuna.region">Region: </form:label>
+                   <form:select cssClass="form-control" path="address.comuna.region">
+                       <c:forEach var="region" items="${regiones}">
+                           <form:option value="${region.id}"><c:out value="${region.nameRegion}"/> </form:option>
+                       </c:forEach>
+                   </form:select>
+                </p>
 
 <%--                <p class="form-group">--%>
-<%--                    <form:label path="address.nameCalle">calle: </form:label>--%>
-<%--                    <form:input cssClass="form-control" path="address.nameCalle"/>--%>
+<%--                    <label for="comuna">Comuna:</label>--%>
+<%--                    <select name="comuna" id="comuna">--%>
+<%--                        <c:forEach var="comuna" items="${comunas}">--%>
+<%--                            <option value="${comuna.id}"> <c:out value="${comuna.nameComuna}"/> </option>--%>
+<%--                        </c:forEach>--%>
+<%--                    </select>--%>
 <%--                </p>--%>
+
+                <p class="form-group">
+                    <form:label path="address.comuna">Comuna: </form:label>
+                    <form:select cssClass="form-control" path="address.comuna">
+                        <c:forEach var="comuna" items="${comunas}">
+                            <form:option value="${comuna.id}"> <c:out value="${comuna.nameComuna}"/> </form:option>
+                        </c:forEach>
+                    </form:select>
+                </p>
+
+<%--                <p class="form-group">--%>
+<%--                    <label for="calle">Calle</label>--%>
+<%--                    <input type="text" id="calle" name="calle"/>--%>
+<%--                </p>--%>
+
+                <p class="form-group">
+                    <form:label path="address.nameCalle">calle: </form:label>
+                    <form:input cssClass="form-control" path="address.nameCalle"/>
+                </p>
 
                 <p class="form-group">
                     <form:label path="phone">Celular: </form:label>

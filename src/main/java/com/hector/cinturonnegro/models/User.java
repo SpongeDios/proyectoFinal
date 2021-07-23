@@ -75,7 +75,7 @@ public class User extends BaseModel{
 
 
 //    //////////////////RELACION CON DIRECCIONES/////////////////
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Address")
     private Address address;
 
