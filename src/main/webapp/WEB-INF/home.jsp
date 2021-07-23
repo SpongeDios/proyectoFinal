@@ -8,9 +8,15 @@
 </head>
 <body class="container">
 <header>
+    <c:if test="${user.id == null}">
     <a class="btn btn-link" href="/login">Iniciar Sesión</a>
     <a class="btn btn-link" href="/registration">Registrarse</a>
-    <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
+    </c:if>
+    <c:if test="${user.id != null}">
+        <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
+        <a href="/publicaciones">Mis Publicaciones</a>
+        <a href=""><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+    </c:if>
 </header>
     <div class="row">
         <ul class="col">
