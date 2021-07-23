@@ -101,9 +101,10 @@ public class PublicacionesController {
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
             publication.setCategory(category);
+            int carpetaPubl = publicationService.allData().size() + 1;
             String name = file.getOriginalFilename();
             if (!file.isEmpty()) {
-                File directorio = new File("archivos/" + user.getId());//Reemplazar 1 por user.getId()
+                File directorio = new File("archivos/" + user.getId() + "/" + carpetaPubl);//Reemplazar 1 por user.getId()
                 if(!directorio.exists()){
                     directorio.mkdirs();
                 }
