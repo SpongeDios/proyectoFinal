@@ -9,6 +9,11 @@
     <title>Title</title>
 </head>
 <body>
+<header>
+    <a class="btn btn-link" href="/">Inicio</a>
+    <a class="btn btn-link" href="/publicaciones">Volver atrás</a>
+    <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
+</header>
 <div class="container">
 
     <div class="col">
