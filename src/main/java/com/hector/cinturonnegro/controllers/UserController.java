@@ -86,7 +86,7 @@ public class UserController {
     @GetMapping("/login")
     public String loginForm(HttpSession session) {
         if (session.getAttribute("userid") != null) {
-            return "redirect:/index";
+            return "redirect:/";
         } else {
             return "login.jsp";
         }

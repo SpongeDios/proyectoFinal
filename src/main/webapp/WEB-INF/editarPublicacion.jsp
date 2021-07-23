@@ -22,15 +22,15 @@
             <input type="hidden" name="_method" value="PUT">
             <p class="form-group col">
             <form:label path="title">Título: </form:label>
-            <form:input cssClass="form-control" path="title"/>
+            <form:input value="${p.title}" cssClass="form-control" path="title"/>
             </p>
             <p class="col">
             <form:label path="description">Descripción:</form:label>
-            <form:textarea cssClass="form-control" path="description"/>
+            <form:input value="${p.description}" cssClass="form-control" path="description"/>
             </p>
             <p class="col">
             <form:label path="price">Precio estimado:</form:label>
-            <form:input type="number" cssClass="form-control" path="price"/>
+            <form:input type="number" value="${p.price}" cssClass="form-control" path="price"/>
             </p>
             <p class="col">
                 <form:label path="type_publication">Tipo de publicación:</form:label>
