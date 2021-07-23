@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
@@ -17,6 +19,7 @@ import java.util.List;
 @Table( name = "comunas" )
 public class Comuna extends BaseModel{
     @NotNull
+    @Size(min = 3, max = 45)
     private String nameComuna;
 
     ///////////////RELACION CON REGIONES//////////////

@@ -1,17 +1,18 @@
 package com.hector.cinturonnegro.controllers;
 
-import com.hector.cinturonnegro.models.Feedback;
-import com.hector.cinturonnegro.models.Publication;
-import com.hector.cinturonnegro.models.User;
-import com.hector.cinturonnegro.services.FeedbackService;
-import com.hector.cinturonnegro.services.PublicationService;
-import com.hector.cinturonnegro.services.UserService;
+import com.hector.cinturonnegro.models.*;
+import com.hector.cinturonnegro.services.*;
+import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -19,13 +20,20 @@ public class AdminController {
     private final UserService userService;
     private final PublicationService publicationService;
     private final FeedbackService feedbackService;
+    private final ComunaService comunaService;
+    private final RegionService regionService;
+    private final CategoryService categoryService;
 
     //admin == userRol => 3
 
-    public AdminController(UserService userService, PublicationService publicationService, FeedbackService feedbackService) {
+
+    public AdminController(UserService userService, PublicationService publicationService, FeedbackService feedbackService, ComunaService comunaService, RegionService regionService, CategoryService categoryService) {
         this.userService = userService;
         this.publicationService = publicationService;
         this.feedbackService = feedbackService;
+        this.comunaService = comunaService;
+        this.regionService = regionService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/admin")
@@ -119,5 +127,170 @@ public class AdminController {
         }
 
     }
+
+    /////////////////////////////////////////////////////////////
+    ////////////////////////CREAR COMUNA/////////////////////////
+    /////////////////////////////////////////////////////////////
+
+    @GetMapping("/admin/comunas")
+    public String allComuna(
+            HttpSession session,
+            Model model
+    ){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        } else{
+            List<Comuna> allData = comunaService.allData();
+            model.addAttribute("data", allData);
+            return "adminData.jsp";
+        }
+    }
+
+    @GetMapping("/admin/comunas/new")
+    public String comunaForm(
+            HttpSession session,
+            Model model,
+            @ModelAttribute("comuna") Comuna comuna
+    ){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            List<Region> regiones = regionService.allData();
+            model.addAttribute("regiones", regiones);
+            return "newComunaAdmin.jsp";
+        }
+    }
+
+    @PostMapping("/admin/comunas/new")
+    public String addComuna(
+            @Valid @ModelAttribute("comuna") Comuna comuna,
+            BindingResult result,
+            Model model
+    ){
+        if(result.hasErrors()){
+            return "newComunaAdmin.jsp";
+        }else{
+            List<Region> regiones = regionService.allData();
+            model.addAttribute("regiones", regiones);
+            comunaService.create(comuna);
+            return "redirect:/admin/comunas";
+        }
+    }
+
+    /////////////////////////////////////////////////////////////
+    ////////////////////////CREAR REGION/////////////////////////
+    /////////////////////////////////////////////////////////////
+
+    @GetMapping("/admin/regiones")
+    public String allRegions(
+            HttpSession session,
+            Model model
+    ){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            List<Region> regiones = regionService.allData();
+            model.addAttribute("data", regiones);
+            return "adminData.jsp";
+        }
+    }
+
+    @GetMapping("/admin/regiones/new")
+    public String formRegion(HttpSession session, Model model, @ModelAttribute("region") Region region){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            return "newRegionAdmin.jsp";
+        }
+    }
+
+    @PostMapping("/admin/regiones/new")
+    public String addRegion(
+            @Valid @ModelAttribute("region") Region region,
+            BindingResult result
+    ){
+        if(result.hasErrors()){
+            return "newRegionAdmin.jsp";
+        }else{
+            regionService.create(region);
+            return "redirect:/admin/regiones";
+        }
+    }
+
+    /////////////////////////////////////////////////////////////
+    ////////////////////////CREAR CATEGORY///////////////////////
+    /////////////////////////////////////////////////////////////
+
+    @GetMapping("/admin/categories")
+    public String allCategories(HttpSession session, Model model){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            List<Category> categories = categoryService.allData();
+            model.addAttribute("data", categories);
+            return "adminData.jsp";
+        }
+    }
+
+    @GetMapping("/admin/categories/new")
+    public String categoryForm(HttpSession session, @ModelAttribute("category") Category category){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            return "newCategoryAdmin.jsp";
+        }
+    }
+
+    @PostMapping("/admin/categories/new")
+    public String addCategory(
+            @Valid @ModelAttribute("category") Category category,
+            BindingResult result
+    ){
+        if(result.hasErrors()){
+            return "newCategoryAdmin.jsp";
+        }else{
+            categoryService.create(category);
+            return "redirect:/admin/categories";
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 }

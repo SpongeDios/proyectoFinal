@@ -25,7 +25,7 @@
             <tbody>
                 <c:forEach var="publicacion" items="${user.publications}">
                     <tr>
-                        <th scope="row"><c:out value="${publicacion.title}"/> </th>
+                        <th scope="row"><a href="/publicaciones/${publicacion.id}"><c:out value="${publicacion.title}"/></a></th>
                         <td>$<c:out value="${publicacion.price}"/></td>
                         <td><c:out value="${publicacion.category.name}"/></td>
                         <td><c:out value="${publicacion.type_publication}"/></td>

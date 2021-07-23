@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
@@ -20,6 +21,7 @@ import java.util.List;
 @Table( name = "regiones" )
 public class Region extends BaseModel{
     @NotNull
+    @Size(min = 5, max = 255)
     private String nameRegion;
 
     ///////////RELACION CON COMUNAS////////////////

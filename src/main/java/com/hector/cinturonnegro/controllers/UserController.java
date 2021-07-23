@@ -3,7 +3,9 @@ package com.hector.cinturonnegro.controllers;
 import com.hector.cinturonnegro.models.Address;
 import com.hector.cinturonnegro.models.Comuna;
 import com.hector.cinturonnegro.models.User;
+import com.hector.cinturonnegro.services.AddressService;
 import com.hector.cinturonnegro.services.ComunaService;
+import com.hector.cinturonnegro.services.RegionService;
 import com.hector.cinturonnegro.services.UserService;
 import com.hector.cinturonnegro.validator.UserValidator;
 import org.springframework.stereotype.Controller;
@@ -23,11 +25,15 @@ public class UserController {
     private final UserValidator userValidator;
     private final UserService userService;
     private final ComunaService comunaService;
+    private final RegionService regionService;
+    private final AddressService addressService;
 
-    public UserController(UserValidator userValidator, UserService userService, ComunaService comunaService) {
+    public UserController(UserValidator userValidator, UserService userService, ComunaService comunaService, RegionService regionService, AddressService addressService) {
         this.userValidator = userValidator;
         this.userService = userService;
         this.comunaService = comunaService;
+        this.regionService = regionService;
+        this.addressService = addressService;
     }
 
     //ROL = 1 => Prestador de servicios
@@ -42,7 +48,8 @@ public class UserController {
         if(session.getAttribute("userid") != null){
             return "redirect:/index";
         } else {
-            model.addAttribute("regiones", comunaService.allData());
+            model.addAttribute("regiones", regionService.allData());
+            model.addAttribute("comunas", comunaService.allData());
             return "registration.jsp";
         }
     }
@@ -51,6 +58,9 @@ public class UserController {
     public String registerUser(
             @Valid @ModelAttribute("user") User user,
             BindingResult result,
+            @RequestParam("region") Long idRegion,
+            @RequestParam("comuna") Long idComuna,
+            @RequestParam("calle") String calle,
             HttpSession session
     ){
         userValidator.validate(user, result);
@@ -62,8 +72,11 @@ public class UserController {
             result.addError(error);
             return "registration.jsp";
         } else {
-
             User u = userService.registerUser(user);
+            Comuna comuna = comunaService.findById(idComuna);
+            Address address = new Address(calle, comuna);
+            user.setAddress(address);
+            userService.update(u);
             session.setAttribute("userid", u.getId());
             return "redirect:/index";
         }
