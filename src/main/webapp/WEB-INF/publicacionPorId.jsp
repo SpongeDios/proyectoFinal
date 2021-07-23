@@ -21,6 +21,7 @@
             <li>Anuncio creado en:<fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
             <li>Foto<c:out value="${publication.photo_publication}"/></li>
         </ul>
+        <img src="${publication.photo_publication}">
     </div>
 </div>
 </body>
