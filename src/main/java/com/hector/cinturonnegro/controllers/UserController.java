@@ -12,10 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -44,8 +41,8 @@ public class UserController {
     ///////////////////////////////////////////////////////
 
     @GetMapping("/registration")
-    public String registerForm(@ModelAttribute("user") User user, HttpSession session, Model model){
-        if(session.getAttribute("userid") != null){
+    public String registerForm(@ModelAttribute("user") User user, HttpSession session, Model model) {
+        if (session.getAttribute("userid") != null) {
             return "redirect:/index";
         } else {
             model.addAttribute("regiones", regionService.allData());
@@ -60,15 +57,15 @@ public class UserController {
             BindingResult result,
 /*            @RequestParam("region") Long idRegion,
             @RequestParam("comuna") Long idComuna,*/
-/*            @RequestParam("calle") String calle,*/
+            /*            @RequestParam("calle") String calle,*/
             HttpSession session
-    ){
+    ) {
         userValidator.validate(user, result);
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "registration.jsp";
         }
-        if(userService.emailExist(user.getEmail())){
-            FieldError error = new FieldError("email", "email", "El email "+ user.getEmail() + " ya se encuentra registrado");
+        if (userService.emailExist(user.getEmail())) {
+            FieldError error = new FieldError("email", "email", "El email " + user.getEmail() + " ya se encuentra registrado");
             result.addError(error);
             return "registration.jsp";
         } else {
@@ -87,8 +84,8 @@ public class UserController {
     ///////////////////////////////////////////////////
 
     @GetMapping("/login")
-    public String loginForm(HttpSession session){
-        if(session.getAttribute("userid") != null){
+    public String loginForm(HttpSession session) {
+        if (session.getAttribute("userid") != null) {
             return "redirect:/index";
         } else {
             return "login.jsp";
@@ -101,8 +98,8 @@ public class UserController {
             @RequestParam("password") String password,
             Model model,
             HttpSession session
-     ){
-        if(userService.autenticarUsuario(email, password)){
+    ) {
+        if (userService.autenticarUsuario(email, password)) {
             User user = userService.findUserByEmail(email);
             session.setAttribute("userid", user.getId());
             return "redirect:/";
@@ -118,9 +115,21 @@ public class UserController {
     //////////////////////////////////////////////////
 
     @GetMapping("/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/";
     }
 
+
+    /////////////////////////////////////////////////////
+    //////////////////////PERFIL////////////////////////
+    ////////////////////////////////////////////////////
+
+    @GetMapping("/perfil/{idUser}")
+    public String perfilUser(Model model, HttpSession session) {
+        Long userId = (Long) session.getAttribute("userid");
+        User user = userService.findById(userId);
+        model.addAttribute("user", user);
+        return "perfilUsuario.jsp";
+    }
 }

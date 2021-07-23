@@ -13,7 +13,7 @@
     <a class="btn btn-link" href="/registration">Registrarse</a>
     </c:if>
     <c:if test="${user.id != null}">
-        <a href=""><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+        <a href="/perfil/${user.id}"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
         <a href="/publicaciones">Mis Publicaciones</a>
         <a href="/publicaciones/add">Crear Publicación</a>
         <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
