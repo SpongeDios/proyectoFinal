@@ -22,13 +22,13 @@ public class ComunaController {
         this.regionService = regionService;
     }
 
-    @GetMapping("/region")
-    public String comunas(
-            @RequestParam("nombre")String nombre, Model model){
-        Region regions = regionService.findByNameRegion(nombre);
-        List<Comuna> comunas = comunaService.comunasRegion(regions.getId());
-        model.addAttribute("comunas", comunas);
-        return "/" + nombre;
-    }
+//    @GetMapping("/")
+//    public String comunas(
+//            @RequestParam("nombre")String nombre, Model model){
+//        Region regions = regionService.findByNameRegion(nombre);
+//        List<Comuna> comunas = comunaService.encontrarComunasPorRegion(regions.getId());
+//        model.addAttribute("comunas", comunas);
+//        return "home.jsp";
+//    }
 
 }

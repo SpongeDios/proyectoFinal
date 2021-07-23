@@ -21,7 +21,6 @@ public class IndexController {
         List<Comuna> comunas = comunaService.comunaList("Metropolitana");
         model.addAttribute("comunas", comunas);
         return "/home.jsp";
-
     }
 
 }

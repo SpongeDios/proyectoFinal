@@ -13,6 +13,7 @@
 </header>
     <div class="row">
         <ul class="col">
+
             <li> <a href="/arica">Región de Arica y Parinacota</a> </li>
             <li> <a href="/tarapaca">Región de Tarapacá</a> </li>
             <li> <a href="/antofagasta">Región de Antofagasta</a> </li>
