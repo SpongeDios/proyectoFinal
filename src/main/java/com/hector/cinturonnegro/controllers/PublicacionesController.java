@@ -101,9 +101,10 @@ public class PublicacionesController {
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
             publication.setCategory(category);
+            int carpetaPubl = publicationService.allData().size() + 1;
             String name = file.getOriginalFilename();
             if (!file.isEmpty()) {
-                File directorio = new File("archivos/" + user.getId());//Reemplazar 1 por user.getId()
+                File directorio = new File("src/main/resources/static/archivos/" + user.getId() + "/" + carpetaPubl);//Reemplazar 1 por user.getId()
                 if(!directorio.exists()){
                     directorio.mkdirs();
                 }
@@ -111,6 +112,7 @@ public class PublicacionesController {
                     byte[] bytes = file.getBytes();
                     BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
                     stream.write(bytes);
+                    publication.setPhoto_publication("/archivos/" + user.getId() + "/" + carpetaPubl + "/" + name);
                     stream.close();
                     System.out.println("You successfully uploaded " + name + "!");
                 } catch (Exception e) {
