@@ -56,4 +56,7 @@ public class Publication extends BaseModel{
     @JoinColumn(name = "category")
     private Category category;
 
+    //RELACION CON MESSAGE
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY)
+    private List<Message> messages;
 }

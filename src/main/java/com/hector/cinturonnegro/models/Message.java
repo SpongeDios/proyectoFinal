@@ -29,4 +29,8 @@ public class Message extends BaseModel{
     @JoinColumn(name = "receptor")
     private User receptor;
 
+    //RELACION CON PUBLICATION
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "publication")
+    private Publication publication;
 }

@@ -58,9 +58,9 @@ public class UserController {
     public String registerUser(
             @Valid @ModelAttribute("user") User user,
             BindingResult result,
-            @RequestParam("region") Long idRegion,
-            @RequestParam("comuna") Long idComuna,
-            @RequestParam("calle") String calle,
+/*            @RequestParam("region") Long idRegion,
+            @RequestParam("comuna") Long idComuna,*/
+/*            @RequestParam("calle") String calle,*/
             HttpSession session
     ){
         userValidator.validate(user, result);
@@ -73,12 +73,12 @@ public class UserController {
             return "registration.jsp";
         } else {
             User u = userService.registerUser(user);
-            Comuna comuna = comunaService.findById(idComuna);
+/*            Comuna comuna = comunaService.findById(idComuna);
             Address address = new Address(calle, comuna);
-            user.setAddress(address);
+            user.setAddress(address);*/
             userService.update(u);
             session.setAttribute("userid", u.getId());
-            return "redirect:/index";
+            return "redirect:/";
         }
     }
 
@@ -105,7 +105,7 @@ public class UserController {
         if(userService.autenticarUsuario(email, password)){
             User user = userService.findUserByEmail(email);
             session.setAttribute("userid", user.getId());
-            return "redirect:/index";
+            return "redirect:/";
         } else {
             String error = "Credenciales incorrectas";
             session.setAttribute("error", error);

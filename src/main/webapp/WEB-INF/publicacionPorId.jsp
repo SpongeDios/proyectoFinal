@@ -21,8 +21,31 @@
             <li>Anuncio creado en:<fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
             <li>Foto<c:out value="${publication.photo_publication}"/></li>
         </ul>
-        <img src="${publication.photo_publication}">
     </div>
+    <img src="${publication.photo_publication}" height="200px" width="250px">
+    <h4>¿Quieres realizar una consulta?</h4>
+    <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
+        <form:label path="text"></form:label>
+        <form:input path="text"/>
+        <input type="submit">
+    </form:form>
+    <table>
+        <thead>
+            <tr>
+                <th>ÚLTIMAS CONSULTAS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${publication.messages}" var="messages">
+                <tr>
+                    <th><c:out value="${messages.user.firstName}"/> <c:out value="${messages.user.lastName}"/> </th>
+                </tr>
+                <tr>
+                    <td><c:out value="${messages.text}"/></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

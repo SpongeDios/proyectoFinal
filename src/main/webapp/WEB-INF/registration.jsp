@@ -36,14 +36,14 @@
                 </p>
 
 
-                <p class="form-group">
+<%--                <p class="form-group">
                     <label for="region">Region: </label>
                     <select name="region" id="region">
                         <c:forEach var="region" items="${regiones}">
                             <option value="${region.id}"> <c:out value="${region.nameRegion}"/> </option>
                         </c:forEach>
                     </select>
-                </p>
+                </p>--%>
 
 <%--               <p class="form-group">--%>
 <%--                   <form:label path="address.comuna.region">Region: </form:label>--%>
@@ -54,14 +54,14 @@
 <%--                   </form:select>--%>
 <%--                </p>--%>
 
-                <p class="form-group">
+<%--                <p class="form-group">
                     <label for="comuna">Comuna:</label>
                     <select name="comuna" id="comuna">
                         <c:forEach var="comuna" items="${comunas}">
                             <option value="${comuna.id}"> <c:out value="${comuna.nameComuna}"/> </option>
                         </c:forEach>
                     </select>
-                </p>
+                </p>--%>
 
 <%--                <p class="form-group">--%>
 <%--                    <form:label path="address.comuna">Comuna: </form:label>--%>
@@ -72,10 +72,10 @@
 <%--                    </form:select>--%>
 <%--                </p>--%>
 
-                <p class="form-group">
+<%--                <p class="form-group">
                     <label for="calle">Calle</label>
                     <input type="text" id="calle" name="calle"/>
-                </p>
+                </p>--%>
 
 <%--                <p class="form-group">--%>
 <%--                    <form:label path="address.nameCalle">calle: </form:label>--%>
@@ -114,7 +114,7 @@
     </div>
 
 <%--registration bootstrap--%>
-    <a class="nav-link" href="#" data-toggle="modal" data-target="#RegistrationModal">REGISTRATION</a>
+<%--    <a class="nav-link" href="#" data-toggle="modal" data-target="#RegistrationModal">REGISTRATION</a>
     <div class="modal fade" id="RegistrationModal" role="dialog">
         <div class="temp-custom-modal-wrap">
             <div class="modal-dialog">
@@ -244,5 +244,135 @@
     </div>
 </div>
 </body>
-</html>
+</html>--%><%--    <a class="nav-link" href="#" data-toggle="modal" data-target="#RegistrationModal">REGISTRATION</a>
+    <div class="modal fade" id="RegistrationModal" role="dialog">
+        <div class="temp-custom-modal-wrap">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content temp-custom-modal-content">
+                    <button type="button" class="close temp-custom-close-button" data-dismiss="modal">&times;</button>
+                    <div class="modal-body temp-custom-modal-body">
+                        <div class="temp-login-form-wrapper">
+                            <div class="row custom-row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 temp-form-column-wrap-image">
+                                    <div class="temp-reg-column-wrap-image">
+                                        <div class="temp-form-inner-wrapper">
+                                            <h2>Sign Up</h2>
+                                            <p>If user doesn't have there account then, Create your account by filling the given entries.</p>
+                                            <p class="temp-heading-for-icon temp-reg-para">Login with social media</p>
+                                            <div class="temp-anchor-wrap temp-reg-anchor-wrap">
+                                                <a href="#" class=" temp-anchor text-left">
+                        <span class="temp-social-icon-wrap">
+                          <i class="fa fa-facebook" aria-hidden="true"></i>
+                        </span>
+                                                    <span>Sign in with facebook</span>
+                                                </a>
+                                                <a href="#" class="temp-anchor temp-icon-color text-left">
+                        <span class="temp-social-icon-wrap">
+                          <i class="fa fa-google" aria-hidden="true"></i>
+                        </span>
+                                                    <span>Sign in with google</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="temp-form-column-wrap">
+                                        <h2>Register</h2>
+                                        <form>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input  class="temp_input_field" type="text" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">First name</span>
+                            </label>
+                          </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="text" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">Email</span>
+                            </label>
+                          </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                                    <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="password"  >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">Password</span>
+                            </label>
+                          </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                                                    <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input class="temp_input_field" type="password" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">Confirm password</span>
+                            </label>
+                          </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                          <span class="temp-span-wrap temp-span-input-label-wrap">
+                            <input  class="temp_input_field" type="text" >
+                            <label class="temp_input_label">
+                              <span class="temp_input_label-content">Phone number</span>
+                            </label>
+                          </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-sm-4">
+                                                                <label class="radio-inline temp-custom-radio-button">
+                                                                    <input type="radio" name="gender" id="femaleRadio" value="Female">Female
+                                                                    <span class="temp-radio-checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label class="radio-inline temp-custom-radio-button">
+                                                                    <input type="radio" name="gender" id="maleRadio" value="Male">Male
+                                                                    <span class="temp-radio-checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label class="radio-inline temp-custom-radio-button">
+                                                                    <input type="radio" name="gender" id="uncknownRadio" value="Unknown">Unknown
+                                                                    <span class="temp-radio-checkmark"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="temp-login-button-wrap">
+                                                        <button class="btn btn-info temp-form-button" type="button">Register</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>--%>
 

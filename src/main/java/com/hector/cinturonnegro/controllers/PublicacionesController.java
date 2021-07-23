@@ -1,9 +1,6 @@
 package com.hector.cinturonnegro.controllers;
 
-import com.hector.cinturonnegro.models.Category;
-import com.hector.cinturonnegro.models.Feedback;
-import com.hector.cinturonnegro.models.Publication;
-import com.hector.cinturonnegro.models.User;
+import com.hector.cinturonnegro.models.*;
 import com.hector.cinturonnegro.services.CategoryService;
 import com.hector.cinturonnegro.services.FeedbackService;
 import com.hector.cinturonnegro.services.PublicationService;
@@ -19,6 +16,7 @@ import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 @Controller
 public class PublicacionesController {
@@ -57,9 +55,12 @@ public class PublicacionesController {
     public String publicacionPorId(
             @PathVariable("idPublicacion") Long idPublicacion,
             HttpSession session,
-            Model model
-    ){
+            Model model,
+            @ModelAttribute("message")Message message
+            ){
         Publication publication = publicationService.findById(idPublicacion);
+        List<Message> messageList = publication.getMessages();
+        model.addAttribute("messageList", messageList);
         model.addAttribute("publication", publication);
         return "publicacionPorId.jsp";
     }
