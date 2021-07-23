@@ -37,7 +37,7 @@
 <%--                    <form:label path="category">Categoria:</form:label>--%>
 <%--                    <form:input cssClass="form-control" path="category"/>--%>
 <%--                </p>--%>
-                <input multiple type="file" accept="image/png, image/jpeg" name="file">
+                <input type="file" accept="image/png, image/jpeg" name="file">
                 <input class="btn btn-warning" type="submit" value="Publicar!"/>
             </form:form>
         </div>
