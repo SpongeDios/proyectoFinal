@@ -17,6 +17,15 @@
 </header>
 <div class="container">
     <h1> Bienvenido <c:out value="${user.firstName}"/> </h1>
+
+    <div class="input-group">
+        <form class="search" action="/search">
+        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
+               aria-describedby="search-addon" />
+        <button type="button" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+
     <div class="row">
         <table class="table">
             <thead class="thead-dark">
