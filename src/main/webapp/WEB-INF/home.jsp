@@ -8,8 +8,9 @@
 </head>
 <body class="container">
 <header>
-    <a href="/login">Iniciar Sesión</a>
-    <a href="/registration">Registrarse</a>
+    <a class="btn btn-link" href="/login">Iniciar Sesión</a>
+    <a class="btn btn-link" href="/registration">Registrarse</a>
+    <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
 </header>
     <div class="row">
         <ul class="col">

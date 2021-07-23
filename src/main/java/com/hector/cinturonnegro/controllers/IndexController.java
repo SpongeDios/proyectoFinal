@@ -22,5 +22,9 @@ public class IndexController {
         model.addAttribute("comunas", comunas);
         return "/home.jsp";
     }
+    @GetMapping("/index")
+    public String index() {
+        return "index.jsp";
+    }
 
 }
