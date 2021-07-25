@@ -26,7 +26,7 @@
 
             <p><form:errors path="user.*"/></p>
             <h1>Registrando al socio</h1>
-            <form:form method="POST" action="" cssClass="form" modelAttribute="user">
+            <form:form method="POST" action="" cssClass="form" enctype="multipart/form-data" modelAttribute="user">
 
                 <p class="form-group">
                     <form:label path="firstName">Nombre: </form:label>
@@ -110,6 +110,10 @@
                 <p>
                     <form:label path="passwordConfirmation">Confirmar contraseña:</form:label>
                     <form:password cssClass="form-control" path="passwordConfirmation"/>
+                </p>
+                <p>
+                    <label>Foto de perfil:</label>
+                    <input type="file" accept="image/png, image/jpeg" name="file">
                 </p>
                 <input class="btn btn-warning" type="submit" value="Registrar!"/>
             </form:form>

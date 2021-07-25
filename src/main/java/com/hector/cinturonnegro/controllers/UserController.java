@@ -13,9 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 
 @Controller
 public class UserController {
@@ -55,7 +59,8 @@ public class UserController {
     public String registerUser(
             @Valid @ModelAttribute("user") User user,
             BindingResult result,
-            HttpSession session
+            HttpSession session,
+            @RequestParam("file") MultipartFile file
     ) {
         userValidator.validate(user, result);
         if (result.hasErrors()) {
@@ -66,6 +71,26 @@ public class UserController {
             result.addError(error);
             return "registration.jsp";
         } else {
+            int userPhoto = userService.allData().size() + 1;
+            String name = file.getOriginalFilename();
+            if (!file.isEmpty() && file.getSize() < 1048576) {
+                File directorio = new File("src/main/resources/static/archivos/" + userPhoto + "/perfil");
+                if(!directorio.exists()){
+                    directorio.mkdirs();
+                }
+                try {
+                    byte[] bytes = file.getBytes();
+                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
+                    stream.write(bytes);
+                    user.setPhoto("/archivos/" + userPhoto + "/perfil" + "/" + name);
+                    stream.close();
+                    System.out.println("You successfully uploaded " + name + "!");
+                } catch (Exception e) {
+                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
+                }
+            } else {
+                System.out.println("You failed to upload " + name + " because the file was empty.");
+            }
             Address address = new Address();
             address.setNameCalle(user.getAddress().getNameCalle());
             address.setComuna(user.getAddress().getComuna());

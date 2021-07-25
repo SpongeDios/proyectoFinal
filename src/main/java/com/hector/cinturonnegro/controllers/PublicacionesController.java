@@ -104,7 +104,7 @@ public class PublicacionesController {
             publication.setCategory(category);
             int carpetaPubl = publicationService.allData().size() + 1;
             String name = file.getOriginalFilename();
-            if (!file.isEmpty()) {
+            if (!file.isEmpty() && file.getSize() < 1048576) {
                 File directorio = new File("src/main/resources/static/archivos/" + user.getId() + "/" + carpetaPubl);//Reemplazar 1 por user.getId()
                 if(!directorio.exists()){
                     directorio.mkdirs();
@@ -122,7 +122,7 @@ public class PublicacionesController {
             } else {
                 System.out.println("You failed to upload " + name + " because the file was empty.");
             }
-            model.addAttribute("user", user);
+
             publication.setUser(user);
             categoryService.create(category);
             publicationService.create(publication);
