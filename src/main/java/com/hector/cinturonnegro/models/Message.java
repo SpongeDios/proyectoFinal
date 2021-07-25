@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,4 +34,17 @@ public class Message extends BaseModel{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "publication")
     private Publication publication;
+
+    //RELACION SELF JOIN PARA RESPUESTAS  (Responde Publicaciones)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "message_id")
+    private Message respuesta;
+
+    @OneToMany(mappedBy = "respuesta", fetch = FetchType.LAZY)
+    private List<Message> messages;
+
+
+
+
+
 }

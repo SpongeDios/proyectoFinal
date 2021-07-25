@@ -149,10 +149,62 @@ public class UserController {
     ////////////////////////////////////////////////////
 
     @GetMapping("/perfil/{idUser}")
-    public String perfilUser(Model model, HttpSession session) {
+    public String perfilUser(@PathVariable("idUSer") Long idUser,Model model, HttpSession session) {
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
         Long userId = (Long) session.getAttribute("userid");
         User user = userService.findById(userId);
-        model.addAttribute("user", user);
-        return "perfilUsuario.jsp";
+        if(user.getId() != idUser){
+            return "redirect:/";
+        }else{
+            model.addAttribute("user", user);
+            return "perfilUsuario.jsp";
+        }
     }
+
+    ////////////////////EDITAR PERFIL/////////////////////
+    @GetMapping("/perfil/{idUser}/editar")
+    public String editUserForm(
+            @PathVariable("idUser") Long idUser,
+            @ModelAttribute("user") User user,
+            HttpSession session,
+            Model model
+    ){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUserLog = (Long) session.getAttribute("userid");
+        User userLog = userService.findById(idUserLog);
+        if(userLog.getId() != idUser){
+            return "redirect:/";
+        }else{
+            model.addAttribute("user", userLog);
+            return "editUser.jsp";
+        }
+    }
+
+    @PutMapping("/perfil/{idUser}/editar")
+    public String updateUser(
+            @Valid @ModelAttribute("user") User user,
+            BindingResult result,
+            @PathVariable("idUser") Long idUser,
+            Model model
+    ){
+        if(result.hasErrors()){
+            return "editUser.jsp";
+        }else{
+            User userLog = userService.findById(idUser);
+            model.addAttribute("user", userLog);
+            userLog.setFirstName(user.getFirstName());
+            userLog.setLastName(user.getLastName());
+            userLog.setRol(user.getRol());
+            userLog.setPhone(user.getPhone());
+            userLog.setPhoto(user.getPhoto());
+            userService.update(userLog);
+            return "redirect:/perfil/"+idUser;
+        }
+    }
+
+
 }

@@ -24,9 +24,11 @@ public class Address extends BaseModel{
     @Size(min = 2, max = 255)
     private String nameCalle;
 
+
     ///////////////RELACION CON USUARIOS/////////////////
     @OneToOne(mappedBy = "address", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private User userAddress;
+
 
 
     ///////////////RELACION CON COMUNAS///////////////////
