@@ -149,7 +149,7 @@ public class UserController {
     ////////////////////////////////////////////////////
 
     @GetMapping("/perfil/{idUser}")
-    public String perfilUser(@PathVariable("idUSer") Long idUser,Model model, HttpSession session) {
+    public String perfilUser(@PathVariable("idUser") Long idUser,Model model, HttpSession session) {
         if(session.getAttribute("userid") == null){
             return "redirect:/";
         }
