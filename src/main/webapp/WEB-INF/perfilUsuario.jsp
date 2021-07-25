@@ -10,7 +10,6 @@
         <header>
             <a class="btn btn-link" href="/">Inicio</a>
             <a class="btn btn-link" href="/">Volver atrás</a>
-            <a href="/publicaciones">Mis Publicaciones</a>
             <a class="btn btn-link" href="/publicaciones/add">Crear Publicación</a>
             <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
         </header>
@@ -18,7 +17,12 @@
             <img src="${user.photo}" width="50px" height="50px">
             <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/>
         </h3>
-        <a href="/user/${user.id}/edit">Editar Perfil</a>
+        <p>
+            <a href="/publicaciones">Mis Publicaciones</a>
+        </p>
+        <p>
+            <a href="/perfil/${user.id}/editar">Editar Perfil</a>
+        </p>
     </div>
 </body>
 </html>

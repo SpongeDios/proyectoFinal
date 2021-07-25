@@ -16,7 +16,10 @@
     <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
 </header>
 <div class="container">
-    <h1> Bienvenido <c:out value="${user.firstName}"/> </h1>
+    <h3>
+        <img src="${user.photo}" width="50px" height="50px">
+        <a href="/perfil/${user.id}"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+    </h3>
     <div class="navbar">
         <form class="form-inline" action="">
             <input type="text" class="form-control" placeholder="Buscar" name="busqueda">
@@ -29,6 +32,7 @@
             <thead class="thead-dark">
             <tr>
                 <th scope="col">Título</th>
+                <th scope="col">Foto referencial</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Categoría</th>
                 <th scope="col">Tipo de publicación</th>
@@ -39,9 +43,13 @@
                 <c:forEach var="publicacion" items="${user.publications}">
                     <tr>
                         <th scope="row"><a href="/publicaciones/${publicacion.id}"><c:out value="${publicacion.title}"/></a></th>
+                        <td><a target="_blank" href="${publicacion.photo_publication}"><img src="${publicacion.photo_publication}" height="80px" width="100px"></a></td>
                         <td>$<c:out value="${publicacion.price}"/></td>
                         <td><c:out value="${publicacion.category.name}"/></td>
-                        <td><c:out value="${publicacion.type_publication}"/></td>
+                        <td>
+                            <c:if test="${publicacion.type_publication == 1}">Contratar una persona</c:if>
+                            <c:if test="${publicacion.type_publication == 2}">Buscar trabajo</c:if>
+                        </td>
                         <td><a class="btn btn-link" href="/publicaciones/${publicacion.id}/edit">Editar</a>
                             <form action="/publicaciones/${publicacion.id}/delete" method="post">
                             <input type="hidden" name="_method" value="delete">

@@ -13,6 +13,7 @@
     <a class="btn btn-link" href="/registration">Registrarse</a>
     </c:if>
     <c:if test="${user.id != null}">
+        <img src="${user.photo}" width="30px" height="30px">
         <a class="btn btn-link" href="/perfil/${user.id}"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
         <a class="btn btn-link" href="/publicaciones">Mis Publicaciones</a>
         <a class="btn btn-link" href="/publicaciones/add">Crear Publicación</a>

@@ -20,14 +20,13 @@
             <li>Autor: <c:out value="${publication.user.firstName} ${publication.user.lastName}"/> </li>
             <li>Título: <c:out value="${publication.title}"/> </li>
             <li>Descripción: <c:out value="${publication.description}"/> </li>
-            <li>Precio: <c:out value="${publication.price}"/> </li>
+            <li>Precio: $<c:out value="${publication.price}"/> </li>
             <li>Categoría: <c:out value="${publication.category.name}"/> </li>
             <li>Celular: <c:out value="${publication.user.phone}"/> </li>
-            <li>Anuncio creado en:<fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
-            <li>Foto<c:out value="${publication.photo_publication}"/></li>
+            <li>Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
         </ul>
     </div>
-    <img src="${publication.photo_publication}" height="200px" width="250px">
+    <a target="_blank" href="${publication.photo_publication}"><img src="${publication.photo_publication}" height="200px" width="250px"></a>
     <h4>¿Quieres realizar una consulta?</h4>
     <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
         <form:label path="text"></form:label>
