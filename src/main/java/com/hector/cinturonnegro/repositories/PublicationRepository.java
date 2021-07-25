@@ -1,6 +1,7 @@
 package com.hector.cinturonnegro.repositories;
 
 import com.hector.cinturonnegro.models.Publication;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,6 +10,13 @@ import java.util.List;
 public interface PublicationRepository extends BaseRepository<Publication>{
 
     // Buscar publicaciones por titulo
-    List<Publication> findByTitle(String title);
+    List<Publication> findByTitleContaining(String title);
 
+    List<Publication> findByDescriptionContaining(String description);
+
+    @Query(value = "SELECT * FROM publications p JOIN addresses a ON a.id=p.address JOIN comunas c ON a.comuna = c.id JOIN regiones r ON c.region = r.id WHERE r.name_region LIKE %?1%", nativeQuery = true)
+    List<Publication> findByRegionContaining(String query);
+
+    @Query(value = "SELECT * FROM publications p JOIN addresses a ON a.id=p.address JOIN comunas c ON a.comuna = c.id WHERE c.name_comuna LIKE %?1%", nativeQuery = true)
+    List<Publication> findByComunaContaining(String query);
 }

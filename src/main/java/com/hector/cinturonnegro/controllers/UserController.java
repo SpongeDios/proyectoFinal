@@ -3,10 +3,7 @@ package com.hector.cinturonnegro.controllers;
 import com.hector.cinturonnegro.models.Address;
 import com.hector.cinturonnegro.models.Comuna;
 import com.hector.cinturonnegro.models.User;
-import com.hector.cinturonnegro.services.AddressService;
-import com.hector.cinturonnegro.services.ComunaService;
-import com.hector.cinturonnegro.services.RegionService;
-import com.hector.cinturonnegro.services.UserService;
+import com.hector.cinturonnegro.services.*;
 import com.hector.cinturonnegro.validator.UserValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,13 +25,15 @@ public class UserController {
     private final ComunaService comunaService;
     private final RegionService regionService;
     private final AddressService addressService;
+    private final PublicationService publicationService;
 
-    public UserController(UserValidator userValidator, UserService userService, ComunaService comunaService, RegionService regionService, AddressService addressService) {
+    public UserController(UserValidator userValidator, UserService userService, ComunaService comunaService, RegionService regionService, AddressService addressService, PublicationService publicationService) {
         this.userValidator = userValidator;
         this.userService = userService;
         this.comunaService = comunaService;
         this.regionService = regionService;
         this.addressService = addressService;
+        this.publicationService = publicationService;
     }
 
     //ROL = 1 => Prestador de servicios

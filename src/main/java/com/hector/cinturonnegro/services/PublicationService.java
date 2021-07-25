@@ -18,7 +18,13 @@ public class PublicationService extends BaseService<Publication>{
     }
 
     public List<Publication> publicationList(String title) {
-        return publicationRepository.findByTitle(title);
+        return publicationRepository.findByTitleContaining(title);
     }
+
+    public List<Publication> ouroHenrry(String query){
+        return publicationRepository.findByRegionContaining(query);
+    }
+
+
 
 }
