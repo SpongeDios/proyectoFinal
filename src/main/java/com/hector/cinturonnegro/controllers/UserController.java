@@ -179,6 +179,8 @@ public class UserController {
         if(userLog.getId() != idUser){
             return "redirect:/";
         }else{
+            model.addAttribute("regiones", regionService.allData());
+            model.addAttribute("comunas", comunaService.allData());
             model.addAttribute("user", userLog);
             return "editUser.jsp";
         }
@@ -189,7 +191,8 @@ public class UserController {
             @Valid @ModelAttribute("user") User user,
             BindingResult result,
             @PathVariable("idUser") Long idUser,
-            Model model
+            Model model,
+            @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
             return "editUser.jsp";
@@ -200,7 +203,25 @@ public class UserController {
             userLog.setLastName(user.getLastName());
             userLog.setRol(user.getRol());
             userLog.setPhone(user.getPhone());
-            userLog.setPhoto(user.getPhoto());
+            String name = file.getOriginalFilename();
+            if (!file.isEmpty() && file.getSize() < 1048576) {
+                File directorio = new File("src/main/resources/static/archivos/" + userLog.getId() + "/perfil");
+                if(!directorio.exists()){
+                    directorio.mkdirs();
+                }
+                try {
+                    byte[] bytes = file.getBytes();
+                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
+                    stream.write(bytes);
+                    userLog.setPhoto("/archivos/" + userLog.getId() + "/perfil" + "/" + name);
+                    stream.close();
+                    System.out.println("You successfully uploaded " + name + "!");
+                } catch (Exception e) {
+                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
+                }
+            } else {
+                System.out.println("You failed to upload " + name + " because the file was empty.");
+            }
             userService.update(userLog);
             return "redirect:/perfil/"+idUser;
         }

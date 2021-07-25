@@ -23,6 +23,7 @@
         <p>
             <a href="/perfil/${user.id}/editar">Editar Perfil</a>
         </p>
+
     </div>
 </body>
 </html>
