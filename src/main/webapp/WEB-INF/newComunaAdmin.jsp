@@ -28,7 +28,7 @@
                 </c:forEach>
             </form:select>
         </p>
-        <input class="btn btn-warning" type="submit" value="Create comuna"/>
+        <input class="btn btn-warning" type="submit" value="Crear Comuna"/>
     </form:form>
 </div>
 </body>

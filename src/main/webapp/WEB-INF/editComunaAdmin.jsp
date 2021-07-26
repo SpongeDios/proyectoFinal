@@ -1,16 +1,36 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Hector
-  Date: 23-07-2021
-  Time: 16:03
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Editar Comunas</title>
 </head>
 <body>
-
+<div class="container">
+    <header class="d-flex justify-content-between">
+        <h1>Editar Comunas</h1>
+        <a class="btn btn-link" href="/admin">Volver atrás</a>
+    </header>
+    <form:errors path="comuna.*"/>
+    <form:form method="POST" action="" cssClass="form col border border-1 rounded" modelAttribute="c" >
+        <input type="hidden" name="_method" value="PUT">
+        <p class="form-group col">
+            <form:label path="nameComuna">Nombre: </form:label>
+            <form:input cssClass="form-control" path="nameComuna"/>
+        </p>
+        <p class="col">
+            <form:label path="region">Region:</form:label>
+            <form:select cssClass="form-control" path="region">
+                <c:forEach items="${regiones}" var="region">
+                    <form:option value="${region.id}"><c:out value="${region.nameRegion}"/></form:option>
+                </c:forEach>
+            </form:select>
+        </p>
+        <input class="btn btn-warning" type="submit" value="Editar Comuna"/>
+    </form:form>
+</div>
 </body>
 </html>

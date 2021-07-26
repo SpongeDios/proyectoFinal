@@ -22,7 +22,7 @@
                     <form:label path="nameRegion">Nombre de la Region: </form:label>
                     <form:input cssClass="form-control" path="nameRegion"/>
                 </p>
-                <input class="btn btn-warning" type="submit" value="Create Region"/>
+                <input class="btn btn-warning" type="submit" value="Crear Región"/>
             </form:form>
         </div>
     </div>
