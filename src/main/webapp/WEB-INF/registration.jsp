@@ -17,11 +17,10 @@
     <title>Registrarse</title>
 </head>
 <body>
-<header>
-    <a class="btn btn-link" href="/">Volver a Inicio</a>
-</header>
 <div class="container">
-
+    <header>
+        <a class="btn btn-link" href="/">Volver a Inicio</a>
+    </header>
 
     <div class="row">
         <div class="col border border-secondary border-1 p-5 mr-3">
