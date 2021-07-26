@@ -58,19 +58,18 @@
                         <c:if test="${user.id != publication.user.id}">
                             <c:out value="${messages.text}"/>
                             <p>
-                                <c:forEach items="${messages.respuestas}" var="respuesta">
-                                    <c:out value="${respuesta.text}"/>
-                                </c:forEach>
+                                <c:out value="${messages.respuesta.text}"/>
                             </p>
                         </c:if>
-                        <c:if test="${user.id == publication.user.id}">
+                        <c:if test="${user.id == publication.user.id && messages.respuesta.id == null}">
+                            <p><c:out value="${messages.text}"/></p>
+                            <a href="/publicaciones/${messages.publication.id}/${messages.id}">responder</a>
+                        </c:if>
+                        <c:if test="${user.id == publication.user.id && messages.respuesta.id != null}">
                             <p><c:out value="${messages.text}"/></p>
                             <p>
-                                <c:forEach items="${messages.respuestas}" var="respuesta">
-                                    <c:out value="${respuesta.text}"/>
-                                </c:forEach>
+                                <c:out value="${messages.respuesta.text}"/>
                             </p>
-                            <a href="/publicaciones/${messages.publication.id}/${messages.id}">responder</a>
                         </c:if>
                     </td>
                 </tr>
@@ -78,6 +77,45 @@
         </c:forEach>
         </tbody>
     </table>
+    <div>
+        <c:if test="${user.id != publication.user.id}">
+        <h3>Deje su Feedback</h3>
+        <form:form method="POST" action="/publicaciones/${publication.id}/feedback" enctype="multipart/form-data" modelAttribute="feedback" >
+            <p>
+                <form:label path="rating">Puntuación</form:label>
+                <form:input type="number" min="1" max="5" path="rating"/>
+            </p>
+            <p>
+                <form:label path="comment">Comentario</form:label>
+                <form:input path="comment"/>
+            </p>
+            <p class="col">
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Subir una Foto</label>
+                <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
+            </div>
+            <input class="btn btn-warning" type="submit" value="Publicar!"/>
+            </p>
+        </form:form>
+        </c:if>
+        <h2>Feedbacks</h2>
+        <table>
+            <tbody>
+            <c:forEach items="${publication.feedback}" var="feedback">
+                <tr>
+                    <th><c:out value="${feedback.user.firstName}"/> <c:out value="${feedback.user.lastName}"/> </th>
+                </tr>
+                <tr>
+                    <td>
+                        <p><c:out value="${feedback.rating}"/>/5</p>
+                        <p><c:out value="${feedback.comment}"/></p>
+                        <img src="${feedback.photo_feedback}" width="200px" height="100px">
+                    </td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 </form>
 </body>
