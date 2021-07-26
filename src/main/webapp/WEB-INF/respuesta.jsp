@@ -1,6 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -9,11 +10,14 @@
 <body>
     <div class="container">
         <header>
-            <a class="btn btn-link" href="/">Inicio</a>
-            <a class="btn btn-link" href="/publicaciones/">Publicaciones</a>
-            <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
+            <nav class="navbar navbar-dark bg-dark p-2">
+                <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+                <a class="link-light" href="/">Inicio</a>
+                <a class="link-light" href="/publicaciones">Publicaciones</a>
+                <a class="link-light" href="/logout">Cerrar Sesión</a>
+            </nav>
         </header>
-        <h1>¿Qué desear responder a este mensaje?</h1>
+        <h1>¿Qué deseas responder a este mensaje?</h1>
         <h2>-> <c:out value="${message.text}"/></h2>
         <form:form method="post" action="/publicaciones/${message.publication.id}/${message.id}/responder" modelAttribute="respuesta">
             <form:input type="hidden" path="rol" value="2"/>

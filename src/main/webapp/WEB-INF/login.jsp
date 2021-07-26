@@ -5,14 +5,17 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Iniciar Sesión</title>
 </head>
 <body>
 <div class="container">
     <header>
-        <a class="btn btn-link" href="/">Volver a Inicio</a>
+        <nav class="navbar navbar-dark bg-dark p-2">
+            <a class="link-light" href="/">Volver a Inicio</a>
+        </nav>
     </header>
+    <br>
     <div class="row">
         <div class="col">
             <h3>Login</h3>

@@ -3,21 +3,26 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Editar Perfil</title>
 </head>
 <body>
 <div class="container">
     <header>
-        <a class="btn btn-link" href="/">Inicio</a>
-        <a class="btn btn-link" href="/perfil/${user.id}">Volver atrás</a>
-        <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
+        <nav class="navbar navbar-dark bg-dark p-2">
+            <a class="link-light" href="/">Inicio</a>
+            <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
+            <a class="link-light" href="/perfil/${user.id}">Volver atrás</a>
+            <a class="link-light" href="/logout">Cerrar Sesión</a>
+        </nav>
     </header>
+    <br>
     <h3>
         <img src="${user.photo}" width="50px" height="50px">
         <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/>
     </h3>
-    <form:form method="POST" action="" cssClass="form" enctype="multipart/form-data" modelAttribute="user">
+    <span style="color: red;"><form:errors path="user.*"/></span>
+    <form:form method="POST" action="" cssClass="form col p-4 border border-1 rounded" enctype="multipart/form-data" modelAttribute="user">
         <input type="hidden" name="_method" value="PUT">
         <form:input type="hidden" path="email" value="${user.email}"/>
         <form:input type="hidden" path="password" value="${user.password}"/>
@@ -33,7 +38,7 @@
             <form:input cssClass="form-control" path="lastName"/>
         </p>
         <p class="form-group">
-            <form:label path="address.comuna.region">Region: </form:label>
+            <form:label path="address.comuna.region">Región: </form:label>
             <form:select cssClass="form-control" path="address.comuna.region">
                 <c:forEach var="region" items="${regiones}">
                     <form:option value="${region.id}"><c:out value="${region.nameRegion}"/> </form:option>
@@ -66,11 +71,13 @@
                 <form:option value="2">Contratar Servicios</form:option>
             </form:select>
         </p>
-        <p>
-            <label>Foto de perfil:</label>
-            <input type="file" accept="image/png, image/jpeg" name="file">
-        </p>
+        <p class="col">
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Subir una Foto</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>
         <input class="btn btn-warning" type="submit" value="Editar!"/>
+        </p>
     </form:form>
 </div>
 </body>

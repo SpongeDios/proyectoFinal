@@ -1,21 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isErrorPage="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="select" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Editar Publicación</title>
 </head>
 <body>
-<header>
-    <a class="btn btn-link" href="/">Inicio</a>
-    <a class="btn btn-link" href="/publicaciones">Volver atrás</a>
-    <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
-</header>
 <div class="container">
-
+    <header>
+        <nav class="navbar navbar-dark bg-dark p-2">
+            <a class="link-light" href="/perfil/${user.id}"> <img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+            <a class="link-light" href="/">Inicio</a>
+            <a class="link-light" href="/publicaciones/${user.publication.id}">Volver atrás</a>
+            <a class="link-light" href="/logout">Cerrar Sesión</a>
+        </nav>
+    </header>
     <div class="col">
         <form:errors path="publication.*"/>
         <form:form method="POST" action="" cssClass="form col border border-1 rounded" modelAttribute="publication">
