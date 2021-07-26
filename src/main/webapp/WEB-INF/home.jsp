@@ -8,21 +8,21 @@
 </head>
 <body class="container">
 <header>
-    <c:if test="${user.id == null}">
-    <a class="btn btn-link" class="btn btn-link" href="/login">Iniciar Sesión</a>
-    <a class="btn btn-link" href="/registration">Registrarse</a>
-    </c:if>
-    <c:if test="${user.id != null}">
-        <img src="${user.photo}" width="30px" height="30px">
-        <a class="btn btn-link" href="/perfil/${user.id}"><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
-        <a class="btn btn-link" href="/publicaciones">Mis Publicaciones</a>
-        <a class="btn btn-link" href="/publicaciones/add">Crear Publicación</a>
-        <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
-    </c:if>
+    <nav class="navbar navbar-dark bg-dark p-2">
+        <c:if test="${user.id == null}">
+            <a class="link-light" class="btn btn-link" href="/login">Iniciar Sesión</a>
+            <a class="link-light" href="/registration">Registrarse</a>
+        </c:if>
+        <c:if test="${user.id != null}">
+        <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+        <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
+        <a class="link-light" href="/publicaciones">Publicaciones</a>
+        <a class="link-light" href="/logout">Cerrar Sesión</a>
+        </c:if>
+    </nav>
 </header>
     <div class="row">
         <ul class="col">
-
             <li> <a href="/arica">Región de Arica y Parinacota</a> </li>
             <li> <a href="/tarapaca">Región de Tarapacá</a> </li>
             <li> <a href="/antofagasta">Región de Antofagasta</a> </li>
@@ -45,11 +45,6 @@
                 <c:out value="${comuna}"></c:out>
             </c:forEach>
         </ul>
-    </div>
-    <div class="input-group">
-        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
-               aria-describedby="search-addon" />
-        <button type="button" class="btn btn-primary">Buscar</button>
     </div>
 </body>
 </html>

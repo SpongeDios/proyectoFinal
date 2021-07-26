@@ -11,9 +11,13 @@
 <body>
 <div class="container">
     <header>
-        <a class="btn btn-link" href="/">Inicio</a>
-        <a class="btn btn-link" href="/publicaciones">Volver atrás</a>
-        <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
+        <nav class="navbar navbar-dark bg-dark p-2">
+            <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+            <a class="link-light" href="/">Inicio</a>
+            <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
+            <a class="link-light" href="/publicaciones">Volver atrás</a>
+            <a class="link-light" href="/logout">Cerrar Sesión</a>
+        </nav>
     </header>
     <div class="row">
         <ul>
@@ -28,6 +32,7 @@
     </div>
     <a target="_blank" href="${publication.photo_publication}"><img src="${publication.photo_publication}" height="200px" width="250px"></a>
     <h4>¿Quieres realizar una consulta?</h4>
+    <form:errors path="message.*"/>
     <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
         <form:input type="hidden" path="rol" value="1"/>
         <div class="col-2">

@@ -10,14 +10,18 @@
 <body>
 <div class="container">
     <header>
-        <a class="btn btn-link" href="/">Inicio</a>
-        <a class="btn btn-link" href="/publicaciones">Volver atrás</a>
-        <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
+        <nav class="navbar navbar-dark bg-dark p-2">
+            <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+            <a class="link-light" href="/">Inicio</a>
+            <a class="link-light" href="/publicaciones">Volver atrás</a>
+            <a class="link-light" href="/logout">Cerrar Sesión</a>
+        </nav>
     </header>
+    <h1>Añadir Publicación</h1>
     <div class="row">
         <div class="col">
             <span style="color: red;"><form:errors path="publication.*"/></span>
-            <form:form method="POST" action="" cssClass="form col p-4 border border-1 rounded" enctype="multipart/form-data" modelAttribute="publication" >
+            <form:form method="POST" action="" cssClass="form col border border-1 rounded p-4" enctype="multipart/form-data" modelAttribute="publication" >
                 <p class="form-group col">
                     <form:label path="title">Título: </form:label>
                     <form:input cssClass="form-control" path="title"/>
@@ -44,7 +48,7 @@
                 <p class="col">
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Subir una Foto</label>
-                    <input class="form-control" type="file" id="formFile">
+                <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
                 </div>
                 <input class="btn btn-warning" type="submit" value="Publicar!"/>
                 </p>
