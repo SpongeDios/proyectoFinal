@@ -29,23 +29,7 @@ public class FeedbackController {
         this.userService = userService;
         this.publicationService = publicationService;
     }
-
-    @GetMapping("/publicaciones/{idPublicacion}/feedback")
-    public String feedback(@ModelAttribute("feedback")Feedback feedback,
-                            @PathVariable("idPublicacion")Long idPublicacion,
-                           HttpSession session,
-                           Model model){
-        Publication publication = publicationService.findById(idPublicacion);
-        if (session.getAttribute("userid") == null){
-            return "redirect:/";
-        }else {
-            model.addAttribute("publication", publication);
-            return "publicacionPorId.jsp.jsp";
-        }
-
-    }
-
-
+    
     @PostMapping("/publicaciones/{idPublicacion}/feedback")
     public String feedbackCreate(@Valid @ModelAttribute("feedback")Feedback feedback,
                            BindingResult result,
