@@ -56,10 +56,22 @@ public class MessageController {
     @GetMapping("/publicaciones/{idPublicacion}/{idMessage}")
     public String responder(@ModelAttribute("respuesta")Message respuesta,
                             @PathVariable("idMessage")Long idMessage,
-                            Model model){
-        Message message = messageService.findById(idMessage);
-        model.addAttribute("message", message);
-        return "respuesta.jsp";
+                            @PathVariable("idPublicacion")Long idPublicacion,
+                            Model model, HttpSession session){
+        if (session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long userId = (Long) session.getAttribute("userid");
+        User user = userService.findById(userId);
+        Publication publication = publicationService.findById(idPublicacion);
+        if (user.getId() == publication.getUser().getId()){
+            Message message = messageService.findById(idMessage);
+            model.addAttribute("message", message);
+            return "respuesta.jsp";
+        }
+        else {
+            return "redirect:/publicaciones/"+idPublicacion;
+        }
     }
 
     @PostMapping("/publicaciones/{idPublicacion}/{idMessage}/responder")
@@ -80,8 +92,9 @@ public class MessageController {
             }else {
                 messageService.create(respuesta);
                 respuesta.setUser(user);
-                message.setRespuesta(respuesta);
                 respuesta.setPublication(publication);
+                message.addRespuesta(respuesta);
+                respuesta.setMessage(message);
                 messageService.update(message);
                 messageService.create(respuesta);
                 return "redirect:/publicaciones/"+publication.getId();

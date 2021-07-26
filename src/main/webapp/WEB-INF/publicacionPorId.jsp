@@ -50,11 +50,19 @@
                             <td>
                                 <c:if test="${user.id != publication.user.id}">
                                     <c:out value="${messages.text}"/>
-                                    <c:out value="${messages.respuesta.text}"/>
+                                    <p>
+                                        <c:forEach items="${messages.respuestas}" var="respuesta">
+                                            <c:out value="${respuesta.text}"/>
+                                        </c:forEach>
+                                    </p>
                                 </c:if>
                                 <c:if test="${user.id == publication.user.id}">
                                     <p><c:out value="${messages.text}"/></p>
-                                    <p><c:out value="${messages.respuesta.text}"/></p>
+                                    <p>
+                                        <c:forEach items="${messages.respuestas}" var="respuesta">
+                                            <c:out value="${respuesta.text}"/>
+                                        </c:forEach>
+                                    </p>
                                     <a href="/publicaciones/${messages.publication.id}/${messages.id}">responder</a>
                                 </c:if>
                             </td>

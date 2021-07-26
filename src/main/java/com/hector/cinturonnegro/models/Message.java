@@ -39,12 +39,14 @@ public class Message extends BaseModel{
     //RELACION SELF JOIN PARA RESPUESTAS  (Responde Publicaciones)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "message_id")
-    private Message respuesta;
+    private Message message;
 
-    @OneToMany(mappedBy = "respuesta", fetch = FetchType.LAZY)
-    private List<Message> messages;
+    @OneToMany(mappedBy = "message", fetch = FetchType.LAZY)
+    private List<Message> respuestas;
 
-
+    public void addRespuesta(Message respuesta){
+        this.respuestas.add(respuesta);
+    }
 
 
 
