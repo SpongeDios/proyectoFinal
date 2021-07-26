@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import javax.websocket.OnMessage;
 import java.util.List;
 
 @Getter
@@ -28,7 +29,7 @@ public class Publication extends BaseModel{
     private String description;
     //PRECIO
 
-    @Min(1)
+    @Min(value = 1, message ="Debe ser mayor o igual a 1" )
     @Max(999999999)
     private int price;
     //FOTO PUBLICACION

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -40,6 +39,7 @@
             </tr>
             </thead>
             <tbody>
+            <span style="color: red;"><form:errors path="publicacion.*"/></span>
                 <c:forEach var="publicacion" items="${user.publications}">
                     <tr>
                         <th scope="row"><a href="/publicaciones/${publicacion.id}"><c:out value="${publicacion.title}"/></a></th>

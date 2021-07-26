@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -19,6 +20,7 @@
         </tr>
         </thead>
         <tbody>
+        <span style="color: red;"><form:errors path="d.*"/></span><%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
         <c:forEach var="d" items="${data}">
             <tr>
                 <td><c:out value="${d.nameComuna}"/></td>

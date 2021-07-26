@@ -25,7 +25,7 @@
                 <td><c:out value="${d.nameRegion}"/></td>
                 <td>
                     <a class="btn btn-link" href="/admin/regioness/${d.id}/edit">Editar</a> |
-                    <a  class="btn btn-link" href="/admin/regioness/${d.id}/delete">Eliminar</a>
+                    <a  class="btn btn-link" href="/admin/regiones/${d.id}/delete">Eliminar</a>
                 </td>
             </tr>
         </c:forEach>

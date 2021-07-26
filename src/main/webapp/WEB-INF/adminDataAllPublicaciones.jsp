@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -20,14 +21,12 @@
         </tr>
         </thead>
         <tbody>
+        <span style="color: red;"><form:errors path="d.*"/></span>
         <c:forEach var="d" items="${data}">
             <tr>
                 <td><c:out value="${d.title}"/></td>
                 <td><c:out value="${d.user.firstName} ${d.user.lastName}"/></td>
-                <td>
-                    <a class="btn btn-link" href="/admin/categories/${d.id}/edit">Editar</a> |
-                    <a  class="btn btn-link" href="/admin/categories/${d.id}/delete">Eliminar</a>
-                </td>
+                <td><a class="btn btn-link" href="/publicaciones/${d.publication.id}">Ver Publicación</a></td>
             </tr>
         </c:forEach>
         </tbody>

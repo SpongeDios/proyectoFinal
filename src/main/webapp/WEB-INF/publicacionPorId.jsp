@@ -5,16 +5,16 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Publicacion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Publicación</title>
 </head>
 <body>
-<header>
-    <a class="btn btn-link" href="/">Inicio</a>
-    <a class="btn btn-link" href="/publicaciones">Volver atrás</a>
-    <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
-</header>
 <div class="container">
+    <header>
+        <a class="btn btn-link" href="/">Inicio</a>
+        <a class="btn btn-link" href="/publicaciones">Volver atrás</a>
+        <a class="btn btn-link" href="/logout">Cerrar Sesión</a>
+    </header>
     <div class="row">
         <ul>
             <li>Autor: <c:out value="${publication.user.firstName} ${publication.user.lastName}"/> </li>
@@ -30,9 +30,11 @@
     <h4>¿Quieres realizar una consulta?</h4>
     <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
         <form:input type="hidden" path="rol" value="1"/>
-        <form:label path="text"></form:label>
-        <form:input path="text"/>
-        <input type="submit">
+        <div class="col-2">
+        <form:label for="message" class="visually-hidden" path="text"></form:label>
+    <form:input type="text" class="form-control" id="message" path="text"/>
+            <button type="submit" class="btn btn-primary mb-3">Enviar</button>
+        </div>
     </form:form>
         <table>
             <thead>
@@ -72,5 +74,6 @@
             </tbody>
         </table>
 </div>
+</form>
 </body>
 </html>
