@@ -7,7 +7,9 @@ import com.hector.cinturonnegro.services.MessageService;
 import com.hector.cinturonnegro.services.PublicationService;
 import com.hector.cinturonnegro.services.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,5 +47,44 @@ public class MessageController {
             messageService.create(message);
             return "redirect:/publicaciones/"+idPublicacion;
         }
+    }
+
+    //////////////////////////////////////////////////////////////////
+    ///////////////////////Respuesta//////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+
+    @GetMapping("/publicaciones/{idPublicacion}/{idMessage}")
+    public String responder(@ModelAttribute("respuesta")Message respuesta,
+                            @PathVariable("idMessage")Long idMessage,
+                            Model model){
+        Message message = messageService.findById(idMessage);
+        model.addAttribute("message", message);
+        return "respuesta.jsp";
+    }
+
+    @PostMapping("/publicaciones/{idPublicacion}/{idMessage}/responder")
+    public String responderConsulta(@Valid @ModelAttribute("respuesta")Message respuesta,
+                            BindingResult result,
+                            @PathVariable("idPublicacion")Long idPublicacion,
+                            @PathVariable("idMessage")Long idMessage,
+                            HttpSession session){
+        Publication publication = publicationService.findById(idPublicacion);
+        Long userId = (Long) session.getAttribute("userid");
+        User user = userService.findById(userId);
+        Message message = messageService.findById(idMessage);
+        if (result.hasErrors()){
+            return "publicacionPorId.jsp";
+        }else
+            if (user.getId() != publication.getUser().getId()){
+                return "redirect:/publicaciones/"+publication.getId()+"/"+message.getId();
+            }else {
+                messageService.create(respuesta);
+                respuesta.setUser(user);
+                message.setRespuesta(respuesta);
+                respuesta.setPublication(publication);
+                messageService.update(message);
+                messageService.create(respuesta);
+                return "redirect:/publicaciones/"+publication.getId();
+            }
     }
 }

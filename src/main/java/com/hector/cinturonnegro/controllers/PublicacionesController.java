@@ -58,8 +58,11 @@ public class PublicacionesController {
             Model model,
             @ModelAttribute("message")Message message
             ){
+        Long userId = (Long) session.getAttribute("userid");
+        User user = userService.findById(userId);
         Publication publication = publicationService.findById(idPublicacion);
         List<Message> messageList = publication.getMessages();
+        model.addAttribute("user", user);
         model.addAttribute("messageList", messageList);
         model.addAttribute("publication", publication);
         return "publicacionPorId.jsp";

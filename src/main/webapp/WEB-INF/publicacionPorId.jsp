@@ -29,28 +29,40 @@
     <a target="_blank" href="${publication.photo_publication}"><img src="${publication.photo_publication}" height="200px" width="250px"></a>
     <h4>¿Quieres realizar una consulta?</h4>
     <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
+        <form:input type="hidden" path="rol" value="1"/>
         <form:label path="text"></form:label>
         <form:input path="text"/>
         <input type="submit">
     </form:form>
-    <table>
-        <thead>
-            <tr>
-                <th>ÚLTIMAS CONSULTAS</th>
-            </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${publication.messages}" var="messages">
+        <table>
+            <thead>
                 <tr>
-                    <th><c:out value="${messages.user.firstName}"/> <c:out value="${messages.user.lastName}"/> </th>
+                    <th>ÚLTIMAS CONSULTAS</th>
                 </tr>
-                <tr>
-                    <td><c:out value="${messages.text}"/></td>
-                </tr>
-            </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <c:forEach items="${publication.messages}" var="messages">
+                    <c:if test="${messages.rol == 1}">
+                        <tr>
+                            <th><c:out value="${messages.user.firstName}"/> <c:out value="${messages.user.lastName}"/> </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <c:if test="${user.id != publication.user.id}">
+                                    <c:out value="${messages.text}"/>
+                                    <c:out value="${messages.respuesta.text}"/>
+                                </c:if>
+                                <c:if test="${user.id == publication.user.id}">
+                                    <p><c:out value="${messages.text}"/></p>
+                                    <p><c:out value="${messages.respuesta.text}"/></p>
+                                    <a href="/publicaciones/${messages.publication.id}/${messages.id}">responder</a>
+                                </c:if>
+                            </td>
+                        </tr>
+                    </c:if>
+                </c:forEach>
+            </tbody>
+        </table>
 </div>
 </body>
 </html>
-
