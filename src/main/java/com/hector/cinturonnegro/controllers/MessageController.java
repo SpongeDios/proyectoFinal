@@ -93,10 +93,9 @@ public class MessageController {
                 messageService.create(respuesta);
                 respuesta.setUser(user);
                 respuesta.setPublication(publication);
-                message.addRespuesta(respuesta);
-                respuesta.setMessage(message);
-                messageService.update(message);
+                message.setRespuesta(respuesta);
                 messageService.create(respuesta);
+                messageService.update(message);
                 return "redirect:/publicaciones/"+publication.getId();
             }
     }

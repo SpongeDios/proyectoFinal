@@ -56,13 +56,16 @@ public class PublicacionesController {
             @PathVariable("idPublicacion") Long idPublicacion,
             HttpSession session,
             Model model,
-            @ModelAttribute("message")Message message
+            @ModelAttribute("message")Message message,
+            @ModelAttribute("feedback")Feedback feedback
             ){
         Long userId = (Long) session.getAttribute("userid");
         User user = userService.findById(userId);
         Publication publication = publicationService.findById(idPublicacion);
         List<Message> messageList = publication.getMessages();
+        List<Feedback> feedbacks = publication.getFeedback();
         model.addAttribute("user", user);
+        model.addAttribute("feedbacks", feedbacks);
         model.addAttribute("messageList", messageList);
         model.addAttribute("publication", publication);
         return "publicacionPorId.jsp";
