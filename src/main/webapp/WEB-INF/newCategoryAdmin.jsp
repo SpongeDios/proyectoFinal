@@ -6,10 +6,14 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Title</title>
+    <title>Agregar Categorías</title>
 </head>
 <body>
 <div class="container">
+    <header class="d-flex justify-content-between">
+        <h1>Agregar Categorías</h1>
+        <a class="btn btn-link" href="/admin">Volver atrás</a>
+    </header>
     <div class="row">
         <div class="col">
             <form:errors path="category.*"/>
@@ -18,7 +22,7 @@
                     <form:label path="name">Nombre: </form:label>
                     <form:input cssClass="form-control" path="name"/>
                 </p>
-                <input class="btn btn-warning" type="submit" value="Create Category"/>
+                <input class="btn btn-warning" type="submit" value="Crear Categoría"/>
             </form:form>
         </div>
     </div>

@@ -6,10 +6,14 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Title</title>
+    <title>Agregar Regiones</title>
 </head>
 <body>
 <div class="container">
+    <header class="d-flex justify-content-between">
+        <h1>Agregar Regiones</h1>
+        <a class="btn btn-link" href="/admin">Volver atrás</a>
+    </header>
     <div class="row">
         <div class="col-12  border border-1 rounded">
             <form:errors path="region.*" cssClass="col"/>

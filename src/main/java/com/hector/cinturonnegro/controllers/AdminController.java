@@ -2,7 +2,6 @@ package com.hector.cinturonnegro.controllers;
 
 import com.hector.cinturonnegro.models.*;
 import com.hector.cinturonnegro.services.*;
-import org.dom4j.rule.Mode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,7 +60,7 @@ public class AdminController {
         }else{
             List<User> users = userService.allData();
             model.addAttribute("data", users);
-            return "adminData.jsp";
+            return "adminDataAllUsuarios.jsp";
         }
     }
 
@@ -77,7 +76,7 @@ public class AdminController {
         }else{
             List<Publication> publications = publicationService.allData();
             model.addAttribute("data", publications);
-            return "adminData.jsp";
+            return "adminDataAllPublicaciones.jsp";
         }
     }
 
@@ -146,7 +145,7 @@ public class AdminController {
         } else{
             List<Comuna> allData = comunaService.allData();
             model.addAttribute("data", allData);
-            return "adminData.jsp";
+            return "adminDataComunas.jsp";
         }
     }
 
@@ -226,7 +225,7 @@ public class AdminController {
         }else{
             List<Region> regiones = regionService.allData();
             model.addAttribute("data", regiones);
-            return "adminData.jsp";
+            return "adminDataRegiones.jsp";
         }
     }
 
@@ -295,7 +294,7 @@ public class AdminController {
         }else{
             List<Category> categories = categoryService.allData();
             model.addAttribute("data", categories);
-            return "adminData.jsp";
+            return "adminDataCategories.jsp";
         }
     }
 
