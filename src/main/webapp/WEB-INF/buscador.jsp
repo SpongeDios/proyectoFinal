@@ -12,14 +12,20 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <c:forEach var="publicacion" items="${publicacionPorComuna}">
-                <c:out value="${publicacion.title}"/>
-            </c:forEach>
 
-            <c:forEach var="publicacion" items="${publicacionPorRegion}">
-                <c:out value="${publicacion.title}"/>
-                <p></p>
-            </c:forEach>
+            <h1>Publicaciones de la Region</h1>
+            <ul>
+                <c:forEach var="publicacion" items="${publicacionPorRegion}">
+                    <li><c:out value="${publicacion.title}"/></li>
+                </c:forEach>
+            </ul>
+
+            <h1>Comunas de la region</h1>
+            <ul>
+                <c:forEach var="comuna" items="${comunasRegion}">
+                    <li><a href="/${comuna.region.nameRegion}/${comuna.nameComuna}"><c:out value="${comuna.nameComuna}"/></a></li>
+                </c:forEach>
+            </ul>
 
         </div>
     </div>

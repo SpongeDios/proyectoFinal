@@ -1,6 +1,7 @@
 package com.hector.cinturonnegro.services;
 
 import com.hector.cinturonnegro.models.Comuna;
+import com.hector.cinturonnegro.models.Region;
 import com.hector.cinturonnegro.repositories.ComunaRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,11 @@ public class ComunaService extends BaseService<Comuna>{
     }
 
     public List<Comuna> encontrarComunasPorRegion(Long id){
-        return comunaRepository.findAllByRegionId(id);
+        return comunaRepository.findByRegionId(id);
+    }
+
+    public List<Comuna> findByRegion(Region region){
+        return comunaRepository.findByRegion(region);
     }
 
 }

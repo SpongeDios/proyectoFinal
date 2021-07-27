@@ -1,6 +1,7 @@
 package com.hector.cinturonnegro.repositories;
 
 import com.hector.cinturonnegro.models.Comuna;
+import com.hector.cinturonnegro.models.Region;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public interface ComunaRepository extends BaseRepository<Comuna>{
 
         //Busca comunas por nombre de comunas
     List<Comuna> findByNameComunaContaining(String nameComuna);
-    List<Comuna> findAllByRegionId(Long id);
+    List<Comuna> findByRegionId(Long id);
+    List<Comuna> findByRegion(Region region);
 
 }

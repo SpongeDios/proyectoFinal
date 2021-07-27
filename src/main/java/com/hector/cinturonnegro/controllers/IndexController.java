@@ -67,10 +67,11 @@ public class IndexController {
     ){
         List<Publication> publicacionPorRegion = publicationService.ouroHenrry(region);
         model.addAttribute("publicacionPorRegion", publicacionPorRegion);
+        Region r = regionService.findByNameRegion(region);
+        List<Comuna> comunas = comunaService.findByRegion(r);
+        model.addAttribute("comunasRegion", comunas);
         return "buscador.jsp";
     }
-
-
 
     @GetMapping("/{region}/{comuna}")
     public String buscador(
@@ -80,7 +81,10 @@ public class IndexController {
             Model model
     ){
         List<Publication> publicacionPorComuna = publicationService.publicacionesPorComuna(comuna);
+        Region r = regionService.findByNameRegion(region);
+        List<Comuna> comunas = comunaService.encontrarComunasPorRegion(r.getId());
+        model.addAttribute("comunasRegion", comunas);
         model.addAttribute("publicacionPorComuna", publicacionPorComuna);
-        return "buscador.jsp";
+        return "buscadorComuna.jsp";
     }
 }
