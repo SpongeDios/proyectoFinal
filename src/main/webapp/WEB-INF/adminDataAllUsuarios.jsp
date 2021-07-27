@@ -33,7 +33,15 @@
                     <c:if test="${d.rol == 3}">Administrador</c:if>
                 </td>
                 <td><c:out value="${d.publications.size()}"/></td>
-                <td>(Implementar baneo y era)</td>
+                <td>
+                    <c:if test="${d.available == false}">Activo
+                        <a class="btn btn-link" href="/admin/allusers/${d.id}/available">Banear</a>
+                    </c:if>
+                    <c:if test="${d.available == true}">Baneado
+                        <a class="btn btn-link" href="/admin/allusers/${d.id}/available">Quitar Ban</a>
+                    </c:if>
+
+                </td>
             </tr>
         </c:forEach>
         </tbody>

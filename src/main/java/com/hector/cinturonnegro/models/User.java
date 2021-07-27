@@ -54,7 +54,10 @@ public class User extends BaseModel{
     //ROL
     @NotNull
     @Min( 1 )
+    ////////ROLES/////////////
     private int rol;
+    ///////////BANEO////////////
+    private boolean available;
 
     ///////////RELACIONES/////////////
 

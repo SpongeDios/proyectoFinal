@@ -511,17 +511,24 @@ public class AdminController {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
+//    @GetMapping("/admin/allusers/{idB}/available")
+//    public String available(
+//            @PathVariable("idB")Long idB, HttpSession session){
+//        User user = userService.findById(idB);
+////        User user = userService.findById((Long) session.getAttribute("userId"));
+//        if(session.getAttribute("userid") == null){
+//            if(user.isAvailable()){
+//                user.setAvailable(false);
+//                userService.update(user);
+//                return "redirect:/admin/allusers";
+//            }else{
+//                user.setAvailable(true);
+//                userService.update(user);
+//                return "redirect:/admin/allusers";
+//            }
+//        }else{
+//            return "redirect/";
+//        }
+//    }
 
 }
