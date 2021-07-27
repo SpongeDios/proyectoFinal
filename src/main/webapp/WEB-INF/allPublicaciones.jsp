@@ -16,7 +16,7 @@
             <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
             <a class="link-light" href="/">Inicio</a>
             <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
-            <a class="btn btn-link" href="javascript: history.go(-1)">Volver atrás</a>
+            <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
             <a class="link-light" href="/logout">Cerrar Sesión</a>
     </nav>
     </header>
@@ -38,18 +38,22 @@
                 <c:forEach var="publicacion" items="${user.publications}">
                     <tr>
                         <th scope="row"><a class="link-light" href="/publicaciones/${publicacion.id}"><c:out value="${publicacion.title}"/></a></th>
-                        <td><a target="_blank" href="${publicacion.photo_publication}"><img src="${publicacion.photo_publication}" height="80px" width="100px"></a></td>
+                        <td>
+                            <a target="_blank" href="${publicacion.photo_publication}">
+                                <img src="${publicacion.photo_publication}" height="80px" width="120px">
+                            </a>
+                        </td>
                         <td>$<c:out value="${publicacion.price}"/></td>
                         <td><c:out value="${publicacion.category.name}"/></td>
                         <td>
                             <c:if test="${publicacion.type_publication == 1}">Contratar una persona</c:if>
                             <c:if test="${publicacion.type_publication == 2}">Buscar trabajo</c:if>
                         </td>
-                        <td><a class="btn btn-warning" href="/publicaciones/${publicacion.id}/edit">Editar</a>
+                        <td>
+                            <a class="btn btn-warning" href="/publicaciones/${publicacion.id}/edit">Editar</a>
                             <form action="/publicaciones/${publicacion.id}/delete" method="post">
                             <input type="hidden" name="_method" value="delete">
-                            <input class="btn btn-danger boton" type="submit" value="Eliminar"></form> |
-
+                            <input class="btn btn-danger boton" type="submit" value="Eliminar"></form>
                         </td>
                     </tr>
                 </c:forEach>

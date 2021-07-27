@@ -62,3 +62,7 @@ p {
         font-size: 12px
     }
 }
+.imagen{
+    height: 100%;
+    width: 100%;
+}

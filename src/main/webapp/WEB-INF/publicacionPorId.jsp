@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+    <link href="/css/publicacionPorId.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Publicación</title>
 </head>
@@ -20,28 +21,36 @@
             <a class="link-light" href="/logout">Cerrar Sesión</a>
         </nav>
     </header>
-    <div class="row">
-        <ul class="list-group">
-            <li class="list-group-item">Autor: <c:out value="${publication.user.firstName} ${publication.user.lastName}"/> </li>
-            <li class="list-group-item">Título: <c:out value="${publication.title}"/> </li>
-            <li class="list-group-item">Descripción: <c:out value="${publication.description}"/> </li>
-            <li class="list-group-item">Precio: $<c:out value="${publication.price}"/> </li>
-            <li class="list-group-item">Categoría: <c:out value="${publication.category.name}"/> </li>
-            <li class="list-group-item">Celular: <c:out value="${publication.user.phone}"/> </li>
-            <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
-        </ul>
-    </div>
-    <a target="_blank" href="${publication.photo_publication}"><img src="${publication.photo_publication}" height="200px" width="250px"></a>
-    <h4>¿Quieres realizar una consulta?</h4>
-    <form:errors path="message.*"/>
-    <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
-        <form:input type="hidden" path="rol" value="1"/>
-        <div class="col-2">
-            <form:label for="message" class="visually-hidden" path="text"></form:label>
-            <form:input type="text" class="form-control" id="message" path="text"/>
-            <button type="submit" class="btn btn-primary mb-3">Enviar</button>
+        <div class="row ">
+            <div class="col-6">
+                <ul class="list-group">
+                    <li class="list-group-item">Nombre: <c:out value="${publication.user.firstName} ${publication.user.lastName}"/> </li>
+                    <li class="list-group-item">Título: <c:out value="${publication.title}"/> </li>
+                    <li class="list-group-item">Descripción: <c:out value="${publication.description}"/> </li>
+                    <li class="list-group-item">Precio: $<c:out value="${publication.price}"/> </li>
+                    <li class="list-group-item">Categoría: <c:out value="${publication.category.name}"/> </li>
+                    <li class="list-group-item">Celular: <c:out value="${publication.user.phone}"/> </li>
+                    <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
+                </ul>
+            </div>
+                <div class="col-6 p-2 imagen">
+                    <a target="_blank" href="${publication.photo_publication}">
+                        <img src="${publication.photo_publication}" height="250px" width="400px">
+                    </a>
+                </div>
         </div>
-    </form:form>
+        <div class="container-fluid">
+            <h4>¿Quieres realizar una consulta?</h4>
+            <form:errors path="message.*"/>
+            <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
+            <form:input type="hidden" path="rol" value="1"/>
+            <div class="col-3">
+                <form:label for="message" class="visually-hidden" path="text"></form:label>
+                <form:input type="text" class="form-control" id="message" path="text"/>
+                <button type="submit" class="btn btn-primary mb-3">Enviar</button>
+                </form:form>
+            </div>
+        </div>
     <table>
         <thead>
         <tr>
@@ -59,10 +68,10 @@
                     <td>
                         <c:if test="${user.id != publication.user.id}">
                             <p>
-                                <c:out value="${messages.text}"/>
+                                <span style="color: red;"> Pregunta: </span> <c:out value="${messages.text}"/>
                             </p>
                             <p>
-                                <c:out value="${messages.respuesta.text}"/>
+                                <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
                             </p>
                         </c:if>
                         <c:if test="${user.id == publication.user.id && messages.respuesta.id == null}">

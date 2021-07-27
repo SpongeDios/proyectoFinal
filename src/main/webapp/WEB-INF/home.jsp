@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Inicio</title>
+    <link rel="shortcut icon" href="/archivos/logos/SM.png" type="image/x'icon">
     <link rel="stylesheet" href="/css/editPackage.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="/js/app.js"></script>
