@@ -5,6 +5,7 @@ import com.hector.cinturonnegro.models.Comuna;
 import com.hector.cinturonnegro.models.User;
 import com.hector.cinturonnegro.services.*;
 import com.hector.cinturonnegro.validator.UserValidator;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -225,6 +226,5 @@ public class UserController {
             return "redirect:/perfil/"+idUser;
         }
     }
-
-
 }
+

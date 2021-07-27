@@ -14,7 +14,8 @@
 <div class="container">
     <header class="d-flex justify-content-between">
         <h1>Agregar Categorías</h1>
-        <<a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
+        <a class="btn btn-link" href="/admin">Inicio Administrador</a>
+        <a class="btn btn-link" href="javascript: history.go(-1)">Volver atrás</a>
     </header>
     <div class="row">
         <div class="col">

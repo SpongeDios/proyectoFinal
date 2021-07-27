@@ -11,6 +11,7 @@
 <div class="container">
     <header class="d-flex justify-content-between">
         <h1>Administrar Regiones</h1>
+        <a class="btn btn-link" href="/admin">Inicio Administrador</a>
         <a class="btn btn-link" href="javascript: history.go(-1)">Volver atrás</a>
     </header>
 
@@ -26,7 +27,7 @@
             <tr>
                 <td><c:out value="${d.nameRegion}"/></td>
                 <td>
-                    <a class="btn btn-link" href="/admin/regioness/${d.id}/edit">Editar</a> |
+                    <a class="btn btn-link" href="/admin/regiones/${d.id}/edit">Editar</a> |
                     <a  class="btn btn-link" href="/admin/regiones/${d.id}/delete">Eliminar</a>
                 </td>
             </tr>

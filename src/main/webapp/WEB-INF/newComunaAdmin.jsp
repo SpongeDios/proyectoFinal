@@ -14,7 +14,8 @@
 <div class="container">
     <header class="d-flex justify-content-between">
         <h1>Agregar Comunas</h1>
-        <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
+        <a class="btn btn-link" href="/admin">Inicio Administrador</a>
+        <a class="btn btn-link" href="javascript: history.go(-1)">Volver atrás</a>
     </header>
     <form:errors path="comuna.*"/>
     <form:form method="POST" action="" cssClass="form col border border-1 rounded" modelAttribute="comuna" >

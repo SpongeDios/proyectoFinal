@@ -378,7 +378,7 @@ public class AdminController {
                 comunaService.delete(comuna.getId());
             }
             regionService.delete(region.getId());
-            return "redirect:/admin/categories";
+            return "redirect:/admin/regiones";
         }
     }
     @GetMapping("/admin/comunas/{idComuna}/delete")
