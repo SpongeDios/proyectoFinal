@@ -19,7 +19,7 @@ public class Feedback extends BaseModel{
     @NotNull
     @Min(1)
     @Max(5)
-    private Integer rating;
+    private int rating;
     //COMENTARIO
     @NotNull
     @NotBlank( message = "Debe tener un Comentario" )

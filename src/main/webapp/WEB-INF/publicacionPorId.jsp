@@ -30,6 +30,8 @@
                     <li class="list-group-item">Precio: $<c:out value="${publication.price}"/> </li>
                     <li class="list-group-item">Categoría: <c:out value="${publication.category.name}"/> </li>
                     <li class="list-group-item">Celular: <c:out value="${publication.user.phone}"/> </li>
+                    <li class="list-group-item">Rating usuario: <c:out value="${ratingF}"/>
+                    </li>
                     <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
                 </ul>
             </div>

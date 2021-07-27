@@ -63,6 +63,24 @@ public class PublicacionesController {
         Publication publication = publicationService.findById(idPublicacion);
         List<Message> messageList = publication.getMessages();
         List<Feedback> feedbacks = publication.getFeedback();
+        User creatorP = publication.getUser();
+        List<Publication> publicationList = creatorP.getPublications();
+        int suma = 0;
+        int promedio = 0;
+        int contador = 0;
+        for (Publication p: publicationList) {
+            List<Feedback> feedbackList = p.getFeedback();
+            for (Feedback f: feedbackList) {
+                int ratingF = f.getRating();
+                suma += ratingF;
+            }
+            contador += p.getFeedback().size();
+        }
+        if (suma == 0){
+            contador = 1;
+        }
+        suma = suma / contador;
+        model.addAttribute("ratingF", suma);
         model.addAttribute("user", user);
         model.addAttribute("feedbacks", feedbacks);
         model.addAttribute("messageList", messageList);
