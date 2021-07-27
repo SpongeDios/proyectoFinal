@@ -25,6 +25,10 @@ public class PublicationService extends BaseService<Publication>{
         return publicationRepository.findByRegionContaining(query);
     }
 
+    public List<Publication> publicacionesPorComuna(String query){
+        return publicationRepository.findByComunaContaining(query);
+    }
+
 
 
 }

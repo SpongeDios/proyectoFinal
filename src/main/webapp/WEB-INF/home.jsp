@@ -5,6 +5,7 @@
     <title>Inicio</title>
     <link rel="stylesheet" href="/css/editPackage.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="/js/app.js"></script>
 </head>
 <body class="container">
 <header>
@@ -41,10 +42,14 @@
             <li> <a href="/magallanes">Región de Magallanes</a> </li>
         </ul>
         <ul class="col">
-            <c:forEach items="${comunas}" var="comuna">
-                <c:out value="${comuna}"></c:out>
-            </c:forEach>
         </ul>
     </div>
+    <div class="input-group">
+        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
+               aria-describedby="search-addon" />
+        <button type="button" class="btn btn-primary">Buscar</button>
+    </div>
+
+
 </body>
 </html>
