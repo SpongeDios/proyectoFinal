@@ -1,10 +1,7 @@
 package com.hector.cinturonnegro.controllers;
 
 import com.hector.cinturonnegro.models.*;
-import com.hector.cinturonnegro.services.CategoryService;
-import com.hector.cinturonnegro.services.FeedbackService;
-import com.hector.cinturonnegro.services.PublicationService;
-import com.hector.cinturonnegro.services.UserService;
+import com.hector.cinturonnegro.services.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +21,14 @@ public class PublicacionesController {
     private final PublicationService publicationService;
     private final CategoryService categoryService;
     private final FeedbackService feedbackService;
+    private final MessageService messageService;
 
-    public PublicacionesController(UserService userService, PublicationService publicationService, CategoryService categoryService, FeedbackService feedbackService) {
+    public PublicacionesController(UserService userService, PublicationService publicationService, CategoryService categoryService, FeedbackService feedbackService, MessageService messageService) {
         this.userService = userService;
         this.publicationService = publicationService;
         this.categoryService = categoryService;
         this.feedbackService = feedbackService;
+        this.messageService = messageService;
     }
 
     ////tipo 1 -> Prestar servicios
@@ -200,6 +199,9 @@ public class PublicacionesController {
         }else{
             for (Feedback feedback: publication.getFeedback()) {
                 feedbackService.delete(feedback.getId());
+            }
+            for(Message message: publication.getMessages()){
+                messageService.delete(message.getId());
             }
             publicationService.delete(idPublicaciones);
             return "redirect:/publicaciones";

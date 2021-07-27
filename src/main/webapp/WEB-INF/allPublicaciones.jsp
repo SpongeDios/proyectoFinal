@@ -51,9 +51,7 @@
                         </td>
                         <td>
                             <a class="btn btn-warning" href="/publicaciones/${publicacion.id}/edit">Editar</a>
-                            <form action="/publicaciones/${publicacion.id}/delete" method="post">
-                            <input type="hidden" name="_method" value="delete">
-                            <input class="btn btn-danger boton" type="submit" value="Eliminar"></form>
+                            <a href="/publicaciones/${publicacion.id}/delete" class="btn btn-danger boton">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
