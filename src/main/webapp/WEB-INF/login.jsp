@@ -9,10 +9,11 @@
     <title>Iniciar Sesión</title>
 </head>
 <body>
+<script src="/static/js/backbutton.js"></script>
 <div class="container">
     <header>
         <nav class="navbar navbar-dark bg-dark p-2">
-            <a class="link-light" href="/">Volver a Inicio</a>
+            <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
         </nav>
     </header>
     <br>

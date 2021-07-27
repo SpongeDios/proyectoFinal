@@ -6,6 +6,7 @@
     <title><c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></title>
 </head>
 <body>
+<script src="/static/js/backbutton.js"></script>
     <div class="container">
         <header>
             <nav class="navbar navbar-dark bg-dark p-2">
@@ -13,6 +14,7 @@
                 <a class="link-light" href="/publicaciones">Mis Publicaciones</a>
                 <a class="link-light" href="/perfil/${user.id}/editar">Editar Perfil</a>
                 <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
+                <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
                 <a class="link-light" href="/logout">Cerrar Sesión</a>
             </nav>
         </header>

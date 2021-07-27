@@ -6,10 +6,11 @@
     <title>Admin Categorias</title>
 </head>
 <body>
+<script src="/static/js/backbutton.js"></script>
 <div class="container">
     <header class="d-flex justify-content-between">
         <h1>Administrar Regiones</h1>
-        <a class="btn btn-link" href="/admin">Volver atrás</a>
+        <a class="btn btn-link" href="javascript: history.go(-1)">Volver atrás</a>
     </header>
 
     <table class="table">

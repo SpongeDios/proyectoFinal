@@ -7,10 +7,11 @@
     <title>Admin Publicaciones</title>
 </head>
 <body>
+<script src="/static/js/backbutton.js"></script>
 <div class="container">
     <header class="d-flex justify-content-between">
         <h1>Administrar Publicaciones</h1>
-        <a class="btn btn-link" href="/admin">Volver atrás</a>
+        <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
     </header>
     <table class="table">
         <thead class="thead-dark">
@@ -21,15 +22,15 @@
         </tr>
         </thead>
         <tbody>
-        <span style="color: red;"><form:errors path="d.*"/></span>
         <c:forEach var="d" items="${data}">
             <tr>
                 <td><c:out value="${d.title}"/></td>
                 <td><c:out value="${d.user.firstName} ${d.user.lastName}"/></td>
-                <td><a class="btn btn-link" href="/publicaciones/${d.publication.id}">Ver Publicación</a></td>
+                <td><a class="btn btn-link" href="/publicaciones/${publicaion.id}">Ver Publicación</a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
+    </div>
 </body>
 </html>

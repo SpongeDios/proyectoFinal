@@ -7,12 +7,13 @@
     <title>Editar Perfil</title>
 </head>
 <body>
+<script src="/static/js/backbutton.js"></script>
 <div class="container">
     <header>
         <nav class="navbar navbar-dark bg-dark p-2">
             <a class="link-light" href="/">Inicio</a>
             <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
-            <a class="link-light" href="/perfil/${user.id}">Volver atrás</a>
+            <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
             <a class="link-light" href="/logout">Cerrar Sesión</a>
         </nav>
     </header>
