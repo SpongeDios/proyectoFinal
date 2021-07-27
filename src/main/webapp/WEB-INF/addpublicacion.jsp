@@ -8,12 +8,13 @@
     <title>Añadir Publicación</title>
 </head>
 <body>
+<script src="/static/js/backbutton.js"></script>
 <div class="container">
     <header>
         <nav class="navbar navbar-dark bg-dark p-2">
             <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
             <a class="link-light" href="/">Inicio</a>
-            <a class="link-light" href="/publicaciones">Volver atrás</a>
+            <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
             <a class="link-light" href="/logout">Cerrar Sesión</a>
         </nav>
     </header>

@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
+<script src="/static/js/backbutton.js"></script>
 <div class="container">
     <header class="d-flex justify-content-between">
         <h1>Administrar Comunas</h1>
-        <a class="btn btn-link" href="/admin">Volver atrás</a>
+        <a class="btn btn-link" href="javascript: history.go(-1)">Volver atrás</a>
     </header>
     <table class="table">
         <thead class="thead-dark">

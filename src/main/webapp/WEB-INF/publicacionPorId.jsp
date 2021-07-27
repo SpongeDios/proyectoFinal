@@ -9,25 +9,26 @@
     <title>Publicación</title>
 </head>
 <body>
+<script src="/static/js/backbutton.js"></script>
 <div class="container">
     <header>
         <nav class="navbar navbar-dark bg-dark p-2">
             <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
             <a class="link-light" href="/">Inicio</a>
             <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
-            <a class="link-light" href="/publicaciones">Volver atrás</a>
+            <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
             <a class="link-light" href="/logout">Cerrar Sesión</a>
         </nav>
     </header>
     <div class="row">
-        <ul>
-            <li>Autor: <c:out value="${publication.user.firstName} ${publication.user.lastName}"/> </li>
-            <li>Título: <c:out value="${publication.title}"/> </li>
-            <li>Descripción: <c:out value="${publication.description}"/> </li>
-            <li>Precio: $<c:out value="${publication.price}"/> </li>
-            <li>Categoría: <c:out value="${publication.category.name}"/> </li>
-            <li>Celular: <c:out value="${publication.user.phone}"/> </li>
-            <li>Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
+        <ul class="list-group">
+            <li class="list-group-item">Autor: <c:out value="${publication.user.firstName} ${publication.user.lastName}"/> </li>
+            <li class="list-group-item">Título: <c:out value="${publication.title}"/> </li>
+            <li class="list-group-item">Descripción: <c:out value="${publication.description}"/> </li>
+            <li class="list-group-item">Precio: $<c:out value="${publication.price}"/> </li>
+            <li class="list-group-item">Categoría: <c:out value="${publication.category.name}"/> </li>
+            <li class="list-group-item">Celular: <c:out value="${publication.user.phone}"/> </li>
+            <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
         </ul>
     </div>
     <a target="_blank" href="${publication.photo_publication}"><img src="${publication.photo_publication}" height="200px" width="250px"></a>
@@ -48,6 +49,7 @@
         </tr>
         </thead>
         <tbody>
+        <table class="table table-primary table-striped">
         <c:forEach items="${publication.messages}" var="messages">
             <c:if test="${messages.rol == 1}">
                 <tr>
@@ -56,19 +58,28 @@
                 <tr>
                     <td>
                         <c:if test="${user.id != publication.user.id}">
-                            <c:out value="${messages.text}"/>
+                            <p>
+                                <c:out value="${messages.text}"/>
+                            </p>
                             <p>
                                 <c:out value="${messages.respuesta.text}"/>
                             </p>
                         </c:if>
                         <c:if test="${user.id == publication.user.id && messages.respuesta.id == null}">
-                            <p><c:out value="${messages.text}"/></p>
-                            <a href="/publicaciones/${messages.publication.id}/${messages.id}">responder</a>
+                            <div class="d-flex justify-content-between">
+                                <p>
+                                    <c:out value="${messages.text}"/>
+                                </p>
+                            <a class="btn btn-warning" href="/publicaciones/${messages.publication.id}/${messages.id}">responder</a>
+                            </div>
                         </c:if>
                         <c:if test="${user.id == publication.user.id && messages.respuesta.id != null}">
-                            <p><c:out value="${messages.text}"/></p>
                             <p>
-                                <c:out value="${messages.respuesta.text}"/>
+
+                                <span style="color: red;"> Pregunta: </span><c:out value="${messages.text}"/>
+                            </p>
+                            <p>
+                                <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
                             </p>
                         </c:if>
                     </td>
@@ -77,17 +88,31 @@
         </c:forEach>
         </tbody>
     </table>
-    <div>
+    <div class="feedback">
         <c:if test="${user.id != publication.user.id}">
-        <h3>Deje su Feedback</h3>
+        <h3>Dejar Feedback</h3>
         <form:form method="POST" action="/publicaciones/${publication.id}/feedback" enctype="multipart/form-data" modelAttribute="feedback" >
+<%--            <p>--%>
+<%--                <form:label path="rating">Puntuación</form:label>--%>
+<%--                <form:input type="number" min="1" max="5" path="rating"/>--%>
+<%--            </p>--%>
+            <div class="rating">
+                <input type="radio" name="rating" value="5" id="5">
+                <label for="5">☆☆☆☆☆</label>
+                <input type="radio" name="rating" value="4" id="4">
+                <label for="4">☆☆☆☆</label>
+                <input type="radio" name="rating" value="3" id="3">
+                <label for="3">☆☆☆</label>
+                <input type="radio" name="rating" value="2" id="2">
+                <label for="2">☆☆</label>
+                <input type="radio" name="rating" value="1" id="1">
+                <label for="1">☆</label>
+            </div>
             <p>
-                <form:label path="rating">Puntuación</form:label>
-                <form:input type="number" min="1" max="5" path="rating"/>
-            </p>
-            <p>
-                <form:label path="comment">Comentario</form:label>
-                <form:input path="comment"/>
+            <div class="form-floating">
+                <form:textarea path="comment" class="form-control" id="floatingTextarea"></form:textarea>
+                <form:label for="floatingTextarea" path="comment">Comentario</form:label>
+            </div>
             </p>
             <p class="col">
             <div class="mb-3">
@@ -99,7 +124,7 @@
         </form:form>
         </c:if>
         <h2>Feedbacks</h2>
-        <table>
+        <table class="table table-success table-striped">
             <tbody>
             <c:forEach items="${publication.feedback}" var="feedback">
                 <tr>
@@ -107,15 +132,25 @@
                 </tr>
                 <tr>
                     <td>
-                        <p><c:out value="${feedback.rating}"/>/5</p>
-                        <p><c:out value="${feedback.comment}"/></p>
-                        <img src="${feedback.photo_feedback}" width="200px" height="100px">
+                        <div class="d-flex justify-content-between">
+                            <p>
+                                <span style="color: red;"> Puntuación: </span> <c:out value="${feedback.rating}"/>/5
+                            </p>
+                            <p>
+                                <span style="color: red;"> Comentario: </span> <c:out value="${feedback.comment}"/>
+                            </p>
+                            <img src="${feedback.photo_feedback}" width="200px" height="100px">
+                            <p>
+                                <button class="btn btn-primary mb-3">Respeto</button>
+                            </p>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
+    </table>
 </div>
 </form>
 </body>

@@ -9,10 +9,11 @@
     <title>Agregar Regiones</title>
 </head>
 <body>
+<script src="/static/js/backbutton.js"></script>
 <div class="container">
     <header class="d-flex justify-content-between">
         <h1>Agregar Regiones</h1>
-        <a class="btn btn-link" href="/admin">Volver atrás</a>
+        <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
     </header>
     <div class="row">
         <div class="col-12  border border-1 rounded">
