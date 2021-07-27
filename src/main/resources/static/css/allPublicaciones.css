@@ -1,8 +1,12 @@
+.container {
+    background-color: #FFD600;
+}
 form {
     display: inline-block;
     vertical-align: top;
 }
-input{
+
+input {
     display: inline-block;
     vertical-align: top;
 }
