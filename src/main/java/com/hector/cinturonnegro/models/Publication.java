@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import javax.websocket.OnMessage;
 import java.util.List;
 
 @Getter

@@ -1,9 +1,7 @@
 package com.hector.cinturonnegro.services;
 
 import com.hector.cinturonnegro.models.Category;
-import com.hector.cinturonnegro.models.Comuna;
 import com.hector.cinturonnegro.models.Publication;
-import com.hector.cinturonnegro.models.Region;
 import com.hector.cinturonnegro.repositories.PublicationRepository;
 import org.springframework.stereotype.Service;
 

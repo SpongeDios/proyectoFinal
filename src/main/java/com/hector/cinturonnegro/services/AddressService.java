@@ -1,16 +1,11 @@
 package com.hector.cinturonnegro.services;
 
 import com.hector.cinturonnegro.models.Address;
-import com.hector.cinturonnegro.models.Comuna;
-import com.hector.cinturonnegro.models.Region;
-import com.hector.cinturonnegro.models.User;
 import com.hector.cinturonnegro.repositories.AddressRepository;
-import com.hector.cinturonnegro.repositories.BaseRepository;
 import com.hector.cinturonnegro.repositories.ComunaRepository;
 import com.hector.cinturonnegro.repositories.RegionRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
 
 @Service
 public class AddressService extends BaseService<Address>{
