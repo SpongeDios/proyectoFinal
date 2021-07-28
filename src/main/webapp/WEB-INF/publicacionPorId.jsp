@@ -5,13 +5,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <link href="css/publicacionPorId.css" rel="stylesheet">
-    <link rel="shortcut icon" href="archivos/logos/iconodepana.png" type="image/x'icon">
+    <link href="/css/publicacionPorId.css" rel="stylesheet">
+    <link rel="shortcut icon" href="archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Publicación</title>
+    <script src="/js/backbutton.js"></script>
 </head>
 <body>
-<script src="/static/js/backbutton.js"></script>
 <div class="container">
     <header>
         <nav class="navbar navbar-dark bg-dark p-2">
@@ -110,13 +110,13 @@
 <%--            </p>--%>
             <div class="rating">
                 <input type="radio" name="rating" value="5" id="5">
-                <label for="5">☆☆☆☆☆</label>
+                <label for="5">☆</label>
                 <input type="radio" name="rating" value="4" id="4">
-                <label for="4">☆☆☆☆</label>
+                <label for="4">☆</label>
                 <input type="radio" name="rating" value="3" id="3">
-                <label for="3">☆☆☆</label>
+                <label for="3">☆</label>
                 <input type="radio" name="rating" value="2" id="2">
-                <label for="2">☆☆</label>
+                <label for="2">☆</label>
                 <input type="radio" name="rating" value="1" id="1">
                 <label for="1">☆</label>
             </div>
