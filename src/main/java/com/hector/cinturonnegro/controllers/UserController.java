@@ -18,6 +18,7 @@ import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -49,6 +50,8 @@ public class UserController {
         if (session.getAttribute("userid") != null) {
             return "redirect:/index";
         } else {
+            List<User> userList = userService.allData();
+            model.addAttribute("userList", userList);
             model.addAttribute("regiones", regionService.allData());
             model.addAttribute("comunas", comunaService.allData());
             return "registration.jsp";

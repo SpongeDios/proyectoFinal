@@ -58,16 +58,27 @@
                     <form:label path="phone">Celular: </form:label>
                     <form:input cssClass="form-control" path="phone"/>
                 </p>
-
-                <p class="form-group">
-                    <form:label path="rol">Rol: </form:label>
-                    <form:select cssClass="form-control" path="rol">
-                        <option disabled selected value="">Selecciona una</option>
-                        <form:option value="1">Prestar Servicios</form:option>
-                        <form:option value="2">Contratar Servicios</form:option>
-                    </form:select>
-                </p>
-
+                <c:if test="${userList.size() != 0}">
+                    <p class="form-group">
+                        <form:label path="rol">Rol: </form:label>
+                        <form:select cssClass="form-control" path="rol">
+                            <option disabled selected value="">Selecciona una</option>
+                            <form:option value="1">Prestar Servicios</form:option>
+                            <form:option value="2">Contratar Servicios</form:option>
+                        </form:select>
+                    </p>
+                </c:if>
+                <c:if test="${userList.size() == 0}">
+                    <p class="form-group">
+                        <form:label path="rol">Rol: </form:label>
+                        <form:select cssClass="form-control" path="rol">
+                            <option disabled selected value="">Selecciona una</option>
+                            <form:option value="1">Prestar Servicios</form:option>
+                            <form:option value="2">Contratar Servicios</form:option>
+                            <form:option value="3">Administrador</form:option>
+                        </form:select>
+                    </p>
+                </c:if>
                 <p>
                     <form:label path="email">Email:</form:label>
                     <form:input cssClass="form-control" type="email" path="email"/>
@@ -89,5 +100,8 @@
             </form:form>
         </div>
     </div>
+</div>
+</body>
+</html>
 
 
