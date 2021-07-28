@@ -57,8 +57,6 @@
                     </c:forEach>
             </div>
         </div>
-
-
         <div class="input-group xd">
             <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
                    aria-describedby="search-addon" />

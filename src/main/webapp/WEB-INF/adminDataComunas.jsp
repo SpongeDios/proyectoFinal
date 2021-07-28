@@ -23,7 +23,7 @@
         </tr>
         </thead>
         <tbody>
-        <span style="color: red;"><form:errors path="d.*"/></span><%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+        <span style="color: red;"><form:errors path="d.*"/></span>
         <c:forEach var="d" items="${data}">
             <tr>
                 <td><c:out value="${d.nameComuna}"/></td>
@@ -35,5 +35,6 @@
         </c:forEach>
         </tbody>
     </table>
+</div>
 </body>
 </html>

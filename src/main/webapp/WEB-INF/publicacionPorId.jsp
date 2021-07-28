@@ -58,9 +58,7 @@
         </div>
     <table>
         <thead>
-        <tr>
-            <th>ÚLTIMAS CONSULTAS</th>
-        </tr>
+        <h2>Últimas consultas</h2>
         </thead>
         <tbody>
         <table class="table table-primary table-striped">

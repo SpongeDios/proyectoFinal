@@ -58,19 +58,9 @@
                 </div>
                 <input class="btn btn-warning" type="submit" value="Publicar!"/>
                 </p>
-
             </form:form>
         </div>
     </div>
 </div>
 </body>
 </html>
-
-<%--<p class="col">Sube una Foto--%>
-<%--<div class="custom-file">--%>
-<%--    <input type="file" class="custom-file-input" accept="image/png, image/jpeg" id="validatedCustomFile" required>--%>
-<%--    <label class="custom-file-label" for="validatedCustomFile">Escoger una foto...</label>--%>
-<%--    <div class="invalid-feedback">Example invalid custom file feedback</div>--%>
-<%--</div>--%>
-<%--</p>--%>
-<%--<input class="btn btn-warning" type="submit" value="Publicar!"/>--%>
