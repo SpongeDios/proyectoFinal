@@ -21,6 +21,7 @@
             <a class="link-light" href="/publicaciones">Publicaciones</a>
             <a class="link-light" href="/logout">Cerrar Sesión</a>
             </c:if>
+            <%-- mi comentario --%> 
         </nav>
     </header>
         <div class="row">
