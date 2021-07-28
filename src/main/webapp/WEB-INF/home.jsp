@@ -3,25 +3,15 @@
 <html>
 <head>
     <title>Inicio</title>
+    <link href="/css/home.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
     <body>
     <div class="container" onload="cargarJson('${regionesObject}')">
-        <select id="region">
-            <option selected disabled> selecciona una</option>
-            <c:forEach var="region" items="${regiones}">
-                <option value="${region.id}"> <c:out value="${region.nameRegion}"/></option>
-            </c:forEach>
-        </select>
-
-        <select id="comuna">
-
-        </select>
-
         <header>
-            <nav class="navbar navbar-dark bg-dark p-2">
+            <nav class="navbar p-2">
                 <c:if test="${user.id == null}">
                     <a class="link-light" class="btn btn-link" href="/login">Iniciar Sesión</a>
                     <a class="link-light" href="/registration">Registrarse</a>
@@ -34,6 +24,17 @@
                 </c:if>
             </nav>
         </header>
+        <select id="region">
+            <option selected disabled> selecciona una</option>
+            <c:forEach var="region" items="${regiones}">
+                <option value="${region.id}"> <c:out value="${region.nameRegion}"/></option>
+            </c:forEach>
+        </select>
+
+        <select id="comuna">
+
+        </select>
+
         <div class="row">
             <ul class="col">
                 <c:forEach var="region" items="${regiones}">

@@ -5,6 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+    <link href="/css/login.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Iniciar Sesión</title>
@@ -13,7 +14,7 @@
 <body>
 <div class="container">
     <header>
-        <nav class="navbar navbar-dark bg-dark p-2">
+        <nav class="navbar p-2">
             <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
         </nav>
     </header>
@@ -31,7 +32,7 @@
                     <label for="password">Contraseña</label>
                     <input class="form-control" type="password" id="password" name="password"/>
                 </p>
-                <input class="btn btn-warning" type="submit" value="Iniciar Sesión!"/>
+                <input class="btn btn-light" type="submit" value="Iniciar Sesión!"/>
             </form>
         </div>
     </div>
