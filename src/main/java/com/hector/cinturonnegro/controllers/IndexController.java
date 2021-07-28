@@ -1,13 +1,7 @@
 package com.hector.cinturonnegro.controllers;
 
-import com.hector.cinturonnegro.models.Comuna;
-import com.hector.cinturonnegro.models.Publication;
-import com.hector.cinturonnegro.models.Region;
-import com.hector.cinturonnegro.models.User;
-import com.hector.cinturonnegro.services.ComunaService;
-import com.hector.cinturonnegro.services.PublicationService;
-import com.hector.cinturonnegro.services.RegionService;
-import com.hector.cinturonnegro.services.UserService;
+import com.hector.cinturonnegro.models.*;
+import com.hector.cinturonnegro.services.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -26,41 +20,37 @@ public class IndexController {
     private final UserService userService;
     private final RegionService regionService;
     private final PublicationService publicationService;
+    private final CategoryService categoryService;
 
-    public IndexController(ComunaService comunaService, UserService userService, RegionService regionService, PublicationService publicationService) {
+    public IndexController(ComunaService comunaService, UserService userService, RegionService regionService, PublicationService publicationService, CategoryService categoryService) {
         this.comunaService = comunaService;
         this.userService = userService;
         this.regionService = regionService;
         this.publicationService = publicationService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/")
     public String index(Model model, HttpSession session) {
         if (session.getAttribute("userid") == null){
-            List<Comuna> comunas = comunaService.comunaList("Metropolitana");
-            model.addAttribute("comunas", comunas);
+            List<Region> regiones = regionService.allData();
+            List<Category> categorias = categoryService.allData();
+            model.addAttribute("categorias", categorias);
+            model.addAttribute("regiones", regiones);
             return "/home.jsp";
         }else {
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
             List<Region> regiones = regionService.allData();
-            JSONObject regionesObject = new JSONObject();
-            System.out.println(regionesObject);
-            for (Region region: regiones) {
-                JSONObject comunasJson = new JSONObject();
-                regionesObject.append(region.getNameRegion(), comunasJson);
-                for (Comuna comuna: region.getComunas()) {
-                    comunasJson.append("comunas", comuna.getNameComuna());
-                }
-            }
-            System.out.println(regionesObject);
-            model.addAttribute("regiones", regionesObject);
+            List<Category> categorias = categoryService.allData();
+            model.addAttribute("categorias", categorias);
+            model.addAttribute("regiones", regiones);
             model.addAttribute("user", user);
             return "/home.jsp";
         }
     }
 
-    @GetMapping("/{region}")
+    @GetMapping("/buscador/{region}")
     public String buscadorPorRegion(
             @PathVariable("region") String region,
             Model model
@@ -72,8 +62,7 @@ public class IndexController {
         model.addAttribute("comunasRegion", comunas);
         return "buscador.jsp";
     }
-
-    @GetMapping("/{region}/{comuna}")
+    @GetMapping("/buscador/{region}/{comuna}")
     public String buscador(
             @PathVariable(value = "region", required = false) String region,
             @PathVariable(value = "comuna", required = false) String comuna,
@@ -87,4 +76,19 @@ public class IndexController {
         model.addAttribute("publicacionPorComuna", publicacionPorComuna);
         return "buscadorComuna.jsp";
     }
+
+    @GetMapping("buscador/categoria/{idCategoria}")
+    public String buscadorCategoria(
+            @PathVariable("idCategoria") Long idCategoria,
+            Model model
+    ){
+        Category category = categoryService.findById(idCategoria);
+        List<Publication> publicacionesPorCategoria = publicationService.publicacionesPorCategoria(category);
+        model.addAttribute("publicacionesPorCategoria", publicacionesPorCategoria);
+        return "buscadorPorCategoria.jsp";
+    }
+
+
+
+
 }

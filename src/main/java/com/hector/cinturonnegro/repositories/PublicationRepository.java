@@ -1,5 +1,6 @@
 package com.hector.cinturonnegro.repositories;
 
+import com.hector.cinturonnegro.models.Category;
 import com.hector.cinturonnegro.models.Publication;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -19,5 +20,7 @@ public interface PublicationRepository extends BaseRepository<Publication>{
 
     @Query(value = "SELECT * FROM publications p JOIN addresses a ON a.id=p.address JOIN comunas c ON a.comuna = c.id WHERE c.name_comuna LIKE %?1%", nativeQuery = true)
     List<Publication> findByComunaContaining(String query);
+
+    List<Publication> findByCategory(Category category);
 
 }

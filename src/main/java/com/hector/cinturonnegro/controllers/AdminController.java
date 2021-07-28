@@ -426,11 +426,16 @@ public class AdminController {
     public String editingComuna(
             @PathVariable("idComuna") Long idComuna,
             @Valid @ModelAttribute("comuna") Comuna comuna,
-            BindingResult result
+            BindingResult result,
+            Model model
     ){
         if(result.hasErrors()){
+            List<Region> allRegions = regionService.allData();
+            model.addAttribute("allRegions", allRegions);
             return "editComunaAdmin.jsp";
         }else{
+            List<Region> allRegions = regionService.allData();
+            model.addAttribute("allRegions", allRegions);
             Comuna c = comunaService.findById(idComuna);
             c.setNameComuna(comuna.getNameComuna());
             c.setRegion(comuna.getRegion());

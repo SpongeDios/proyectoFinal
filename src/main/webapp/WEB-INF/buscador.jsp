@@ -24,10 +24,9 @@
             <h1>Comunas de la region</h1>
             <ul>
                 <c:forEach var="comuna" items="${comunasRegion}">
-                    <li><a href="/${comuna.region.nameRegion}/${comuna.nameComuna}"><c:out value="${comuna.nameComuna}"/></a></li>
+                    <li><a href="/buscador/${comuna.region.nameRegion}/${comuna.nameComuna}"><c:out value="${comuna.nameComuna}"/></a></li>
                 </c:forEach>
             </ul>
-
         </div>
     </div>
 </div>

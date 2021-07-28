@@ -1,5 +1,6 @@
 package com.hector.cinturonnegro.services;
 
+import com.hector.cinturonnegro.models.Category;
 import com.hector.cinturonnegro.models.Comuna;
 import com.hector.cinturonnegro.models.Publication;
 import com.hector.cinturonnegro.models.Region;
@@ -27,6 +28,10 @@ public class PublicationService extends BaseService<Publication>{
 
     public List<Publication> publicacionesPorComuna(String query){
         return publicationRepository.findByComunaContaining(query);
+    }
+
+    public List<Publication> publicacionesPorCategoria(Category category){
+        return publicationRepository.findByCategory(category);
     }
 
 
