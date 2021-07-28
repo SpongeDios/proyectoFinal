@@ -34,6 +34,8 @@ public class PublicationService extends BaseService<Publication>{
         return publicationRepository.findByCategory(category);
     }
 
-
+    public List<Publication> publicacionesTrue(){
+        return publicationRepository.findByEstadoIsTrue();
+    }
 
 }

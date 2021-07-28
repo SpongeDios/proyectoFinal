@@ -23,4 +23,6 @@ public interface PublicationRepository extends BaseRepository<Publication>{
 
     List<Publication> findByCategory(Category category);
 
+    List<Publication> findByEstadoIsTrue();
+
 }

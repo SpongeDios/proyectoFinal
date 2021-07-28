@@ -42,6 +42,8 @@ public class PublicacionesController {
         }else{
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
+            List<Publication> publicationList = publicationService.publicacionesTrue();
+            model.addAttribute("publicationList", publicationList);
             model.addAttribute("user", user);
             return "allPublicaciones.jsp";
         }
@@ -62,31 +64,35 @@ public class PublicacionesController {
         Long userId = (Long) session.getAttribute("userid");
         User user = userService.findById(userId);
         Publication publication = publicationService.findById(idPublicacion);
-        List<Message> messageList = publication.getMessages();
-        List<Feedback> feedbacks = publication.getFeedback();
-        User creatorP = publication.getUser();
-        List<Publication> publicationList = creatorP.getPublications();
-        int suma = 0;
-        int promedio = 0;
-        int contador = 0;
-        for (Publication p: publicationList) {
-            List<Feedback> feedbackList = p.getFeedback();
-            for (Feedback f: feedbackList) {
-                int ratingF = f.getRating();
-                suma += ratingF;
+        if (publication.isEstado() == false){
+            return "redirect:/";
+        }else {
+            List<Message> messageList = publication.getMessages();
+            List<Feedback> feedbacks = publication.getFeedback();
+            User creatorP = publication.getUser();
+            List<Publication> publicationList = creatorP.getPublications();
+            int suma = 0;
+            int promedio = 0;
+            int contador = 0;
+            for (Publication p : publicationList) {
+                List<Feedback> feedbackList = p.getFeedback();
+                for (Feedback f : feedbackList) {
+                    int ratingF = f.getRating();
+                    suma += ratingF;
+                }
+                contador += p.getFeedback().size();
             }
-            contador += p.getFeedback().size();
+            if (suma == 0) {
+                contador = 1;
+            }
+            promedio = suma / contador;
+            model.addAttribute("ratingF", promedio);
+            model.addAttribute("user", user);
+            model.addAttribute("feedbacks", feedbacks);
+            model.addAttribute("messageList", messageList);
+            model.addAttribute("publication", publication);
+            return "publicacionPorId.jsp";
         }
-        if (suma == 0){
-            contador = 1;
-        }
-        promedio = suma / contador;
-        model.addAttribute("ratingF", promedio);
-        model.addAttribute("user", user);
-        model.addAttribute("feedbacks", feedbacks);
-        model.addAttribute("messageList", messageList);
-        model.addAttribute("publication", publication);
-        return "publicacionPorId.jsp";
     }
 
 
@@ -199,36 +205,29 @@ public class PublicacionesController {
     }
 
     //////////////////////////////////////////////////////////
-    ///////////////////Borrar publicacion/////////////////////
+    ///////////////////"Borrar" publicacion///////////////////
     //////////////////////////////////////////////////////////
 
     @GetMapping("/publicaciones/{idPublicaciones}/delete")
-    public String deletePublicacion(@PathVariable("idPublicaciones") Long idPublicaciones, HttpSession session){
+    public String deshabilitar(@PathVariable("idPublicaciones")Long idPublicaciones, HttpSession session){
         if(session.getAttribute("userid") == null){
             return "redirect:/login";
-        }
-        Long idUser = (Long) session.getAttribute("userid");
-        User user = userService.findById(idUser);
-        Publication publication = publicationService.findById(idPublicaciones);
-        if(user.getPublications().contains(publication) == false){
-            return "redirect:/";
         }else{
-            publication.setFeedback(new ArrayList<>());
-            for(Message message: publication.getMessages()){
-                messageService.delete(message.getId());
+            Long idUser = (Long) session.getAttribute("userid");
+            User user = userService.findById(idUser);
+            Publication publication = publicationService.findById(idPublicaciones);
+            if(user.getPublications().contains(publication) == false){
+                return "redirect:/";
+            }else{
+               publication.setEstado(false);
+               publicationService.update(publication);
+               return "redirect:/publicaciones";
             }
-            publicationService.delete(idPublicaciones);
-            return "redirect:/publicaciones";
         }
     }
 
 
 
-
-
-
-
-
-
-
 }
+
+

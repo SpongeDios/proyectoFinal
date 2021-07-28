@@ -41,6 +41,9 @@ public class Publication extends BaseModel{
     @Max(2)
     private int type_publication;
 
+    //Estado Publicacion
+    private boolean estado = true;
+
     ///////////////RELACIONES///////////////
 
     //RELACION CON USER

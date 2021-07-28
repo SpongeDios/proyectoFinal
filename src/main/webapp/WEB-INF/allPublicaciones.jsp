@@ -35,7 +35,7 @@
             </thead>
             <tbody>
             <span style="color: red;"><form:errors path="publicacion.*"/></span>
-                <c:forEach var="publicacion" items="${user.publications}">
+                <c:forEach var="publicacion" items="${publicationList}">
                     <tr>
                         <th scope="row"><a class="link-light" href="/publicaciones/${publicacion.id}"><c:out value="${publicacion.title}"/></a></th>
                         <td>
