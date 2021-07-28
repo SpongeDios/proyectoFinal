@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -356,9 +357,7 @@ public class AdminController {
             return "redirect:/publicaciones";
         }else{
             Category category = categoryService.findById(idCategory);
-            for (Publication publication: category.getPublications()) {
-                publicationService.delete(publication.getId());
-            }
+            category.setPublications(new ArrayList<>());
             categoryService.delete(category.getId());
             return "redirect:/admin/categories";
         }
