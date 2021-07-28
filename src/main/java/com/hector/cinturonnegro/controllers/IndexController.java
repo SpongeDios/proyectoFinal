@@ -37,6 +37,20 @@ public class IndexController {
             List<Category> categorias = categoryService.allData();
             model.addAttribute("categorias", categorias);
             model.addAttribute("regiones", regiones);
+
+            HashMap<Long, HashMap<String, Object>> regioneshash = new HashMap<>();
+            for (Region region: regiones) {
+
+                HashMap<Long, String> comunashash = new HashMap<>();
+                for (Comuna comuna : region.getComunas()) {
+                    comunashash.put(comuna.getId(), comuna.getNameComuna());
+                }
+                regioneshash.put(region.getId(), new HashMap<>());
+                regioneshash.get(region.getId()).put("nombre", region.getNameRegion());
+                regioneshash.get(region.getId()).put("comunas", comunashash);
+            }
+            JSONObject regionesObject = new JSONObject(regioneshash);
+            model.addAttribute("regionesObject", regionesObject);
             return "/home.jsp";
         }else {
             Long userId = (Long) session.getAttribute("userid");

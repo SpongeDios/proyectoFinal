@@ -9,9 +9,14 @@
 //     }
 // }
 //
-function cargarJson(regiones){
+function cargarJson(regionesString){
+    regiones = JSON.parse(regionesString);
+    console.log(regiones);
     return regiones;
 }
+
+
+
 
 function cargarRegiones(regiones){
     console.log(regiones);
@@ -23,15 +28,6 @@ function cargarRegiones(regiones){
     }
 }
 
-function cargarComunas(region){
-    console.log(region)
-    let comunas = document.getElementById("comunas");
-    regiones = cargarJson();
-    comunas.innerHTMl = "";
-    for (const element in comunas) {
-
-    }
-}
 
 
 

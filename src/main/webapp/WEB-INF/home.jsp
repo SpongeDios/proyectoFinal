@@ -5,9 +5,10 @@
     <title>Inicio</title>
     <link rel="shortcut icon" href="archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="/js/app.js"></script>
 </head>
     <body>
-    <div class="container">
+    <div class="container" onload="cargarJson('${regionesObject}')">
     <header>
         <nav class="navbar navbar-dark bg-dark p-2">
             <c:if test="${user.id == null}">
@@ -53,5 +54,10 @@
             <button type="button" class="btn btn-primary">Buscar</button>
         </div>
     </div>
+
+<%--<script>--%>
+<%--    regiones = JSON.parse('${regionesObject}');--%>
+<%--    console.log(regiones);--%>
+<%--</script>--%>
 </body>
 </html>
