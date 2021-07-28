@@ -1,4 +1,4 @@
     function funcionAsociadaBoton(){
-    funciondepana();
+    funcionDeVolverAtras();
     history.go(-1);
 }

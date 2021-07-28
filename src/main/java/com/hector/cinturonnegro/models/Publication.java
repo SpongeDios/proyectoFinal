@@ -20,7 +20,7 @@ public class Publication extends BaseModel{
     //TITULO
     @NotNull
     @NotBlank( message = "Debe tener un Título")
-    @Size( min = 5, max = 25, message = "Ingresa un Título entre 5 a 25 caracteres" )
+    @Size( min = 5, max = 45, message = "Ingresa un Título entre 5 a 25 caracteres" )
     private String title;
     //DESCRIPCION
     @NotNull

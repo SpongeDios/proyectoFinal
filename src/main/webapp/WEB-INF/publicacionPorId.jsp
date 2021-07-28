@@ -152,9 +152,6 @@
                                 <span style="color: red;"> Comentario: </span> <c:out value="${feedback.comment}"/>
                             </p>
                             <img src="${feedback.photo_feedback}" width="200px" height="100px">
-                            <p>
-                                <button class="btn btn-primary mb-3">Respeto</button>
-                            </p>
                         </div>
                     </td>
                 </tr>

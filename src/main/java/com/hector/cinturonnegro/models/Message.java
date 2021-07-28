@@ -16,7 +16,7 @@ public class Message extends BaseModel{
     //MENSAJE
     @NotNull
     @NotBlank( message = "El mensaje debe contener texto" )
-    @Size( min = 5, max = 255, message = "Ingresa un mensaje entre 5 a 255 caracteres" )
+    @Size( min = 1, max = 255, message = "Ingresa un mensaje entre 5 a 255 caracteres" )
     private String text;
 
     @Min(1)
