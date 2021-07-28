@@ -43,10 +43,14 @@
                         <form:option value="2">Quiero trabajar</form:option>
                     </form:select>
                 </p>
-<%--                <p class="col">--%>
-<%--                    <form:label path="category">Categoria:</form:label>--%>
-<%--                    <form:input cssClass="form-control" path="category"/>--%>
-<%--                </p>--%>
+                <p class="col">
+                    <form:label path="category">Categoria:</form:label>
+                    <form:select path="category">
+                        <c:forEach items="${categories}" var="category">
+                            <form:option value="${category.id}"><c:out value="${category.name}"/></form:option>
+                        </c:forEach>
+                    </form:select>
+                </p>
                 <p class="col">
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Subir una Foto</label>

@@ -79,8 +79,8 @@ public class PublicacionesController {
         if (suma == 0){
             contador = 1;
         }
-        suma = suma / contador;
-        model.addAttribute("ratingF", suma);
+        promedio = suma / contador;
+        model.addAttribute("ratingF", promedio);
         model.addAttribute("user", user);
         model.addAttribute("feedbacks", feedbacks);
         model.addAttribute("messageList", messageList);
@@ -104,6 +104,8 @@ public class PublicacionesController {
         } else{
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
+            List<Category> categories = categoryService.allData();
+            model.addAttribute("categories", categories);
             model.addAttribute("user", user);
             return "addpublicacion.jsp";
         }
@@ -120,11 +122,8 @@ public class PublicacionesController {
         if(result.hasErrors()){
             return "addpublicacion.jsp";
         } else{
-            Category category = new Category();
-            category.setName("ceramica");
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
-            publication.setCategory(category);
             int carpetaPubl = publicationService.allData().size() + 1;
             String name = file.getOriginalFilename();
             if (!file.isEmpty() && file.getSize() < 1048576) {
@@ -145,9 +144,7 @@ public class PublicacionesController {
             } else {
                 System.out.println("You failed to upload " + name + " because the file was empty.");
             }
-
             publication.setUser(user);
-            categoryService.create(category);
             publicationService.create(publication);
             return "redirect:/publicaciones";
         }
