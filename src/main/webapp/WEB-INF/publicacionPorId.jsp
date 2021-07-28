@@ -6,7 +6,7 @@
 <html>
 <head>
     <link href="/css/publicacionPorId.css" rel="stylesheet">
-    <link rel="shortcut icon" href="archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
+    <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Publicación</title>
     <script src="/js/backbutton.js"></script>
@@ -30,7 +30,7 @@
                     <li class="list-group-item">Descripción: <c:out value="${publication.description}"/> </li>
                     <li class="list-group-item">Precio: $<c:out value="${publication.price}"/> </li>
                     <li class="list-group-item">Categoría: <c:out value="${publication.category.name}"/> </li>
-                    <li class="list-group-item">Celular: <c:out value="${publication.user.phone}"/> </li>
+                    <li class="list-group-item"> Celular: <img src="/archivos/logos/iconoWhatsapp.png" width="20px"> <c:out value="${publication.user.phone}"/> </li>
                     <li class="list-group-item">Rating usuario: <c:out value="${ratingF}"/>
                     </li>
                     <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
@@ -43,6 +43,7 @@
                 </div>
         </div>
         <div class="container-fluid">
+            <c:if test="${user.id != publication.user.id}">
             <h4>¿Quieres realizar una consulta?</h4>
             <form:errors path="message.*"/>
             <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
@@ -53,6 +54,7 @@
                 <button type="submit" class="btn btn-primary mb-3">Enviar</button>
                 </form:form>
             </div>
+            </c:if>
         </div>
     <table>
         <thead>
@@ -104,10 +106,6 @@
         <c:if test="${user.id != publication.user.id}">
         <h3>Dejar Feedback</h3>
         <form:form method="POST" action="/publicaciones/${publication.id}/feedback" enctype="multipart/form-data" modelAttribute="feedback" >
-<%--            <p>--%>
-<%--                <form:label path="rating">Puntuación</form:label>--%>
-<%--                <form:input type="number" min="1" max="5" path="rating"/>--%>
-<%--            </p>--%>
             <div class="rating">
                 <input type="radio" name="rating" value="5" id="5">
                 <label for="5">☆</label>
