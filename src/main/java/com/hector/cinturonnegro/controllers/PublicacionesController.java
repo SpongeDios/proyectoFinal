@@ -13,6 +13,7 @@ import javax.validation.Valid;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -212,9 +213,7 @@ public class PublicacionesController {
         if(user.getPublications().contains(publication) == false){
             return "redirect:/";
         }else{
-            for (Feedback feedback: publication.getFeedback()) {
-                feedbackService.delete(feedback.getId());
-            }
+            publication.setFeedback(new ArrayList<>());
             for(Message message: publication.getMessages()){
                 messageService.delete(message.getId());
             }

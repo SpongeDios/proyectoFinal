@@ -9,13 +9,22 @@
 //     }
 // }
 //
-function cargarJson(regionesString){
-    regiones = JSON.parse(regionesString);
-    console.log(regiones);
+function cargarJson(regiones){
     return regiones;
 }
 
-
+$(document).ready(function (){
+    $("#region").change(function (){
+        console.log(regiones)
+        var val = $(this).val();
+        for (let i = 0; i < Object.keys(regiones).length; i++) {
+            if(val == i){
+                console.log(regiones[i]['comunas']);
+                $("#comuna").html("<option>"+regiones[i]['comunas']+"</option>");
+            }
+        }
+    })
+})
 
 
 function cargarRegiones(regiones){
