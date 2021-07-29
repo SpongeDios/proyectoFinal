@@ -21,19 +21,20 @@ public class PublicationService extends BaseService<Publication>{
     }
 
     public List<Publication> ouroHenrry(String query){
-        return publicationRepository.findByRegionContaining(query);
+        return publicationRepository.findByRegionContainingAndEstadoIsTrue(query);
     }
 
     public List<Publication> publicacionesPorComuna(String query){
-        return publicationRepository.findByComunaContaining(query);
+        return publicationRepository.findByComunaContainingAndEstadoIsTrue(query);
     }
 
     public List<Publication> publicacionesPorCategoria(Category category){
-        return publicationRepository.findByCategory(category);
+        return publicationRepository.findByCategoryAndEstadoIsTrue(category);
     }
 
     public List<Publication> publicacionesTrue(){
         return publicationRepository.findByEstadoIsTrue();
     }
+
 
 }

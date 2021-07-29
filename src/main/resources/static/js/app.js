@@ -17,14 +17,30 @@ $(document).ready(function (){
     $("#region").change(function (){
         console.log(regiones)
         var val = $(this).val();
-        for (let i = 0; i < Object.keys(regiones).length; i++) {
+        Object.size = function(obj) {
+            var size = 0,
+                key;
+            for (key in obj) {
+                if (obj.hasOwnProperty(key)) size++;
+            }
+            return size;
+        };
+        var length = Object.size(regiones)+1;
+        console.log(length);
+        for (let i = 0; i < length; i++) {
             if(val == i){
                 console.log(regiones[i]['comunas']);
-                $("#comuna").html("<option>"+regiones[i]['comunas']+"</option>");
+                var lengthh = Object.size(regiones[i]['comunas'])+1;
+                for (let j = 0; j < lengthh; j++) {
+                    console.log($("#comuna").html("<option>"+regiones[i]['comunas'][j]+"</option>"));
+                    $("#comuna").html("<option>"+regiones[i]['comunas'][j]+"</option>");
+                }
+
+
             }
         }
-    })
-})
+    });
+});
 
 
 function cargarRegiones(regiones){

@@ -9,7 +9,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
     <body>
-    <div class="container" onload="cargarJson('${regionesObject}')">
+    <div class="container">
         <header>
             <nav class="navbar p-2">
                 <c:if test="${user.id == null}">
@@ -24,16 +24,6 @@
                 </c:if>
             </nav>
         </header>
-        <select id="region">
-            <option selected disabled> selecciona una</option>
-            <c:forEach var="region" items="${regiones}">
-                <option value="${region.id}"> <c:out value="${region.nameRegion}"/></option>
-            </c:forEach>
-        </select>
-
-        <select id="comuna">
-
-        </select>
 
         <div class="row">
             <ul class="col">
@@ -41,27 +31,20 @@
                     <li><a class="link-light" href="/buscador/${region.nameRegion}"><c:out value="${region.nameRegion}"/></a></li>
                 </c:forEach>
             </ul>
-            <ul class="col">
-            </ul>
         </div>
 
         <div class="">
             <div class="d-flex justify-content-center row">
-                    <c:forEach var="categoria" items="${categorias}">
-                        <div class="card col-4 m-1" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title"><c:out value="${categoria.name}"/></h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="/buscador/categoria/${categoria.id}" class="card-link">Card link</a>
-                            </div>
+                <c:forEach var="categoria" items="${categorias}">
+                    <div class="card col-4 m-1" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title"><c:out value="${categoria.name}"/></h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="/buscador/categoria/${categoria.id}" class="card-link">Card link</a>
                         </div>
-                    </c:forEach>
+                    </div>
+                </c:forEach>
             </div>
-        </div>
-        <div class="input-group xd">
-            <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search"
-                   aria-describedby="search-addon" />
-            <button type="button" class="btn btn-primary">Buscar</button>
         </div>
     </div>
 

@@ -16,13 +16,14 @@ public interface PublicationRepository extends BaseRepository<Publication>{
     List<Publication> findByDescriptionContaining(String description);
 
     @Query(value = "SELECT * FROM publications p JOIN addresses a ON a.id=p.address JOIN comunas c ON a.comuna = c.id JOIN regiones r ON c.region = r.id WHERE r.name_region LIKE %?1%", nativeQuery = true)
-    List<Publication> findByRegionContaining(String query);
+    List<Publication> findByRegionContainingAndEstadoIsTrue(String query);
 
     @Query(value = "SELECT * FROM publications p JOIN addresses a ON a.id=p.address JOIN comunas c ON a.comuna = c.id WHERE c.name_comuna LIKE %?1%", nativeQuery = true)
-    List<Publication> findByComunaContaining(String query);
+    List<Publication> findByComunaContainingAndEstadoIsTrue(String query);
 
-    List<Publication> findByCategory(Category category);
 
     List<Publication> findByEstadoIsTrue();
+
+    List<Publication> findByCategoryAndEstadoIsTrue(Category category);
 
 }

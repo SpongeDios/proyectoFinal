@@ -76,6 +76,7 @@ public class IndexController {
         model.addAttribute("comunasRegion", comunas);
         return "buscador.jsp";
     }
+
     @GetMapping("/buscador/{region}/{comuna}")
     public String buscador(
             @PathVariable(value = "region", required = false) String region,
@@ -101,8 +102,4 @@ public class IndexController {
         model.addAttribute("publicacionesPorCategoria", publicacionesPorCategoria);
         return "buscadorPorCategoria.jsp";
     }
-
-
-
-
 }
