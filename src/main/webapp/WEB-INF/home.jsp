@@ -27,7 +27,6 @@
                 </c:if>
             </nav>
         </header>
-
         <div class="row">
             <ul class="col">
                 <c:forEach var="region" items="${regiones}">

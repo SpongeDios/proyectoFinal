@@ -56,7 +56,7 @@
                             </td>
                             <td>
                                 <a class="btn btn-warning" href="/publicaciones/${publicacion.id}/edit">Editar</a>
-                                <a href="/publicaciones/${publicacion.id}/delete" class="btn btn-danger boton">Delete</a>
+                                <a href="/publicaciones/${publicacion.id}/delete" class="btn btn-danger boton">Eliminar</a>
                             </td>
                         </tr>
                     </c:if>

@@ -42,7 +42,6 @@
                     <c:if test="${d.available == true}">Activo
                         <a class="btn btn-link" href="/perfil/${d.id}/estadoCuenta">Banear</a>
                     </c:if>
-
                 </td>
             </tr>
         </c:forEach>
