@@ -36,11 +36,11 @@
                 </td>
                 <td><c:out value="${d.publications.size()}"/></td>
                 <td>
-                    <c:if test="${d.available == false}">Activo
-                        <a class="btn btn-link" href="/admin/allusers/${d.id}/available">Banear</a>
+                    <c:if test="${d.available == false}">Baneado
+                        <a class="btn btn-link" href="/perfil/${d.id}/estadoCuenta">Desbanear</a>
                     </c:if>
-                    <c:if test="${d.available == true}">Baneado
-                        <a class="btn btn-link" href="/admin/allusers/${d.id}/available">Quitar Ban</a>
+                    <c:if test="${d.available == true}">Activo
+                        <a class="btn btn-link" href="/perfil/${d.id}/estadoCuenta">Banear</a>
                     </c:if>
 
                 </td>

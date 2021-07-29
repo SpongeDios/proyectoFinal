@@ -514,25 +514,5 @@ public class AdminController {
             return "redirect:/admin/categories";
         }
     }
-
-    @GetMapping("/admin/allusers/{idB}/available")
-    public String available(
-            @PathVariable("idB")Long idB, HttpSession session){
-        Long userId = (Long) session.getAttribute("userid");
-        User user = userService.findById(userId);
-        if(session.getAttribute("userid") == user.getId() || user.getRol() == 3){
-            if(user.isAvailable()){
-                user.setAvailable(false);
-                userService.update(user);
-                return "redirect:/admin/allusers";
-            }else{
-                user.setAvailable(true);
-                userService.update(user);
-                return "redirect:/admin/allusers";
-            }
-        }else{
-            return "redirect/";
-        }
-    }
-
+    
 }
