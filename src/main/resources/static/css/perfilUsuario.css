@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
 }
+
 .navbar{
     background-color: #263D51;
     border-bottom: 5px solid #DDDDDD;
@@ -15,23 +16,4 @@
     padding: 0% 1%;
     background-color:#DDDDDD;
     border:2px solid grey;
-}
-
-.thead{
-    background-color: #f49f1c;
-
-}
-
-.tbody{
-    background-color:  #DDDDDD;
-
-}
-form {
-    display: inline-block;
-    vertical-align: top;
-}
-
-input {
-    display: inline-block;
-    vertical-align: top;
 }
