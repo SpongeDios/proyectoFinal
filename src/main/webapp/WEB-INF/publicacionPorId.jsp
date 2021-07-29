@@ -15,7 +15,12 @@
 <div class="container">
     <header>
         <nav class="navbar p-2">
-            <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+            <c:if test="${user.photo == null}">
+                <img src="/archivos/default/default.png" width="100px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/>
+            </c:if>
+            <c:if test="${user.photo != null}">
+                <img src="${user.photo}" width="100px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/>
+            </c:if>
             <c:if test="${user.rol == 3 }">
                 <a class="link-light" href="/admin">Administrar</a>
             </c:if>
@@ -41,12 +46,17 @@
             </div>
                 <div class="col-6 p-2 imagen">
                     <a target="_blank" href="${publication.photo_publication}">
-                        <img src="${publication.photo_publication}" height="250px" width="400px">
+                        <c:if test="${publication.photo_publication == null}">
+                            <img src="/archivos/default/default.png" height="250px" width="400px">
+                        </c:if>
+                        <c:if test="${publication.photo_publication != null}">
+                            <img src="${publication.photo_publication}" height="250px" width="400px"/>
+                        </c:if>
                     </a>
                 </div>
         </div>
         <div class="container-fluid">
-            <c:if test="${user.id != publication.user.id}">
+            <c:if test="${user.id != publication.user.id && user != null}">
             <h4>¿Quieres realizar una consulta?</h4>
             <form:errors path="message.*"/>
             <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
@@ -104,7 +114,7 @@
         </tbody>
     </table>
     <div class="feedback">
-        <c:if test="${user.id != publication.user.id}">
+        <c:if test="${user.id != publication.user.id && user != null}">
         <h3>Dejar Feedback</h3>
         <form:form method="POST" action="/publicaciones/${publication.id}/feedback" enctype="multipart/form-data" modelAttribute="feedback" >
             <div class="rating">

@@ -60,12 +60,39 @@ public class PublicacionesController {
             @ModelAttribute("message")Message message,
             @ModelAttribute("feedback")Feedback feedback
             ){
+        Publication publication = publicationService.findById(idPublicacion);
+        if(session.getAttribute("userid") == null){
+            List<Message> messageList = publication.getMessages();
+            List<Feedback> feedbacks = publication.getFeedback();
+            User creatorP = publication.getUser();
+            List<Publication> publicationList = creatorP.getPublications();
+            int suma = 0;
+            int promedio = 0;
+            int contador = 0;
+            for (Publication p : publicationList) {
+                List<Feedback> feedbackList = p.getFeedback();
+                for (Feedback f : feedbackList) {
+                    int ratingF = f.getRating();
+                    suma += ratingF;
+                }
+                contador += p.getFeedback().size();
+            }
+            if (suma == 0) {
+                contador = 1;
+            }
+            promedio = suma / contador;
+            model.addAttribute("ratingF", promedio);
+            model.addAttribute("feedbacks", feedbacks);
+            model.addAttribute("messageList", messageList);
+            model.addAttribute("publication", publication);
+            return "publicacionPorId.jsp";
+        }
         Long userId = (Long) session.getAttribute("userid");
         User user = userService.findById(userId);
-        Publication publication = publicationService.findById(idPublicacion);
         if (publication.isEstado() == false && user.getRol() != 3) {
             return "redirect:/";
-        }else {
+        }
+        else {
             List<Message> messageList = publication.getMessages();
             List<Feedback> feedbacks = publication.getFeedback();
             User creatorP = publication.getUser();

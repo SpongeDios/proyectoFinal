@@ -51,7 +51,7 @@
                 </p>
                 <p class="form-group">
                     <form:label path="address.nameCalle">Calle: </form:label>
-                    <form:input cssClass="form-control" path="address.nameCalle"/>
+                    <form:input cssClass="form-control" path="address.nameCalle" placeholder="Ejemplo: nombre calle 123"/>
                 </p>
 
                 <p class="form-group">
