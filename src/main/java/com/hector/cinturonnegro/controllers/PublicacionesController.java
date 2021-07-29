@@ -64,7 +64,7 @@ public class PublicacionesController {
         Long userId = (Long) session.getAttribute("userid");
         User user = userService.findById(userId);
         Publication publication = publicationService.findById(idPublicacion);
-        if (publication.isEstado() == false){
+        if (publication.isEstado() == false && user.getRol() != 3) {
             return "redirect:/";
         }else {
             List<Message> messageList = publication.getMessages();
@@ -216,7 +216,7 @@ public class PublicacionesController {
             Long idUser = (Long) session.getAttribute("userid");
             User user = userService.findById(idUser);
             Publication publication = publicationService.findById(idPublicaciones);
-            if(user.getPublications().contains(publication) == false){
+            if(user.getPublications().contains(publication) == false) {
                 return "redirect:/";
             }else{
                publication.setEstado(false);

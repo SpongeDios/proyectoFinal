@@ -18,6 +18,9 @@
                 </c:if>
                 <c:if test="${user.id != null}">
                 <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+                    <c:if test="${user.id != null && user.rol == 3 }">
+                        <a class="link-light" href="/admin">Administrar</a>
+                    </c:if>
                 <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
                 <a class="link-light" href="/publicaciones">Publicaciones</a>
                 <a class="link-light" href="/logout">Cerrar Sesión</a>

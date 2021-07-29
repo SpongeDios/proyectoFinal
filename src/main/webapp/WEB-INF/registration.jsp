@@ -20,7 +20,6 @@
     <br>
     <div class="row">
         <div class="col border border-secondary border-1 p-5 mr-3">
-
             <p><form:errors path="user.*"/></p>
             <h1>Registrando al socio</h1>
             <form:form method="POST" action="" cssClass="form" enctype="multipart/form-data" modelAttribute="user">
@@ -92,12 +91,11 @@
                     <form:label path="passwordConfirmation">Confirmar contraseña:</form:label>
                     <form:password cssClass="form-control" path="passwordConfirmation"/>
                 </p>
-                <p class="col">
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Subir una Foto</label>
                     <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
                 </div>
-                <input class="btn btn-warning" type="submit" value="Registrar!"/>
+                <input class="btn btn-light" type="submit" value="Registrar!"/>
             </form:form>
         </div>
     </div>
