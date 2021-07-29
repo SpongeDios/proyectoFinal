@@ -151,6 +151,7 @@ public class PublicacionesController {
                 System.out.println("You failed to upload " + name + " because the file was empty.");
             }
             publication.setUser(user);
+            publication.setAddress(user.getAddress());
             publicationService.create(publication);
             return "redirect:/publicaciones";
         }
