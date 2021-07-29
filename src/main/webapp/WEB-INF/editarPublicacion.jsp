@@ -45,7 +45,9 @@
                     <form:option value="2">Quiero trabajar</form:option>
                 </form:select>
             </p>
-            <input class="btn btn-warning" type="submit" value="Publicar!"/>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <input class="btn btn-dark me-md-2" type="submit" value="Publicar!"/>
+            </div>
         </form:form>
     </div>
 </div>

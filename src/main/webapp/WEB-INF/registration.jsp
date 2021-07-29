@@ -95,7 +95,9 @@
                     <label for="formFile" class="form-label">Subir una Foto</label>
                     <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
                 </div>
-                <input class="btn btn-light" type="submit" value="Registrar!"/>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input class="btn btn-light me-md-2" type="submit" value="Registrar!"/>
+                </div>
             </form:form>
         </div>
     </div>
