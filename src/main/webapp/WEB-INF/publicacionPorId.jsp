@@ -16,9 +16,12 @@
     <header>
         <nav class="navbar navbar-dark bg-dark p-2">
             <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+            <c:if test="${user.rol == 3 }">
+                <a class="link-light" href="/admin">Administrar</a>
+            </c:if>
             <a class="link-light" href="/">Inicio</a>
             <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
-            <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
+            <a class="link-light" href="javascript: history.go(-1)">◄ Volver atrás</a>
             <a class="link-light" href="/logout">Cerrar Sesión</a>
         </nav>
     </header>

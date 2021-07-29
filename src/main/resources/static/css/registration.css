@@ -2,6 +2,7 @@
     margin: 0px;
     padding: 0px;
 }
+
 .navbar{
     background-color: #263D51;
     border-bottom: 5px solid #DDDDDD;
@@ -18,11 +19,11 @@
 }
 
 .col {
-    background: rgba(94, 88, 88, 0.3);
+    background: rgba(146, 141, 141, 0.3);
     padding: 5%;    
 }
 
- body{
+body {
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;

@@ -127,8 +127,14 @@ public class UserController {
     ) {
         if (userService.autenticarUsuario(email, password)) {
             User user = userService.findUserByEmail(email);
-            session.setAttribute("userid", user.getId());
-            return "redirect:/";
+            if (user.isAvailable() == false){
+                String error = "Esta cuenta está deshabilitada";
+                session.setAttribute("error", error);
+                return "redirect:/login";
+            }else {
+                session.setAttribute("userid", user.getId());
+                return "redirect:/";
+            }
         } else {
             String error = "Credenciales incorrectas";
             session.setAttribute("error", error);
@@ -229,5 +235,53 @@ public class UserController {
             return "redirect:/perfil/"+idUser;
         }
     }
+
+    /////////////////////////////////////////////////////
+    ////////////////Banear/"Eliminar" cuenta/////////////
+    /////////////////////////////////////////////////////
+
+    @GetMapping("/perfil/{idUser}/estadoCuenta")
+    public String estadoCuenta(@PathVariable("idUser")Long idUser,
+                               Model model, HttpSession session){
+        Long idUserLog = (Long) session.getAttribute("userid");
+        User userLog = userService.findById(idUserLog);
+        User user = userService.findById(idUser);
+        if (userLog.getRol() == 3 || userLog.getId() == user.getId()){
+            model.addAttribute("userLog", userLog);
+            model.addAttribute("user", user);
+            return "estadoCuenta.jsp";
+        }else {
+            return "redirect:/";
+        }
+    }
+
+    @GetMapping("/{idUser}/estadoCuenta")
+    public String cambiarEstadoCuenta(@PathVariable("idUser")Long idUser, HttpSession session){
+        Long idUserLog = (Long) session.getAttribute("userid");
+        User userLog = userService.findById(idUserLog);
+        User user = userService.findById(idUser);
+        if (userLog.getId() == user.getId()){
+            if(user.isAvailable()){
+                user.setAvailable(false);
+                userService.update(user);
+                return "redirect:/logout";
+            }
+        }
+        if (userLog.getRol() == 3){
+            if(user.isAvailable()){
+                user.setAvailable(false);
+                userService.update(user);
+                return "redirect:/admin/allusers";
+            }else{
+                user.setAvailable(true);
+                userService.update(user);
+                return "redirect:/admin/allusers";
+            }
+        }
+        else{
+            return "redirect:/";
+        }
+    }
+
 }
 

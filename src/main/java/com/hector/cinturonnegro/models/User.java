@@ -57,7 +57,7 @@ public class User extends BaseModel{
     ////////ROLES/////////////
     private int rol;
     ///////////BANEO////////////
-    private boolean available;
+    private boolean available = true;
 
     ///////////RELACIONES/////////////
 
