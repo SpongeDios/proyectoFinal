@@ -174,10 +174,12 @@ public class PublicacionesController {
         Long idUser = (Long) session.getAttribute("userid");
         User user = userService.findById(idUser);
         Publication p = publicationService.findById(idPublicacion);
+        List<Category> c = categoryService.allData();
         if(user.getPublications().contains(p) == false){
             return "redirect:/";
         }else{
             model.addAttribute("p", p);
+            model.addAttribute("c", c);
             return "editarPublicacion.jsp";
         }
     }
@@ -187,11 +189,15 @@ public class PublicacionesController {
             @PathVariable("idPublicacion") Long idPublicacion,
             @Valid @ModelAttribute("publication") Publication publication,
             BindingResult result,
-            Model model
+            HttpSession session,
+            Model model,
+            @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
             return "editarPublicacion.jsp";
         }else{
+            Long userId = (Long) session.getAttribute("userid");
+            User user = userService.findById(userId);
             Publication p = publicationService.findById(idPublicacion);
             model.addAttribute("p", p);
             p.setTitle(publication.getTitle());
@@ -199,6 +205,25 @@ public class PublicacionesController {
             p.setPrice(publication.getPrice());
             p.setType_publication(publication.getType_publication());
             p.setCategory(publication.getCategory());
+            String name = file.getOriginalFilename();
+            if (!file.isEmpty() && file.getSize() < 1048576) {
+                File directorio = new File("src/main/resources/static/archivos/" + user.getId() + "/" + p.getId());//Reemplazar 1 por user.getId()
+                if(!directorio.exists()){
+                    directorio.mkdirs();
+                }
+                try {
+                    byte[] bytes = file.getBytes();
+                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
+                    stream.write(bytes);
+                    p.setPhoto_publication("/archivos/" + user.getId() + "/" + p.getId() + "/" + name);
+                    stream.close();
+                    System.out.println("You successfully uploaded " + name + "!");
+                } catch (Exception e) {
+                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
+                }
+            } else {
+                System.out.println("You failed to upload " + name + " because the file was empty.");
+            }
             publicationService.update(p);
             return "redirect:/publicaciones/"+idPublicacion;
         }

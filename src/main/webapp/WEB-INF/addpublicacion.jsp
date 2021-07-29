@@ -48,7 +48,7 @@
                     </form:select>
                 </p>
                 <p class="col">
-                    <form:label path="category">Categoria:</form:label>
+                    <form:label path="category">Categoría:</form:label>
                     <form:select path="category">
                         <c:forEach items="${categories}" var="category">
                             <form:option value="${category.id}"><c:out value="${category.name}"/></form:option>

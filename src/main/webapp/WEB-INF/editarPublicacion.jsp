@@ -23,8 +23,8 @@
         </nav>
     </header>
     <div class="col">
-        <form:errors path="publication.*"/>
-        <form:form method="POST" action="" cssClass="form col border border-1 rounded" modelAttribute="publication">
+        <span style="color: red;"><form:errors path="publication.*"/></span>
+        <form:form method="POST" action="" cssClass="form col border border-1 rounded p-4" enctype="multipart/form-data" modelAttribute="publication" >
             <input type="hidden" name="_method" value="PUT">
             <p class="form-group col">
             <form:label path="title">Título: </form:label>
@@ -45,6 +45,18 @@
                     <form:option value="2">Quiero trabajar</form:option>
                 </form:select>
             </p>
+            <p class="col">
+                <form:label path="category">Categoría:</form:label>
+                <form:select path="category">
+                    <c:forEach items="${c}" var="category">
+                        <form:option value="${category.id}"><c:out value="${category.name}"/></form:option>
+                    </c:forEach>
+                </form:select>
+            </p>
+            <div class="mb-3">
+                <label for="formFile" class="form-label">Cambiar Foto</label>
+                <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
+            </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <input class="btn btn-dark me-md-2" type="submit" value="Publicar!"/>
             </div>
