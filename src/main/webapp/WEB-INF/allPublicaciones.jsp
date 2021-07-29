@@ -39,24 +39,26 @@
             <tbody>
             <span style="color: red;"><form:errors path="publicacion.*"/></span>
                 <c:forEach var="publicacion" items="${publicationList}">
-                    <tr>
-                        <th scope="row"><a class="link-light" href="/publicaciones/${publicacion.id}"><c:out value="${publicacion.title}"/></a></th>
-                        <td>
-                            <a target="_blank" href="${publicacion.photo_publication}">
-                                <img src="${publicacion.photo_publication}" height="80px" width="120px">
-                            </a>
-                        </td>
-                        <td>$<c:out value="${publicacion.price}"/></td>
-                        <td><c:out value="${publicacion.category.name}"/></td>
-                        <td>
-                            <c:if test="${publicacion.type_publication == 1}">Contratar una persona</c:if>
-                            <c:if test="${publicacion.type_publication == 2}">Buscar trabajo</c:if>
-                        </td>
-                        <td>
-                            <a class="btn btn-warning" href="/publicaciones/${publicacion.id}/edit">Editar</a>
-                            <a href="/publicaciones/${publicacion.id}/delete" class="btn btn-danger boton">Delete</a>
-                        </td>
-                    </tr>
+                    <c:if test="${publicacion.estado == true}">
+                        <tr>
+                            <th scope="row"><a class="link-light" href="/publicaciones/${publicacion.id}"><c:out value="${publicacion.title}"/></a></th>
+                            <td>
+                                <a target="_blank" href="${publicacion.photo_publication}">
+                                    <img src="${publicacion.photo_publication}" height="80px" width="120px">
+                                </a>
+                            </td>
+                            <td>$<c:out value="${publicacion.price}"/></td>
+                            <td><c:out value="${publicacion.category.name}"/></td>
+                            <td>
+                                <c:if test="${publicacion.type_publication == 1}">Contratar una persona</c:if>
+                                <c:if test="${publicacion.type_publication == 2}">Buscar trabajo</c:if>
+                            </td>
+                            <td>
+                                <a class="btn btn-warning" href="/publicaciones/${publicacion.id}/edit">Editar</a>
+                                <a href="/publicaciones/${publicacion.id}/delete" class="btn btn-danger boton">Delete</a>
+                            </td>
+                        </tr>
+                    </c:if>
                 </c:forEach>
             </tbody>
         </table>
