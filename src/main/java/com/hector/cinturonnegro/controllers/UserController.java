@@ -212,6 +212,9 @@ public class UserController {
             userLog.setLastName(user.getLastName());
             userLog.setRol(user.getRol());
             userLog.setPhone(user.getPhone());
+            userLog.getAddress().setNameCalle(user.getAddress().getNameCalle());
+            userLog.getAddress().setComuna(user.getAddress().getComuna());
+            userLog.getAddress().getComuna().setRegion(user.getAddress().getComuna().getRegion());
             String name = file.getOriginalFilename();
             if (!file.isEmpty() && file.getSize() < 1048576) {
                 File directorio = new File("src/main/resources/static/archivos/" + userLog.getId() + "/perfil");
@@ -243,6 +246,9 @@ public class UserController {
     @GetMapping("/perfil/{idUser}/estadoCuenta")
     public String estadoCuenta(@PathVariable("idUser")Long idUser,
                                Model model, HttpSession session){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
         Long idUserLog = (Long) session.getAttribute("userid");
         User userLog = userService.findById(idUserLog);
         User user = userService.findById(idUser);

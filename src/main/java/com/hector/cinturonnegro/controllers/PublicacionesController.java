@@ -42,8 +42,7 @@ public class PublicacionesController {
         }else{
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
-            List<Publication> publicationList = publicationService.publicacionesTrue();
-            model.addAttribute("publicationList", publicationList);
+            model.addAttribute("publicationList", user.getPublications());
             model.addAttribute("user", user);
             return "allPublicaciones.jsp";
         }
