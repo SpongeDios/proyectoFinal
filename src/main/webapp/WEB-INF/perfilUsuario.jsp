@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <header>
-            <nav class="navbar navbar-dark bg-dark p-2">
+            <nav class="navbar p-2">
                 <c:if test="${user.rol == 3 }">
                     <a class="link-light" href="/admin">Administrar</a>
                 </c:if>

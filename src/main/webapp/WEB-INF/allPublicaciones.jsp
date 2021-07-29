@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <header>
-        <nav class="navbar navbar-dark bg-dark p-2">
+        <nav class="navbar p-2">
             <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
             <c:if test="${user.rol == 3 }">
                 <a class="link-light" href="/admin">Administrar</a>
@@ -25,7 +25,7 @@
     </header>
     <br>
     <div class="row">
-        <table class="table table-dark table-striped">
+        <table class="table">
             <thead class="thead">
             <tr>
                 <th scope="col">Título</th>
@@ -36,7 +36,7 @@
                 <th scope="col">Acción | Estado</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class=tbody>
             <span style="color: red;"><form:errors path="publicacion.*"/></span>
                 <c:forEach var="publicacion" items="${publicationList}">
                     <c:if test="${publicacion.estado == true}">
