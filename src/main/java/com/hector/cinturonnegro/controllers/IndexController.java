@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -102,4 +103,57 @@ public class IndexController {
         model.addAttribute("publicacionesPorCategoria", publicacionesPorCategoria);
         return "buscadorPorCategoria.jsp";
     }
+
+    @GetMapping("buscando")
+    public String buscadorMaximo(
+            @RequestParam(value = "idCategoria", required = false) Long idCategoria,
+            @RequestParam(value = "idRegion", required = false) String regionName,
+            @RequestParam(value = "idComuna", required = false) String comunaName,
+            Model model
+    ){
+        if(idCategoria == null && regionName.equals("") == false && comunaName.equals("") == false){
+            List<Publication> publicaciones = publicationService.publicacionesPorComuna(comunaName);
+            model.addAttribute("publicaciones", publicaciones);
+            return "buscadorMaximo.jsp";
+        }
+        if(idCategoria == null && regionName.equals("") == false && comunaName.equals("") == true){
+            List<Publication> publicaciones = publicationService.ouroHenrry(regionName);
+            model.addAttribute("publicaciones", publicaciones);
+            return "buscadorMaximo.jsp";
+        }
+        if(idCategoria != null && regionName.equals("") == true && comunaName.equals("") == true){
+            Category categoria = categoryService.findById(idCategoria);
+            List<Publication> publicaciones = publicationService.publicacionesPorCategoria(categoria);
+            model.addAttribute("publicaciones", publicaciones);
+            return "buscadorMaximo.jsp";
+        }
+        if(idCategoria != null && regionName.equals("") == false && comunaName.equals("") == true){
+            Category categoria = categoryService.findById(idCategoria);
+            List<Publication> publicacionesRes = publicationService.ouroHenrry(regionName);
+            List<Publication> publicacionesPorCategoriaYPorRegion = new ArrayList<>();
+            for (Publication publication: publicacionesRes) {
+                if(publication.getCategory() == categoria){
+                    publicacionesPorCategoriaYPorRegion.add(publication);
+                }
+            }
+            model.addAttribute("publicaciones", publicacionesPorCategoriaYPorRegion);
+            return "buscadorMaximo.jsp";
+        }
+        if(idCategoria != null && regionName.equals("") == false && comunaName.equals("") == false){
+            Category categoria = categoryService.findById(idCategoria);
+            List<Publication> publicacionesCom = publicationService.publicacionesPorComuna(comunaName);
+            List<Publication> publicacionesPorCategoriaYPorComuna = new ArrayList<>();
+            for(Publication publication: publicacionesCom){
+                if(publication.getCategory() == categoria){
+                    publicacionesPorCategoriaYPorComuna.add(publication);
+                }
+            }
+            model.addAttribute("publicaciones", publicacionesPorCategoriaYPorComuna);
+            return "buscadorMaximo.jsp";
+        }
+        return "redirect:/";
+    }
+
+
+
 }

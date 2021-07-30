@@ -21,7 +21,6 @@ public interface PublicationRepository extends BaseRepository<Publication>{
     @Query(value = "SELECT * FROM publications p JOIN addresses a ON a.id=p.address JOIN comunas c ON a.comuna = c.id WHERE c.name_comuna LIKE %?1%", nativeQuery = true)
     List<Publication> findByComunaContainingAndEstadoIsTrue(String query);
 
-
     List<Publication> findByEstadoIsTrue();
 
     List<Publication> findByCategoryAndEstadoIsTrue(Category category);
