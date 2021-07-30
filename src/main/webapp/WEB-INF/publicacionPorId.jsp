@@ -39,13 +39,13 @@
                     <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
                 </ul>
             </div>
-                <div class="col-6 p-2 imagen">
+                <div class="col-5 mx-4 imagen">
                     <a target="_blank" href="${publication.photo_publication}">
-                        <img src="${publication.photo_publication}" height="250px" width="400px">
+                        <img src="${publication.photo_publication}" height="320px" width="500px">
                     </a>
                 </div>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid mt-3">
             <c:if test="${user.id != publication.user.id}">
             <h4>¿Quieres realizar una consulta?</h4>
             <form:errors path="message.*"/>
@@ -74,10 +74,10 @@
                     <td>
                         <c:if test="${user.id != publication.user.id}">
                             <p>
-                                <span style="color: red;"> Pregunta: </span> <c:out value="${messages.text}"/>
+                                <span style="color: white;"> Pregunta: </span> <c:out value="${messages.text}"/>
                             </p>
                             <p>
-                                <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
+                                <span style="color: white;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
                             </p>
                         </c:if>
                         <c:if test="${user.id == publication.user.id && messages.respuesta.id == null}">
@@ -91,10 +91,10 @@
                         <c:if test="${user.id == publication.user.id && messages.respuesta.id != null}">
                             <p>
 
-                                <span style="color: red;"> Pregunta: </span><c:out value="${messages.text}"/>
+                                <span style="color: white;"> Pregunta: </span><c:out value="${messages.text}"/>
                             </p>
                             <p>
-                                <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
+                                <span style="color: white;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
                             </p>
                         </c:if>
                     </td>
@@ -145,10 +145,10 @@
                     <td>
                         <div class="d-flex justify-content-between">
                             <p>
-                                <span style="color: red;"> Puntuación: </span> <c:out value="${feedback.rating}"/>/5
+                                <span style="color: #152838;"> Puntuación: </span> <c:out value="${feedback.rating}"/>/5
                             </p>
                             <p>
-                                <span style="color: red;"> Comentario: </span> <c:out value="${feedback.comment}"/>
+                                <span style="color: #152838;"> Comentario: </span> <c:out value="${feedback.comment}"/>
                             </p>
                             <img src="${feedback.photo_feedback}" width="200px" height="100px">
                         </div>

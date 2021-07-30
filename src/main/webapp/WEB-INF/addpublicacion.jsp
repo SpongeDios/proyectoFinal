@@ -23,8 +23,8 @@
             <a class="link-light" href="/logout">Cerrar Sesión</a>
         </nav>
     </header>
+    <div class="row mt-5">
     <h1>Añadir Publicación</h1>
-    <div class="row">
         <div class="col">
             <span style="color: red;"><form:errors path="publication.*"/></span>
             <form:form method="POST" action="" cssClass="form col border border-1 rounded p-4" enctype="multipart/form-data" modelAttribute="publication" >

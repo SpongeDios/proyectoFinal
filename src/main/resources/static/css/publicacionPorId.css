@@ -40,8 +40,33 @@ body {
     color: white
 }
 
-h1,
-p {
+.navbar{
+    background-color: #263D51;
+    border-bottom: 5px solid #DDDDDD;
+    height: 75px;  
+}
+
+.link-light{
+    font-size: 120%;
+    color: #263D51;
+    text-decoration: none;
+    padding: 0% 1%;
+    background-color:#DDDDDD;
+    border:2px solid grey;
+}
+
+.row {
+    padding-top: 40px;
+}
+
+h2{
+    padding-top: 20px;
+}
+.table{
+    background: rgb(20, 74, 95);
+}
+
+h1, p {
     text-align: center
 }
 

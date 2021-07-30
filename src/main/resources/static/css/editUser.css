@@ -1,0 +1,19 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.navbar{
+    background-color: #263D51;
+    border-bottom: 5px solid #DDDDDD;
+    height: 65px;  
+}
+
+.link-light{
+    font-size: 120%;
+    color: #263D51;
+    text-decoration: none;
+    padding: 0% 1%;
+    background-color:#DDDDDD;
+    border:2px solid grey;
+}
