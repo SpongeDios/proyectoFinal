@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,6 +21,8 @@ public class Message extends BaseModel{
 
     @Min(1)
     private int rol;
+
+    private int numDenuncias;
 
     //RELACION CON USER
     @ManyToOne(fetch = FetchType.LAZY)
@@ -42,5 +45,10 @@ public class Message extends BaseModel{
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "respuesta_id")
     private Message respuesta;
+
+    //RELACION CON DENUNCIAS
+
+    @OneToMany(mappedBy = "message", fetch = FetchType.LAZY)
+    private List<Denuncia> denuncias;
 
 }

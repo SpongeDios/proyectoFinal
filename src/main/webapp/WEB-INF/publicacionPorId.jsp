@@ -85,6 +85,7 @@
                         <c:if test="${user.id != publication.user.id}">
                             <p>
                                 <span style="color: red;"> Pregunta: </span> <c:out value="${messages.text}"/>
+                                <a href="/denuncia/${messages.id}">Denunciar</a>
                             </p>
                             <p>
                                 <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
@@ -94,14 +95,15 @@
                             <div class="d-flex justify-content-between">
                                 <p>
                                     <c:out value="${messages.text}"/>
+                                    <a href="/denuncia/${messages.id}">Denunciar</a>
                                 </p>
                             <a class="btn btn-warning" href="/publicaciones/${messages.publication.id}/${messages.id}">responder</a>
                             </div>
                         </c:if>
                         <c:if test="${user.id == publication.user.id && messages.respuesta.id != null}">
                             <p>
-
                                 <span style="color: red;"> Pregunta: </span><c:out value="${messages.text}"/>
+                                <a href="/denuncia/${messages.id}">Denunciar</a>
                             </p>
                             <p>
                                 <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>

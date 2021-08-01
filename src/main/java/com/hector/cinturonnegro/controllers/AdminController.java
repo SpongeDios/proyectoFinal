@@ -21,11 +21,12 @@ public class AdminController {
     private final RegionService regionService;
     private final CategoryService categoryService;
     private final AddressService addressService;
+    private final MessageService messageService;
 
     //admin == userRol => 3
 
 
-    public AdminController(UserService userService, PublicationService publicationService, FeedbackService feedbackService, ComunaService comunaService, RegionService regionService, CategoryService categoryService, AddressService addressService) {
+    public AdminController(UserService userService, PublicationService publicationService, FeedbackService feedbackService, ComunaService comunaService, RegionService regionService, CategoryService categoryService, AddressService addressService, MessageService messageService) {
         this.userService = userService;
         this.publicationService = publicationService;
         this.feedbackService = feedbackService;
@@ -33,6 +34,7 @@ public class AdminController {
         this.regionService = regionService;
         this.categoryService = categoryService;
         this.addressService = addressService;
+        this.messageService = messageService;
     }
 
     @GetMapping("/admin")
@@ -514,5 +516,55 @@ public class AdminController {
             return "redirect:/admin/categories";
         }
     }
-    
+
+    ///////////////////////////////////////////////////////////
+    ////////////////////////Mensajes Denunciados//////////////////////////
+    ///////////////////////////////////////////////////////////
+
+
+    @GetMapping("/admin/denuncias")
+    public String denuncias(HttpSession session, Model model){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            List<Publication> publications = publicationService.allData();
+            List<Message> messageList = new ArrayList<>();
+            for (Publication publication: publications) {
+                List<Message> messages = publication.getMessages();
+                for (Message message: messages) {
+                    if (message.getDenuncias() != null){
+                        messageList.add(message);
+                    }
+                }
+            }
+            model.addAttribute("messages", messageList);
+            return "adminMensajesConDenuncias.jsp";
+        }
+    }
+
+    //////////////////////////////////////////////////////////////////
+    /////////////////////////Denuncias////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+
+    @GetMapping("/admin/denuncias/{idMensaje}")
+    public String denunciasMensaje(@PathVariable("idMensaje")Long idMensaje,
+                                   HttpSession session, Model model){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if(user.getRol() != 3){
+            return "redirect:/publicaciones";
+        }else{
+            Message message = messageService.findById(idMensaje);
+            model.addAttribute("message", message);
+            return "adminDenunciasMensaje.jsp";
+            }
+        }
 }
