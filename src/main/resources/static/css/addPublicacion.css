@@ -17,3 +17,12 @@
     background-color:#DDDDDD;
     border:2px solid grey;
 }
+
+.row{
+    padding: 15px;
+    background-color: #f8b704c7 ;
+}
+
+h1{
+    text-align: center;
+}
