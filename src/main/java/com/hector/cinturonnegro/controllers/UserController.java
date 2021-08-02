@@ -260,7 +260,6 @@ public class UserController {
             return "redirect:/";
         }
     }
-
     @GetMapping("/{idUser}/estadoCuenta")
     public String cambiarEstadoCuenta(@PathVariable("idUser")Long idUser, HttpSession session){
         Long idUserLog = (Long) session.getAttribute("userid");
@@ -288,6 +287,5 @@ public class UserController {
             return "redirect:/";
         }
     }
-
 }
 

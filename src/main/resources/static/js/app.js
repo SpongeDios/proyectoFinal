@@ -9,49 +9,46 @@
 //     }
 // }
 //
-function cargarJson(regiones){
-    return regiones;
-}
 
 $(document).ready(function (){
-    $("#region").change(function (){
-        console.log(regiones)
-        var val = $(this).val();
-        Object.size = function(obj) {
-            var size = 0,
-                key;
-            for (key in obj) {
-                if (obj.hasOwnProperty(key)) size++;
-            }
-            return size;
+    $("#region").change(function(){
+        var region = $(this).find(":selected").val();
+        var json = {
+            'id':region
         };
-        var length = Object.size(regiones)+1;
-        console.log(length);
-        for (let i = 0; i < length; i++) {
-            if(val == i){
-                console.log(regiones[i]['comunas']);
-                var lengthh = Object.size(regiones[i]['comunas'])+1;
-                for (let j = 0; j < lengthh; j++) {
-                    console.log($("#comuna").html("<option>"+regiones[i]['comunas'][j]+"</option>"));
-                    $("#comuna").html("<option>"+regiones[i]['comunas'][j]+"</option>");
+        $.ajax({
+            type:"post",
+            contentType: "application/json",
+            url:"/cargarComunas",
+            headers: {"X-CSRF-TOKEN": $("input[name='_csrf']").val()},
+            data: JSON.stringify(json),
+            dataType: 'json',
+            cache: false,
+            timeout:600000,
+            success:function (data){
+                var html = "";
+                var len = data.length;
+                html += '<option selected></option>';
+                for (let i = 0; i < len; i++) {
+                    html += '<option value="'+data[i].id+'"> '+data[i].nameComuna+' </option>'
                 }
+                html += '</option>';
+                $('#comunas').html(html);
 
-
+            },
+            error:function (e){
+                console.log(e);
             }
-        }
+        });
+
     });
+
 });
 
+// console.log(regiones[1]['comunas'][2]);
+// console.log(regiones[1]['comunas'][3]);
+// console.log(regiones[1]['comunas'][4]);
 
-function cargarRegiones(regiones){
-    console.log(regiones);
-    let regionesdiv = document.getElementById("regiones");
-    regionesdiv.innerHTML="";
-    for (const element in regiones) {
-        console.log(element)
-        regionesdiv.innerHTML+="<option value="+element+">"+ element +"</option>"
-    }
-}
 
 
 

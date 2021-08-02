@@ -20,8 +20,16 @@ public class PublicationService extends BaseService<Publication>{
         return publicationRepository.findByTitleContaining(title);
     }
 
+    public List<Publication> ouroHenrry(Long query){
+        return publicationRepository.findByRegionContainingAndEstadoIsTrue(query);
+    }
+
     public List<Publication> ouroHenrry(String query){
         return publicationRepository.findByRegionContainingAndEstadoIsTrue(query);
+    }
+
+    public List<Publication> publicacionesPorComuna(Long query){
+        return publicationRepository.findByComunaContainingAndEstadoIsTrue(query);
     }
 
     public List<Publication> publicacionesPorComuna(String query){
