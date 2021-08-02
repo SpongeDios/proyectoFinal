@@ -51,7 +51,7 @@
                 </p>
                 <p class="form-group">
                     <form:label path="address.nameCalle">Calle: </form:label>
-                    <form:input cssClass="form-control" path="address.nameCalle"/>
+                    <form:input cssClass="form-control" path="address.nameCalle" placeholder="Ejemplo: nombre calle 123"/>
                 </p>
 
                 <p class="form-group">
@@ -95,7 +95,9 @@
                     <label for="formFile" class="form-label">Subir una Foto</label>
                     <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
                 </div>
-                <input class="btn btn-light" type="submit" value="Registrar!"/>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input class="btn btn-light me-md-2" type="submit" value="Registrar!"/>
+                </div>
             </form:form>
         </div>
     </div>

@@ -48,7 +48,7 @@
                     </form:select>
                 </p>
                 <p class="col">
-                    <form:label path="category">Categoria:</form:label>
+                    <form:label path="category">Categoría:</form:label>
                     <form:select path="category">
                         <c:forEach items="${categories}" var="category">
                             <form:option value="${category.id}"><c:out value="${category.name}"/></form:option>
@@ -60,7 +60,9 @@
                     <label for="formFile" class="form-label">Subir una Foto</label>
                 <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
                 </div>
-                <input class="btn btn-warning" type="submit" value="Publicar!"/>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input class="btn btn-light me-md-2" type="submit" value="Publicar!"/>
+                </div>
                 </p>
             </form:form>
         </div>

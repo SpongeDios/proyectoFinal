@@ -15,7 +15,12 @@
 <div class="container">
     <header>
         <nav class="navbar p-2">
-            <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+            <c:if test="${user.photo == null}">
+                <img src="/archivos/default/default.png" width="100px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/>
+            </c:if>
+            <c:if test="${user.photo != null}">
+                <img src="${user.photo}" width="100px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/>
+            </c:if>
             <c:if test="${user.rol == 3 }">
                 <a class="link-light" href="/admin">Administrar</a>
             </c:if>
@@ -41,12 +46,18 @@
             </div>
                 <div class="col-5 mx-4 imagen">
                     <a target="_blank" href="${publication.photo_publication}">
-                        <img src="${publication.photo_publication}" height="320px" width="500px">
+
+                        <c:if test="${publication.photo_publication == null}">
+                            <img src="/archivos/default/default.png" height="250px" width="400px">
+                        </c:if>
+                        <c:if test="${publication.photo_publication != null}">
+                            <img src="${publication.photo_publication}" height="250px" width="400px"/>
+                        </c:if>
                     </a>
                 </div>
         </div>
-        <div class="container-fluid mt-3">
-            <c:if test="${user.id != publication.user.id}">
+        <div class="container-fluid">
+            <c:if test="${user.id != publication.user.id && user != null}">
             <h4>¿Quieres realizar una consulta?</h4>
             <form:errors path="message.*"/>
             <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
@@ -74,7 +85,9 @@
                     <td>
                         <c:if test="${user.id != publication.user.id}">
                             <p>
-                                <span style="color: white;"> Pregunta: </span> <c:out value="${messages.text}"/>
+
+                                <span style="color: red;"> Pregunta: </span> <c:out value="${messages.text}"/>
+                                <a href="/denuncia/${messages.id}">Denunciar</a>
                             </p>
                             <p>
                                 <span style="color: white;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
@@ -84,6 +97,7 @@
                             <div class="d-flex justify-content-between">
                                 <p>
                                     <c:out value="${messages.text}"/>
+                                    <a href="/denuncia/${messages.id}">Denunciar</a>
                                 </p>
                             <a class="btn btn-warning" href="/publicaciones/${messages.publication.id}/${messages.id}">responder</a>
                             </div>
@@ -91,7 +105,8 @@
                         <c:if test="${user.id == publication.user.id && messages.respuesta.id != null}">
                             <p>
 
-                                <span style="color: white;"> Pregunta: </span><c:out value="${messages.text}"/>
+                                <span style="color: red;"> Pregunta: </span><c:out value="${messages.text}"/>
+                                <a href="/denuncia/${messages.id}">Denunciar</a>
                             </p>
                             <p>
                                 <span style="color: white;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
@@ -104,7 +119,7 @@
         </tbody>
     </table>
     <div class="feedback">
-        <c:if test="${user.id != publication.user.id}">
+        <c:if test="${user.id != publication.user.id && user != null}">
         <h3>Dejar Feedback</h3>
         <form:form method="POST" action="/publicaciones/${publication.id}/feedback" enctype="multipart/form-data" modelAttribute="feedback" >
             <div class="rating">
@@ -130,7 +145,9 @@
                 <label for="formFile" class="form-label">Subir una Foto</label>
                 <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
             </div>
-            <input class="btn btn-warning" type="submit" value="Publicar!"/>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <input class="btn btn-dark me-md-2" type="submit" value="Publicar!"/>
+            </div>
             </p>
         </form:form>
         </c:if>

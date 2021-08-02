@@ -33,7 +33,9 @@
                     <label for="password">Contraseña</label>
                     <input class="form-control" type="password" id="password" name="password"/>
                 </p>
-                <input class="btn btn-light" type="submit" value="Iniciar Sesión!"/>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input class="btn btn-light me-md-2" type="submit" value="Iniciar Sesión!"/>
+                </div>
             </form>
         </div>
     </div>

@@ -19,6 +19,7 @@
             <li class="list-group-item"><a class="btn btn-link" href="/admin/comunas">Lista Comunas</a></li>
             <li class="list-group-item"><a class="btn btn-link" href="/admin/regiones">Lista Regiones</a></li>
             <li class="list-group-item"><a class="btn btn-link" href="/admin/categories">Lista Categorías</a></li>
+            <li class="list-group-item"><a class="btn btn-link" href="/admin/denuncias">Lista Mensajes Denunciados</a></li>
             <li class="list-group-item"><a class="btn btn-link" href="/logout">Cerrar Sesión</a></li>
         </ul>
     </header>

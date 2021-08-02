@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -57,6 +58,19 @@ public class IndexController {
             User user = userService.findById(userId);
             List<Region> regiones = regionService.allData();
             List<Category> categorias = categoryService.allData();
+            HashMap<Long, HashMap<String, Object>> regioneshash = new HashMap<>();
+            for (Region region: regiones) {
+
+                HashMap<Long, String> comunashash = new HashMap<>();
+                for (Comuna comuna : region.getComunas()) {
+                    comunashash.put(comuna.getId(), comuna.getNameComuna());
+                }
+                regioneshash.put(region.getId(), new HashMap<>());
+                regioneshash.get(region.getId()).put("nombre", region.getNameRegion());
+                regioneshash.get(region.getId()).put("comunas", comunashash);
+            }
+            JSONObject regionesObject = new JSONObject(regioneshash);
+            model.addAttribute("regionesObject", regionesObject);
             model.addAttribute("categorias", categorias);
             model.addAttribute("regiones", regiones);
             model.addAttribute("user", user);
@@ -102,4 +116,58 @@ public class IndexController {
         model.addAttribute("publicacionesPorCategoria", publicacionesPorCategoria);
         return "buscadorPorCategoria.jsp";
     }
+
+    @GetMapping("buscando")
+    public String buscadorMaximo(
+            @RequestParam(value = "idCategoria", required = false) Long idCategoria,
+            @RequestParam(value = "idRegion", required = false) Long idRegion,
+            @RequestParam(value = "idComuna", required = false) Long idComuna,
+            Model model
+    ){
+        if(idCategoria == null && idRegion != null && idComuna != null){
+            List<Publication> publicaciones = publicationService.publicacionesPorComuna(idComuna);
+            model.addAttribute("publicaciones", publicaciones);
+            return "buscadorMaximo.jsp";
+        }
+        if(idCategoria == null && idRegion != null && idComuna == null){
+            List<Publication> publicaciones = publicationService.ouroHenrry(idRegion);
+            model.addAttribute("publicaciones", publicaciones);
+            return "buscadorMaximo.jsp";
+        }
+        if(idCategoria != null && idRegion == null && idComuna == null){
+            Category categoria = categoryService.findById(idCategoria);
+            List<Publication> publicaciones = publicationService.publicacionesPorCategoria(categoria);
+            model.addAttribute("publicacionesPorCategoria", publicaciones);
+            return "buscadorPorCategoria.jsp";
+        }
+        if(idCategoria != null && idRegion != null && idComuna == null){
+            Category categoria = categoryService.findById(idCategoria);
+            List<Publication> publicacionesRes = publicationService.ouroHenrry(idRegion);
+            List<Publication> publicacionesPorCategoriaYPorRegion = new ArrayList<>();
+            for (Publication publication: publicacionesRes) {
+                if(publication.getCategory() == categoria){
+                    publicacionesPorCategoriaYPorRegion.add(publication);
+                }
+            }
+            model.addAttribute("publicaciones", publicacionesPorCategoriaYPorRegion);
+            return "buscadorMaximo.jsp";
+        }
+        if(idCategoria != null && idRegion != null && idComuna != null){
+            Category categoria = categoryService.findById(idCategoria);
+            List<Publication> publicacionesCom = publicationService.publicacionesPorComuna(idComuna);
+            List<Publication> publicacionesPorCategoriaYPorComuna = new ArrayList<>();
+            for(Publication publication: publicacionesCom){
+                if(publication.getCategory() == categoria){
+                    publicacionesPorCategoriaYPorComuna.add(publication);
+                }
+            }
+            model.addAttribute("publicaciones", publicacionesPorCategoriaYPorComuna);
+            return "buscadorMaximo.jsp";
+        }
+        return "redirect:/";
+    }
+
+
+
+
 }

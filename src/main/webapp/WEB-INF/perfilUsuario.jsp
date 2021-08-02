@@ -38,8 +38,8 @@
                     <li class="list-group-item">Comuna: <c:out value="${user.address.comuna.nameComuna}"/></li>
                     <li class="list-group-item">Región: <c:out value="${user.address.comuna.region.nameRegion}"/></li>
                     <li class="list-group-item">Estado:
-                        <c:if test="${user.available == false}">Activo</c:if>
-                        <c:if test="${user.available == true}">Baneado</c:if>
+                        <c:if test="${user.available == true}">Activo</c:if>
+                        <c:if test="${user.available == false}">Baneado</c:if>
                     </li>
                     <li class="list-group-item">Rol Usuario:
                         <c:if test="${user.rol == 1}">Prestador de Servicios</c:if>

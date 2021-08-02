@@ -60,12 +60,39 @@ public class PublicacionesController {
             @ModelAttribute("message")Message message,
             @ModelAttribute("feedback")Feedback feedback
             ){
+        Publication publication = publicationService.findById(idPublicacion);
+        if(session.getAttribute("userid") == null){
+            List<Message> messageList = publication.getMessages();
+            List<Feedback> feedbacks = publication.getFeedback();
+            User creatorP = publication.getUser();
+            List<Publication> publicationList = creatorP.getPublications();
+            int suma = 0;
+            int promedio = 0;
+            int contador = 0;
+            for (Publication p : publicationList) {
+                List<Feedback> feedbackList = p.getFeedback();
+                for (Feedback f : feedbackList) {
+                    int ratingF = f.getRating();
+                    suma += ratingF;
+                }
+                contador += p.getFeedback().size();
+            }
+            if (suma == 0) {
+                contador = 1;
+            }
+            promedio = suma / contador;
+            model.addAttribute("ratingF", promedio);
+            model.addAttribute("feedbacks", feedbacks);
+            model.addAttribute("messageList", messageList);
+            model.addAttribute("publication", publication);
+            return "publicacionPorId.jsp";
+        }
         Long userId = (Long) session.getAttribute("userid");
         User user = userService.findById(userId);
-        Publication publication = publicationService.findById(idPublicacion);
         if (publication.isEstado() == false && user.getRol() != 3) {
             return "redirect:/";
-        }else {
+        }
+        else {
             List<Message> messageList = publication.getMessages();
             List<Feedback> feedbacks = publication.getFeedback();
             User creatorP = publication.getUser();
@@ -174,10 +201,12 @@ public class PublicacionesController {
         Long idUser = (Long) session.getAttribute("userid");
         User user = userService.findById(idUser);
         Publication p = publicationService.findById(idPublicacion);
+        List<Category> c = categoryService.allData();
         if(user.getPublications().contains(p) == false){
             return "redirect:/";
         }else{
             model.addAttribute("p", p);
+            model.addAttribute("c", c);
             return "editarPublicacion.jsp";
         }
     }
@@ -187,11 +216,15 @@ public class PublicacionesController {
             @PathVariable("idPublicacion") Long idPublicacion,
             @Valid @ModelAttribute("publication") Publication publication,
             BindingResult result,
-            Model model
+            HttpSession session,
+            Model model,
+            @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
             return "editarPublicacion.jsp";
         }else{
+            Long userId = (Long) session.getAttribute("userid");
+            User user = userService.findById(userId);
             Publication p = publicationService.findById(idPublicacion);
             model.addAttribute("p", p);
             p.setTitle(publication.getTitle());
@@ -199,6 +232,25 @@ public class PublicacionesController {
             p.setPrice(publication.getPrice());
             p.setType_publication(publication.getType_publication());
             p.setCategory(publication.getCategory());
+            String name = file.getOriginalFilename();
+            if (!file.isEmpty() && file.getSize() < 1048576) {
+                File directorio = new File("src/main/resources/static/archivos/" + user.getId() + "/" + p.getId());//Reemplazar 1 por user.getId()
+                if(!directorio.exists()){
+                    directorio.mkdirs();
+                }
+                try {
+                    byte[] bytes = file.getBytes();
+                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
+                    stream.write(bytes);
+                    p.setPhoto_publication("/archivos/" + user.getId() + "/" + p.getId() + "/" + name);
+                    stream.close();
+                    System.out.println("You successfully uploaded " + name + "!");
+                } catch (Exception e) {
+                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
+                }
+            } else {
+                System.out.println("You failed to upload " + name + " because the file was empty.");
+            }
             publicationService.update(p);
             return "redirect:/publicaciones/"+idPublicacion;
         }

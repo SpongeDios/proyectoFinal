@@ -25,7 +25,9 @@
                     <form:label path="nameRegion">Nombre de la Region: </form:label>
                     <form:input cssClass="form-control" path="nameRegion"/>
                 </p>
-                <input class="btn btn-warning" type="submit" value="Crear Región"/>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <input class="btn btn-dark me-md-2" type="submit" value="Crear Región"/>
+                </div>
             </form:form>
         </div>
     </div>
