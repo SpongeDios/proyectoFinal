@@ -27,6 +27,9 @@
                         <c:if test="${denuncia.tipoDenuncia == 1}">
                             <c:out value="Contenido Ofensivo"/>
                         </c:if>
+                        <c:if test="${denuncia.tipoDenuncia == 2}">
+                            <c:out value="Información Personal"/>
+                        </c:if>
                     </td>
                     <td><c:out value="${denuncia.detalles}"/></td>
                 </tr>
