@@ -31,7 +31,7 @@
         </nav>
     </header>
         <div class="row ">
-            <div class="col-6">
+            <div class="col">
                 <ul class="list-group">
                     <li class="list-group-item">Nombre: <c:out value="${publication.user.firstName} ${publication.user.lastName}"/> </li>
                     <li class="list-group-item">Título: <c:out value="${publication.title}"/> </li>
@@ -44,19 +44,19 @@
                     <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
                 </ul>
             </div>
-                <div class="col-5 mx-4 imagen">
-                    <a target="_blank" href="${publication.photo_publication}">
+            <div class="col mx-4 imagen">
+                <a target="_blank" href="${publication.photo_publication}">
 
-                        <c:if test="${publication.photo_publication == null}">
-                            <img src="/archivos/default/default.png" height="250px" width="400px">
-                        </c:if>
-                        <c:if test="${publication.photo_publication != null}">
-                            <img src="${publication.photo_publication}" height="250px" width="400px"/>
-                        </c:if>
-                    </a>
-                </div>
+                    <c:if test="${publication.photo_publication == null}">
+                        <img src="/archivos/default/default.png" height="320px" width="500px">
+                    </c:if>
+                    <c:if test="${publication.photo_publication != null}">
+                        <img src="${publication.photo_publication}" height="320px" width="500px"/>
+                    </c:if>
+                </a>
+            </div>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid mt-3">
             <c:if test="${user.id != publication.user.id && user != null}">
             <h4>¿Quieres realizar una consulta?</h4>
             <form:errors path="message.*"/>

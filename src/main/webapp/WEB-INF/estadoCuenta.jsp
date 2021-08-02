@@ -12,7 +12,7 @@
         <header class="d-flex justify-content-between">
             <h1>Administrar Usuarios</h1>
             <a class="btn btn-link" href="/admin">Inicio Administrador</a>
-            <a class="btn btn-link" href="javascript: history.go(-1)">Volver atrás</a>
+            <a class="btn btn-link" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
         </header>
         <h1>
             <c:if test="${user.available == false && user.id != userLog.id}">¿Estás seguro de que quieres desbanear a este usuario?</c:if>

@@ -14,7 +14,7 @@
     <header class="d-flex justify-content-between">
         <h1>Editar Región</h1>
         <a class="btn btn-link" href="/admin">Inicio Administrador</a>
-        <a class="btn btn-link" href="javascript: history.go(-1)">Volver atrás</a>
+        <a class="btn btn-link" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
     </header>
     <div class="row">
         <div class="col-12  border border-1 rounded">

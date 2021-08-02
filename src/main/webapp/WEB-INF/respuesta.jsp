@@ -21,7 +21,7 @@
                 </c:if>
                 <a class="link-light" href="/">Inicio</a>
                 <a class="link-light" href="/publicaciones">Publicaciones</a>
-                <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
+                <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
                 <a class="link-light" href="/logout">Cerrar Sesión</a>
             </nav>
         </header>

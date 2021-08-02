@@ -18,7 +18,7 @@
                 <a class="link-light" href="/admin">Administrar</a>
             </c:if>
             <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
-            <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
+            <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
             <a class="link-light" href="/perfil/${user.id}/estadoCuenta">Deshabilitar cuenta</a>
             <a class="link-light" href="/logout">Cerrar Sesión</a>
         </nav>

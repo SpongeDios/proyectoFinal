@@ -14,7 +14,7 @@
 <div class="container">
     <header>
         <nav class="navbar p-2">
-            <a class="link-light" href="javascript: history.go(-1)">Volver atrás</a>
+            <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
         </nav>
     </header>
     <br>
