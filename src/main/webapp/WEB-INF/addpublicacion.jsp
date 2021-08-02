@@ -11,18 +11,18 @@
     <script src="/js/backbutton.js"></script>
 </head>
 <body>
+<header class="navbar p-2">
+    <nav class="container">
+        <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+        <c:if test="${user.rol == 3 }">
+            <a class="link-light" href="/admin">Administrar</a>
+        </c:if>
+        <a class="link-light" href="/">Inicio</a>
+        <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
+        <a class="link-light" href="/logout">Cerrar Sesión</a>
+    </nav>
+</header>
 <div class="container">
-    <header>
-        <nav class="navbar p-2">
-            <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
-            <c:if test="${user.rol == 3 }">
-                <a class="link-light" href="/admin">Administrar</a>
-            </c:if>
-            <a class="link-light" href="/">Inicio</a>
-            <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
-            <a class="link-light" href="/logout">Cerrar Sesión</a>
-        </nav>
-    </header>
     <div class="row mt-5">
     <h1>Añadir Publicación</h1>
         <div class="col">
