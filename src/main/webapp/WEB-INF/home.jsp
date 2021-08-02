@@ -49,12 +49,12 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-5">
             <div class="col"></div>
             <form method="get" action="/buscando" class="col align-self-center">
                 <label for="categoria"> Categoria </label>
                 <select id="categoria" class="form-select" aria-label="Default select example" name="idCategoria">
-                    <option selected disabled></option>
+                    <option selected></option>
                     <c:forEach var="categoria" items="${categorias}">
                         <option value="${categoria.id}"> <c:out value="${categoria.name}"/></option>
                     </c:forEach>
@@ -62,7 +62,7 @@
 
                 <label for="region"> Region </label>
                 <select id="region" class="form-select" aria-label="Default select example" name="idRegion">
-                    <option selected disabled value=""></option>
+                    <option selected value=""></option>
                     <c:forEach var="region" items="${regiones}">
                         <option value="${region.id}"> <c:out value="${region.nameRegion}"/></option>
                     </c:forEach>
@@ -70,15 +70,13 @@
 
                 <label for="comunas"> Comunas </label>
                 <select id="comunas" class="form-select" aria-label="Default select example" name="idComuna">
-                    <option selected disabled value=""></option>
+                    <option selected value=""></option>
                 </select>
 
                 <button class="btn btn-dark text-white w-100 mt-3" type="submit">Buscar</button>
             </form>
             <div class="col"></div>
         </div>
-
-
     </div>
 
     <script>
