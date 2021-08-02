@@ -5,11 +5,11 @@
 
 .navbar{
     background-color: #263D51;
-    border-bottom: 5px solid #DDDDDD;
-    height: 65px;  
+    border-bottom: 5px solid #FFD600;
+    height: 75px;  
 }
 
-.link-light{
+.link-light:hover{
     font-size: 120%;
     color: #263D51;
     text-decoration: none;
@@ -20,7 +20,7 @@
 
 .row{
     padding: 15px;
-    background-color: #f8b704c7 ;
+    background-color: #f8b704c7;
 }
 
 h1{
