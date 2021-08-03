@@ -43,6 +43,9 @@ public class Publication extends BaseModel{
     //Estado Publicacion
     private boolean estado = true;
 
+    //Estado SOS
+    private boolean sos = false;
+
     ///////////////RELACIONES///////////////
 
     //RELACION CON USER

@@ -176,7 +176,17 @@
         </table>
     </div>
     </table>
+    <c:out value="${publication.sos}"/>
+    <c:if test="${publication.sos == true}">
+        <a href="/sos/${publication.id}/addRemove">
+            Desactivar
+        </a>
+    </c:if>
+    <c:if test="${publication.sos == false}">
+        <a href="/sos/${publication.id}/addRemove">
+            Activar
+        </a>
+    </c:if>
 </div>
-</form>
 </body>
 </html>
