@@ -21,7 +21,9 @@
         </c:if>
         <a style="text-decoration: none" class="link-light" href="/">Inicio</a>
         <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
-        <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
+        <c:if test="${user.id != null }">
+            <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
+        </c:if>
     </nav>
 </header>
 <div class="container">

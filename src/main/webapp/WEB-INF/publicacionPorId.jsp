@@ -26,7 +26,9 @@
         <a style="text-decoration: none" class="link-light" href="/">Inicio</a>
         <a style="text-decoration: none" class="link-light" href="/publicaciones/add">Crear Publicación</a>
         <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
+        <c:if test="${user.id != null }">
         <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
+        </c:if>
     </nav>
 </header>
 <div class="container">
@@ -38,7 +40,7 @@
                     <li class="list-group-item">Descripción: <c:out value="${publication.description}"/> </li>
                     <li class="list-group-item">Precio: $<c:out value="${publication.price}"/> </li>
                     <li class="list-group-item">Categoría: <c:out value="${publication.category.name}"/> </li>
-                    <li class="list-group-item"> Celular: <img src="/static/archivos/logos/wi.png" width="20px"> <c:out value="${publication.user.phone}"/> </li>
+                    <li class="list-group-item"> Celular: <img src="/archivos/logos/wi.png" width="20px"> <c:out value="${publication.user.phone}"/> </li>
                     <li class="list-group-item">Rating usuario: <c:out value="${ratingF}"/>
                     </li>
                     <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
