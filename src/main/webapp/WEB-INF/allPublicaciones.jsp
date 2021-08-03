@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link rel="stylesheet" href="/css/allPublicaciones.css">
     <link rel="stylesheet" href="/css/navbar.css">
@@ -12,21 +13,20 @@
     <script src="/js/backbutton.js"></script>
 </head>
 <body>
-<div class="container">
-    <header>
-        <nav class="navbar p-2">
-            <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
-            <c:if test="${user.rol == 3 }">
-                <a class="link-light" href="/admin">Administrar</a>
-            </c:if>
-            <a class="link-light" href="/">Inicio</a>
-            <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
-            <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
-            <a class="link-light" href="/logout">Cerrar Sesión</a>
+<header class="navbar p-2">
+    <nav class="container">
+        <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+        <c:if test="${user.rol == 3 }">
+            <a style="text-decoration: none" class="link-light" href="/admin">Administrar</a>
+        </c:if>
+        <a style="text-decoration: none" class="link-light" href="/">Inicio</a>
+        <a style="text-decoration: none" class="link-light" href="/publicaciones/add">Crear Publicación</a>
+        <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
+        <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
     </nav>
-    </header>
-    <br>
-    <div class="row">
+</header>
+<div class="container">
+    <div class="row mt-5 mb-5">
         <table class="table">
             <thead class="thead">
             <tr>
@@ -66,6 +66,77 @@
         </table>
     </div>
 </div>
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-facebook-f"></i
+            ></a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-twitter"></i
+            ></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-instagram"></i
+            ></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" role="button"
+            ><i class="fab fa-google"></i
+            ></a>
+        </section>
+        <!-- Section: Social media -->
+        <div>
+            <!-- Section: Text -->
+            <div class="footer-widget-1">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+                    repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+                    eum harum corrupti dicta, aliquam sequi voluptate quas.
+                </p>
+            </div>
+            <!-- Section: Text -->
+            <div class="footer-widget-2"></div>
+            <!-- Section: Links -->
+            <div class="footer-widget-3">
+                <!--Grid row-->
+                <sec class="row">
+                    <!--Grid column-->
+                    <div>
+                        <h5 class="text-uppercase">Enlaces</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a style="text-decoration: none" href="/politicas" class="text-white">Políticas de Privacidad</a>
+                            </li>
+                            <li>
+                                <a style="text-decoration: none" href="/quienessomos" class="text-white">Quiénes Somos</a>
+                            </li>
+                            <li>
+                                <a style="text-decoration: none" href="contacto" class="text-white">Contáctanos</a>
+                            </li>
+                            <li>
+                                <a style="text-decoration: none" href="recuperarcontraseña" class="text-white">Recuperación de Contraseña</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                        SuperMaestros© 2021 Copyright:
+                        <a style="text-decoration: none" class="text-white" href="/">supermaestros.com</a>
+                    </div>
+                    <!-- Copyright -->
+                </sec>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
 

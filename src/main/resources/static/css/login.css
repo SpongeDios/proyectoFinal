@@ -4,24 +4,18 @@
 }
 .navbar{
     background-color: #263D51;
-    border-bottom: 5px solid #DDDDDD;
+    border-bottom: 5px solid #FFD600;
     height: 65px;  
 }
-
-.link-light{
-    font-size: 120%;
-    color: #263D51;
-    text-decoration: none;
-    padding: 0% 1%;
-    background-color:#DDDDDD;
-    border:2px solid grey;
+footer{
+    background-color: #263D51;
 }
-
 .col {
-    background: rgba(94, 88, 88, 0.3);
-    padding: 5%;    
+    background: rgba(1, 81, 118, 0.9);
+    padding: 5%;
+    color: white;
+    border-radius: 20px;
 }
-
  body{
     background-position: center center;
     background-repeat: no-repeat;

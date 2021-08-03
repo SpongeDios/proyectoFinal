@@ -4,23 +4,23 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link rel="stylesheet" href="/css/registration.css">
-    <link rel="stylesheet" href="/css/navbar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Registrarse</title>
     <script src="/js/backbutton.js"></script>
+    <title>Registrarse</title>
 </head>
 <body>
+<header class="navbar p-2">
+    <nav class="container">
+        <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
+    </nav>
+</header>
 <div class="container">
-    <header>
-        <nav class="navbar p-2">
-            <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
-        </nav>
-    </header>
-    <br>
-    <div class="row">
-        <div class="col border border-secondary border-1 p-5 mr-3">
+    <div class="row mt-5 mb-5">
+        <div class="col-2"></div>
+        <div class="col border-1 p-5 mr-3">
             <p><form:errors path="user.*"/></p>
             <h1>Registrando al socio</h1>
             <form:form method="POST" action="" cssClass="form" enctype="multipart/form-data" modelAttribute="user">
@@ -35,7 +35,7 @@
                     <form:input cssClass="form-control" path="lastName"/>
                 </p>
                <p class="form-group">
-                   <form:label path="address.comuna.region">Region: </form:label>
+                   <form:label path="address.comuna.region">Región: </form:label>
                    <form:select cssClass="form-control" path="address.comuna.region">
                        <c:forEach var="region" items="${regiones}">
                            <form:option value="${region.id}"><c:out value="${region.nameRegion}"/> </form:option>
@@ -52,12 +52,12 @@
                 </p>
                 <p class="form-group">
                     <form:label path="address.nameCalle">Calle: </form:label>
-                    <form:input cssClass="form-control" path="address.nameCalle" placeholder="Ejemplo: nombre calle 123"/>
+                    <form:input cssClass="form-control" path="address.nameCalle" placeholder="Ejemplo: calle falsa 123"/>
                 </p>
 
                 <p class="form-group">
                     <form:label path="phone">Celular: </form:label>
-                    <form:input cssClass="form-control" path="phone"/>
+                    <form:input cssClass="form-control" path="phone" placeholder="Ejemplo: +56912345678"/>
                 </p>
                 <c:if test="${userList.size() != 0}">
                     <p class="form-group">
@@ -101,8 +101,80 @@
                 </div>
             </form:form>
         </div>
+        <div class="col-2"></div>
     </div>
 </div>
+<footer class="bg-dark text-center text-white">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+            <!-- Facebook -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-facebook-f"></i
+            ></a>
+
+            <!-- Twitter -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-twitter"></i
+            ></a>
+
+            <!-- Instagram -->
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+            ><i class="fab fa-instagram"></i
+            ></a>
+
+            <!-- Google -->
+            <a class="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" role="button"
+            ><i class="fab fa-google"></i
+            ></a>
+        </section>
+        <!-- Section: Social media -->
+        <div>
+            <!-- Section: Text -->
+            <div class="footer-widget-1">
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+                    repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+                    eum harum corrupti dicta, aliquam sequi voluptate quas.
+                </p>
+            </div>
+            <!-- Section: Text -->
+            <div class="footer-widget-2"></div>
+            <!-- Section: Links -->
+            <div class="footer-widget-3">
+                <!--Grid row-->
+                <sec class="row">
+                    <!--Grid column-->
+                    <div>
+                        <h5 class="text-uppercase">Enlaces</h5>
+                        <ul class="list-unstyled mb-0">
+                            <li>
+                                <a style="text-decoration: none" href="/politicas" class="text-white">Políticas de Privacidad</a>
+                            </li>
+                            <li>
+                                <a style="text-decoration: none" href="/quienessomos" class="text-white">Quiénes Somos</a>
+                            </li>
+                            <li>
+                                <a style="text-decoration: none" href="contacto" class="text-white">Contáctanos</a>
+                            </li>
+                            <li>
+                                <a style="text-decoration: none" href="recuperarcontraseña" class="text-white">Recuperación de Contraseña</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--Grid column-->
+                    <!-- Copyright -->
+                    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                        SuperMaestros© 2021 Copyright:
+                        <a style="text-decoration: none" class="text-white" href="/">supermaestros.com</a>
+                    </div>
+                    <!-- Copyright -->
+                </sec>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
 

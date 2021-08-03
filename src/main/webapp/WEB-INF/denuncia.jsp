@@ -9,8 +9,8 @@
 </head>
 <body>
     <div>
-        <header>
-            <nav class="navbar p-2">
+        <header class="navbar p-2">
+            <nav class="container">
                 <c:if test="${user.photo == null}">
                     <img src="/archivos/default/default.png" width="100px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/>
                 </c:if>
