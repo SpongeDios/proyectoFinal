@@ -90,7 +90,7 @@
 
     </script>
     <script src="/js/app.js"></script>
-    <br>
+
     <footer class="bg-dark text-center text-white">
         <!-- Grid container -->
         <div class="container p-4">
@@ -162,6 +162,5 @@
             </div>
         </div>
     </footer>
-
 </body>
 </html>

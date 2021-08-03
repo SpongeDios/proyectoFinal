@@ -32,10 +32,10 @@
         <div class="row ">
             <div class="col-6">
                 <ul class="list-group">
-                    <li class="list-group-item"> Celular: <img src="/archivos/logos/iconoWhatsapp.png" width="20px"><c:out value="${user.phone}"/> </li>
+                    <li class="list-group-item"> Celular: <img src="/archivos/logos/wi.png" width="20px"><c:out value="${user.phone}"/> </li>
                     <li class="list-group-item">Email: <c:out value="${user.email}"/></li>
                     <li class="list-group-item">Direccion: <c:out value="${user.address.nameCalle}"/></li>
-                    <li class="list-group-item">N de publicaciones: <c:out value="${user.publications.size()}"/></li>
+                    <li class="list-group-item">Número de publicaciones: <c:out value="${user.publications.size()}"/></li>
                     <li class="list-group-item">Comuna: <c:out value="${user.address.comuna.nameComuna}"/></li>
                     <li class="list-group-item">Región: <c:out value="${user.address.comuna.region.nameRegion}"/></li>
                     <li class="list-group-item">Estado:

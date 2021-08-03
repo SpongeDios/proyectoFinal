@@ -1,6 +1,6 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar{
@@ -17,15 +17,6 @@
 .tbody{
     background-color:  #DDDDDD;
 
-}
-form {
-    display: inline-block;
-    vertical-align: top;
-}
-
-input {
-    display: inline-block;
-    vertical-align: top;
 }
 body{
     background-position: center center;
