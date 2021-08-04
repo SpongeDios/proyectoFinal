@@ -25,17 +25,17 @@
         </c:if>
     </nav>
 </header>
-    <div class="container">
+    <div class="container mb-5">
         <div class="col mt-5 text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             <h3 class="fs-2">
                 <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/>
             </h3>
         </div>
-        <div class="row ">
-            <div class="col-6 mt-5" mb-5>
+        <div class="row mb-5">
+            <div class="col mt-5 mb-5" >
                 <img src="${user.photo}" height="320px" width="500px" class="img-thumbnail">
             </div>
-            <div class="col-6 mt-5 mb-5 ">
+            <div class="col mt-5 mb-5 d-flex justify-content-center align-items-center bordeado">
                 <ul class="list-group">
                     <li class="list-group-item"> Celular: <img src="/archivos/logos/wi.png" width="20px"><c:out value="${user.phone}"/> </li>
                     <li class="list-group-item">Email: <c:out value="${user.email}"/></li>
@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-    <footer class="bg-dark text-center text-white">
+    <footer class="bg-dark text-center text-white mt-5">
         <!-- Grid container -->
         <div class="container p-4">
             <!-- Section: Social media -->

@@ -9,9 +9,9 @@
     height: 65px;
 }
 .formulario{
-    background-color: rgba(255, 214, 0, 0.7);
+    background-color: rgba(255, 214, 0, 1);
     padding: 5%;
-    color: white;
+    color: #152838;
     border-radius: 20px;
 }
 body{
