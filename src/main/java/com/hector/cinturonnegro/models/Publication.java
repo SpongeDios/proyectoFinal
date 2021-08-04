@@ -72,5 +72,8 @@ public class Publication extends BaseModel{
     @JoinColumn(name = "address")
     private Address address;
 
+    @OneToMany(mappedBy = "publication", fetch = FetchType.LAZY)
+    private List<Notificacion> notificaciones;
+
 
 }

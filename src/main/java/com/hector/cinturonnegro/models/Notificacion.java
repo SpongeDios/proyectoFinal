@@ -19,4 +19,8 @@ public class Notificacion extends BaseModel {
     @JoinColumn(name = "user")
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "publication")
+    private Publication publication;
+
 }

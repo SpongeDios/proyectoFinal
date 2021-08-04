@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
@@ -52,8 +53,20 @@ public class NotificacionController {
         Notificacion notificacion = new Notificacion();
         notificacion.setContenido("El usuario "+ user.getFirstName() + "ha escrito algo en tu publicacion "+ publication.getTitle());
         notificacion.setUser(user);
+        notificacion.setPublication(publication);
         notificacionService.update(notificacion);
         return "redirect:/publicaciones/"+idPublicacion;
     }
+
+    @GetMapping("/notificacion/{idNotificacion}")
+    public String verNotificacion(
+            @PathVariable("idNotificacion") Long idNotificacion
+    ){
+        Notificacion notificacion = notificacionService.findById(idNotificacion);
+        notificacionService.delete(notificacion.getId());
+        return "redirect:/publicaciones/"+notificacion.getPublication().getId();
+    }
+
+
 
 }
