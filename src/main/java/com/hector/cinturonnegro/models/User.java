@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.aspectj.weaver.ast.Not;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -81,6 +82,10 @@ public class User extends BaseModel{
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Address")
     private Address address;
+
+    ///////////RELACION CON NOTIFICACIONES////////////////
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Notificacion> notificacions;
 
 
 }

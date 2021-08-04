@@ -1,6 +1,7 @@
 package com.hector.cinturonnegro.controllers;
 
 import com.hector.cinturonnegro.models.Comuna;
+import com.hector.cinturonnegro.models.Notificacion;
 import com.hector.cinturonnegro.models.Region;
 import com.hector.cinturonnegro.services.RegionService;
 import org.springframework.http.MediaType;
