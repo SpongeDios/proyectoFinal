@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" isErrorPage="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -29,6 +29,7 @@
         <div class="row mt-5 mb-5">
             <div class="col-2"></div>
             <div class="formulario col mt-5 mb-5">
+                <h1>Editar Publicación</h1>
                 <span style="color: red;"><form:errors path="publication.*"/></span>
                 <form:form method="POST" action="" enctype="multipart/form-data" modelAttribute="publication" >
                     <input type="hidden" name="_method" value="PUT">

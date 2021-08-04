@@ -225,12 +225,18 @@ public class PublicacionesController {
             @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
+            Publication p = publicationService.findById(idPublicacion);
+            List<Category> c = categoryService.allData();
+            model.addAttribute("p", p);
+            model.addAttribute("c", c);
             return "editarPublicacion.jsp";
         }else{
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
             Publication p = publicationService.findById(idPublicacion);
+            List<Category> c = categoryService.allData();
             model.addAttribute("p", p);
+            model.addAttribute("c", c);
             p.setTitle(publication.getTitle());
             p.setDescription(publication.getDescription());
             p.setPrice(publication.getPrice());

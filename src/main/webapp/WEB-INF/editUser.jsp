@@ -35,6 +35,7 @@
         <div class="row mt-5 mb-5">
             <div class="col-2"></div>
             <div class="formulario col mt-5 mb-5">
+                <h1>Editar Perfil</h1>
                 <span style="color: red;"><form:errors path="user.*"/></span>
                 <form:form method="POST" action="" enctype="multipart/form-data" modelAttribute="user">
                     <input type="hidden" name="_method" value="PUT">

@@ -38,7 +38,11 @@
             <div class="col mt-5 mb-5 d-flex justify-content-center align-items-center bordeado">
                 <ul class="list-group">
                     <li class="list-group-item">Nombre Usuario: <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></li>
-                    <li class="list-group-item">Rol: <c:out value="${user.rol}"/></li>
+                    <li class="list-group-item">Rol:
+                        <c:if test="${user.rol == 1}">Prestador de Servicios</c:if>
+                        <c:if test="${user.rol == 2}">Solicitador de Servicios</c:if>
+                        <c:if test="${user.rol == 3}">Administrador</c:if>
+                    </li>
                     <li class="list-group-item">Email: <c:out value="${user.email}"/></li>
                     <li class="list-group-item"> Celular: <img src="/archivos/logos/wi.png" width="20px"><c:out value="${user.phone}"/> </li>
                     <li class="list-group-item">Número de publicaciones: <c:out value="${user.publications.size()}"/></li>
