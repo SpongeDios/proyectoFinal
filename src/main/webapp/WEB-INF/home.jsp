@@ -70,7 +70,7 @@
         </div>
     </div>
     <div class="">
-        <div class="d-flex justify-content-center row">
+        <div class="d-flex justify-content-center row mt-5 mb-5">
             <c:forEach var="categoria" items="${categorias}">
                 <div class="card col-4 m-1" style="width: 18rem;">
                     <div class="card-body">

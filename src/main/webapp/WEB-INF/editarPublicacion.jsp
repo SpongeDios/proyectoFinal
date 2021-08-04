@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isErrorPage="true" %>
+<%@ page language="java" isErrorPage="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
@@ -25,48 +26,57 @@
     </nav>
 </header>
     <div class="container">
-        <div class="col-2"></div>
-        <div class="formulario col mt-5 mb-5">
-            <span style="color: red;"><form:errors path="publication.*"/></span>
-            <form:form method="POST" action="" enctype="multipart/form-data" modelAttribute="publication" >
-                <input type="hidden" name="_method" value="PUT">
-                <p class="form-group col">
-                <form:label path="title">Título: </form:label>
-                <form:input value="${p.title}" cssClass="form-control" path="title"/>
-                </p>
-                <p class="col">
-                <form:label path="description">Descripción:</form:label>
-                <form:input value="${p.description}" cssClass="form-control" path="description"/>
-                </p>
-                <p class="col">
-                <form:label path="price">Precio estimado:</form:label>
-                <form:input type="number" value="${p.price}" cssClass="form-control" path="price"/>
-                </p>
-                <p class="col">
-                    <form:label path="type_publication">Tipo de publicación:</form:label>
-                    <form:select cssClass="form-control" path="type_publication">
-                        <form:option value="1">Quiero contratar a una persona</form:option>
-                        <form:option value="2">Quiero trabajar</form:option>
-                    </form:select>
-                </p>
-                <p class="col">
-                    <form:label path="category">Categoría:</form:label>
-                    <form:select class="form-select" path="category">
-                        <c:forEach items="${c}" var="category">
-                            <form:option value="${category.id}"><c:out value="${category.name}"/></form:option>
-                        </c:forEach>
-                    </form:select>
-                </p>
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Cambiar Foto</label>
-                    <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
-                </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <input class="btn btn-dark me-md-2" type="submit" value="Publicar!"/>
-                </div>
-            </form:form>
+        <div class="row mt-5 mb-5">
+            <div class="col-2"></div>
+            <div class="formulario col mt-5 mb-5">
+                <h1>Editar Publicación</h1>
+                <span style="color: red;"><form:errors path="publication.*"/></span>
+                <form:form method="POST" action="" enctype="multipart/form-data" modelAttribute="publication" >
+                    <input type="hidden" name="_method" value="PUT">
+
+                    <p class="form-group col">
+                    <form:label path="title">Título: </form:label>
+                    <form:input value="${p.title}" cssClass="form-control" path="title"/>
+                    </p>
+
+                    <p class="col">
+                    <form:label path="description">Descripción:</form:label>
+                    <form:input value="${p.description}" cssClass="form-control" path="description"/>
+                    </p>
+
+                    <p class="col">
+                    <form:label path="price">Precio estimado:</form:label>
+                    <form:input type="number" value="${p.price}" cssClass="form-control" path="price"/>
+                    </p>
+
+                    <p class="col">
+                        <form:label path="type_publication">Tipo de publicación:</form:label>
+                        <form:select cssClass="form-control" path="type_publication">
+                            <form:option value="1">Quiero contratar a una persona</form:option>
+                            <form:option value="2">Quiero trabajar</form:option>
+                        </form:select>
+                    </p>
+
+                    <p class="col">
+                        <form:label path="category">Categoría:</form:label>
+                        <form:select class="form-select" path="category">
+                            <c:forEach items="${c}" var="category">
+                                <form:option value="${category.id}"><c:out value="${category.name}"/></form:option>
+                            </c:forEach>
+                        </form:select>
+                    </p>
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Cambiar Foto</label>
+                        <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
+                    </div>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <input class="btn btn-dark me-md-2" type="submit" value="Publicar!"/>
+                    </div>
+                </form:form>
+            </div>
+            <div class="col-2"></div>
         </div>
-        <div class="col-2"></div>
     </div>
     <footer class="bg-dark text-center text-white">
         <!-- Grid container -->
