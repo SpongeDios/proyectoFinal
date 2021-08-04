@@ -74,10 +74,10 @@
             <c:forEach var="categoria" items="${categorias}">
                 <div class="card col-4 m-1" style="width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title"><c:out value="${categoria.name}"/></h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="/buscador/categoria/${categoria.id}" class="card-link">Card link</a>
+                        <h5 class="card-title">Buscar <c:out value="${categoria.name}"/></h5>
+                        <p class="card-text">Todos la categoría <c:out value="${categoria.name}"/> en todo Chile </p>
                     </div>
+                    <a class="btn btn-primary m-2" href="/buscador/categoria/${categoria.id}" class="card-link">Buscar</a>
                 </div>
             </c:forEach>
         </div>

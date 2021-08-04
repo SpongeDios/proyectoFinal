@@ -4,10 +4,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link rel="stylesheet" href="/css/allPublicaciones.css">
-    <link rel="stylesheet" href="/css/navbar.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <title>Publicaciones</title>
     <script src="/js/backbutton.js"></script>
@@ -21,7 +21,7 @@
         </c:if>
         <a style="text-decoration: none" class="link-light" href="/">Inicio</a>
         <a style="text-decoration: none" class="link-light" href="/publicaciones/add">Crear Publicación</a>
-        <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
+        <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"><i class="bi bi-arrow-left-circle"></i> Volver atrás</a>
         <c:if test="${user.id != null }">
             <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
         </c:if>
@@ -58,8 +58,8 @@
                                     <c:if test="${publicacion.type_publication == 2}">Buscar trabajo</c:if>
                                 </td>
                                 <td>
-                                    <a class="btn btn-warning" href="/publicaciones/${publicacion.id}/edit">Editar</a>
-                                    <a href="/publicaciones/${publicacion.id}/delete" class="btn btn-danger boton">Eliminar</a>
+                                    <a class="btn btn-outline-warning" href="/publicaciones/${publicacion.id}/edit"><i class="bi bi-pencil-square"> Editar</i></a>
+                                    <a class="btn btn-outline-danger" href="/publicaciones/${publicacion.id}/delete"><i class="bi bi-trash-fill"> Eliminar</i></a>
                                 </td>
                             </tr>
                         </c:if>

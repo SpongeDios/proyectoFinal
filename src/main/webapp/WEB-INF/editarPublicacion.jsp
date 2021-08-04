@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link rel="stylesheet" href="/css/editarPublicacion.css">
@@ -19,7 +20,7 @@
             <a class="link-light" href="/admin">Administrar</a>
         </c:if>
         <a class="link-light" href="/">Inicio</a>
-        <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
+        <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"><i class="bi bi-arrow-left-circle"></i> Volver atrás</a>
         <c:if test="${user.id != null }">
             <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
         </c:if>

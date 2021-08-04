@@ -2,6 +2,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link rel="stylesheet" href="/css/perfilUsuario.css">
@@ -19,7 +20,7 @@
         <a style="text-decoration: none" class="link-light" href="/publicaciones">Mis Publicaciones</a>
         <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}/editar">Editar Perfil</a>
         <a style="text-decoration: none" class="link-light" href="/publicaciones/add">Crear Publicación</a>
-        <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
+        <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"><i class="bi bi-arrow-left-circle"></i> Volver atrás</a>
         <c:if test="${user.id != null }">
             <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
         </c:if>
@@ -37,7 +38,7 @@
             </div>
             <div class="col mt-5 mb-5 d-flex justify-content-center align-items-center bordeado">
                 <ul class="list-group">
-                    <li class="list-group-item"> Celular: <img src="/archivos/logos/wi.png" width="20px"><c:out value="${user.phone}"/> </li>
+                    <li class="list-group-item">Celular: <img src="/archivos/logos/wi.png" width="20px"><c:out value="${user.phone}"/></li>
                     <li class="list-group-item">Email: <c:out value="${user.email}"/></li>
                     <li class="list-group-item">Direccion: <c:out value="${user.address.nameCalle}"/></li>
                     <li class="list-group-item">Número de publicaciones: <c:out value="${user.publications.size()}"/></li>

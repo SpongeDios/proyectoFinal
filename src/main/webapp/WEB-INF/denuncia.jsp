@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/navbar.css">
     <title>Denunciar Comentario</title>
@@ -22,7 +23,7 @@
                 </c:if>
                 <a class="link-light" href="/">Inicio</a>
                 <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
-                <a class="link-light" href="javascript: history.go(-1)"> ◄ Volver atrás</a>
+                <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"><i class="bi bi-arrow-left-circle"></i> Volver atrás</a>
                 <c:if test="${user.id != null }">
                     <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
                 </c:if>
