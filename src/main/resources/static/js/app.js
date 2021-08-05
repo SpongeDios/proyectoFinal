@@ -11,6 +11,7 @@
 //
 
 $(document).ready(function (){
+    leerNotificaciones();
     $("#region").change(function(){
         var region = $(this).find(":selected").val();
         var json = {
@@ -42,8 +43,28 @@ $(document).ready(function (){
         });
 
     });
-
 });
+
+
+
+function leerNotificaciones (){
+    $.ajax({
+        type: 'get',
+        url: '/notificaciones/leer'
+    })
+    .done(function (respuesta){
+        let notificaciones = document.getElementById("notificaciones")
+        let contador = notificaciones.querySelector("button");
+        contador.innerHTML = respuesta;
+    })
+    .fail(function (respuesta){
+        console.log("error" + respuesta);
+    })
+
+}
+
+setInterval(leerNotificaciones, 5000);
+
 
 // console.log(regiones[1]['comunas'][2]);
 // console.log(regiones[1]['comunas'][3]);

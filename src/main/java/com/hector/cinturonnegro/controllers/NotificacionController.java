@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
@@ -65,6 +66,17 @@ public class NotificacionController {
         Notificacion notificacion = notificacionService.findById(idNotificacion);
         notificacionService.delete(notificacion.getId());
         return "redirect:/publicaciones/"+notificacion.getPublication().getId();
+    }
+
+    @GetMapping("/notificaciones/leer")
+    @ResponseBody
+    public int leerNotificaciones(HttpSession session){
+        if(session.getAttribute("userid") != null){
+            Long idUser = (Long) session.getAttribute("userid");
+            User user = userService.findById(idUser);
+            return user.getNotificacions().size();
+        }
+        return 0;
     }
 
 
