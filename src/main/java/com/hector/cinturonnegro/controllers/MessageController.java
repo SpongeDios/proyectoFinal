@@ -45,7 +45,7 @@ public class MessageController {
             message.setUser(user);
             message.setPublication(publication);
             messageService.create(message);
-            return "redirect:/notificacion/"+idPublicacion+"/"+publication.getUser().getId()+"/";
+            return "redirect:/notificacion/"+idPublicacion+"/"+publication.getUser().getId()+"/"+message.getUser().getId()+"/"+message.getId();
         }
     }
 
@@ -96,7 +96,7 @@ public class MessageController {
                 message.setRespuesta(respuesta);
                 messageService.create(respuesta);
                 messageService.update(message);
-                return "redirect:/notificacion/"+publication.getId()+"/"+message.getUser().getId();
+                return "redirect:/notificacion/"+publication.getId()+"/"+message.getUser().getId()+"/"+user.getId();
             }
     }
 }

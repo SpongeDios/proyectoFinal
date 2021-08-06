@@ -79,7 +79,7 @@
                     <c:forEach items="${publication.messages}" var="messages">
                         <c:if test="${messages.rol == 1}">
                             <tr>
-                                <th><c:out value="${messages.user.firstName}"/> <c:out value="${messages.user.lastName}"/> </th>
+                                <th id="${messages.id}"><c:out value="${messages.user.firstName}"/> <c:out value="${messages.user.lastName}"/> </th>
                             </tr>
                             <tr>
                                 <td>
@@ -104,7 +104,6 @@
                                     </c:if>
                                     <c:if test="${user.id == publication.user.id && messages.respuesta.id != null}">
                                         <p>
-
                                             <span style="color: red;"> Pregunta: </span><c:out value="${messages.text}"/>
                                             <a class="btn btn-danger" href="/denuncia/${messages.id}">Denunciar</a>
                                         </p>

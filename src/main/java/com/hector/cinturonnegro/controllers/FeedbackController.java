@@ -65,7 +65,7 @@ public class FeedbackController {
             }
 
             feedbackService.create(feedback);
-            return "redirect:/notificacion/"+publication.getId()+"/"+publication.getUser().getId();
+            return "redirect:/notificacion/"+publication.getId()+"/"+publication.getUser().getId()+"/"+user.getId();
         }
 
     }

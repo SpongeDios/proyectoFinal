@@ -40,23 +40,26 @@ public class NotificacionController {
 
 
 
-    @GetMapping("/notificacion/{idPublicacion}/{idUserLogueado}")
+    @GetMapping("/notificacion/{idPublicacion}/{idUserLogueado}/{idUserEmisor}/{idMessage}")
     public String pushNotification(
             @PathVariable("idPublicacion") Long idPublicacion,
             @PathVariable("idUserLogueado") Long idUserLogueado,
+            @PathVariable("idUserEmisor") Long idUserEmisor,
+            @PathVariable("idMessage") Long idMessage,
             HttpSession session
     ){
         if(session.getAttribute("userid") == null){
             return "redirect:/";
         }
         Publication publication = publicationService.findById(idPublicacion);
+        User emisor = userService.findById(idUserEmisor);
         User user = userService.findById(idUserLogueado);
         Notificacion notificacion = new Notificacion();
-        notificacion.setContenido("El usuario "+ user.getFirstName() + "ha escrito algo en tu publicacion "+ publication.getTitle());
         notificacion.setUser(user);
+        notificacion.setContenido("El usuario "+ emisor.getFirstName() + " "+ emisor.getLastName() + " ha escrito algo en tu publicacion "+ publication.getTitle());
         notificacion.setPublication(publication);
         notificacionService.update(notificacion);
-        return "redirect:/publicaciones/"+idPublicacion;
+        return "redirect:/publicaciones/"+idPublicacion+"#"+idMessage;
     }
 
     @GetMapping("/notificacion/{idNotificacion}")
