@@ -14,8 +14,8 @@
     <script src="/js/backbutton.js"></script>
 </head>
 <body>
-    <header>
-        <nav class="navbar p-2">
+<header class="navbar p-2">
+    <nav class="container">
             <a class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
             <c:if test="${user.rol == 3 }">
                 <a class="link-light" href="/admin">Administrar</a>
@@ -35,15 +35,21 @@
         </h3>
     </div>
     <div class="container">
-        <span style="color: red;"><form:errors path="respuesta.*"/></span>
-        <form:form method="post" action="/publicaciones/${message.publication.id}/${message.id}/responder" modelAttribute="respuesta">
-            <form:input type="hidden" path="rol" value="2"/>
-            <div class="d-flex mt-5 mb-5 justify-content-between align-items-center">
-                <form:label for="message" class="visually-hidden" path="text">Responder</form:label>
-                <form:input type="text" class="form-control" id="message" path="text"/>
-                <button type="submit" class="btn btn-primary">Enviar</button>
+        <div class="row mt-5 mb-5">
+            <div class="col-2"></div>
+            <div class="col border-1 p-2 bordeado">
+                <span style="color: red;"><form:errors path="respuesta.*"/></span>
+                <form:form method="post" action="/publicaciones/${message.publication.id}/${message.id}/responder" modelAttribute="respuesta">
+                    <form:input type="hidden" path="rol" value="2"/>
+                    <div class="d-flex mt-5 mb-5 justify-content-between align-items-center">
+                        <form:label for="message" class="visually-hidden" path="text">Responder</form:label>
+                        <form:input type="text" class="form-control" id="message" path="text"/>
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </form:form>
             </div>
-        </form:form>
+            <div class="col-2"></div>
+        </div>
     </div>
     <footer class="bg-dark text-center text-white">
         <!-- Grid container -->

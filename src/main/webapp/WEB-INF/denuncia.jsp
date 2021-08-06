@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
-    <link rel="stylesheet" href="/css/allPublicaciones.css">
+    <link rel="stylesheet" href="/css/denuncia.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="/js/backbutton.js"></script>
     <title>Denunciar Comentario</title>
@@ -36,27 +36,104 @@
             <h2 style="color: white">¿Por qué quiere denunciar este comentario?</h2>
         </h3>
     </div>
-        <div class="container">
-            <div class="row mt-5 mb-5">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <form:form action="" modelAttribute="denuncia" method="post">
-                        <p>
-                            <form:label path="detalles">Elige una opción</form:label>
-                            <form:select path="tipoDenuncia">
-                                <form:option value="1">Contenido Ofensivo</form:option>
-                                <form:option value="2">Información personal</form:option>
-                            </form:select>
-                        </p>
-                        <p>
-                            <form:label path="detalles">Detalles de la denuncia</form:label>
-                            <form:input type="text" path="detalles"/>
-                        </p>
-                        <input class="btn tbn-danger" type="submit" value="Enviar">
-                    </form:form>
+    <div class="container">
+        <div class="row mt-5 mb-5">
+            <div class="col-2"></div>
+            <div class="col border-1 p-5 bordeado">
+                <span style="color: red;"><form:errors path="post.*"/></span>
+                <form:form action="" modelAttribute="denuncia" method="post">
+                    <p style="color: white" class="col">
+                        <form:label path="detalles">Elige una opción:</form:label>
+                        <form:select class="form-select" path="tipoDenuncia">
+                            <option disabled selected value="">Selecciona una</option>
+                            <form:option value="1">Ofrece un servicio que es ilegal o no cumple con nuestras políticas.</form:option>
+                            <form:option value="2">Promociona otro servicio.</form:option>
+                            <form:option value="3">Tiene contenido ofensivo, obsceno o discriminatorio.</form:option>
+
+                        </form:select>
+                    </p>
+                    <p style="color: white" class="col">
+                        <form:label path="detalles">Detalles de la denuncia:</form:label>
+                        <form:textarea cssClass="form-control" path="detalles"/>
+                    </p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <input class="btn btn-danger me-md-2" type="submit" value="Enviar">
+                    </div>
+                </form:form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </div>
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-facebook-f"></i
+                ></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-twitter"></i
+                ></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                ><i class="fab fa-instagram"></i
+                ></a>
+
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" role="button"
+                ><i class="fab fa-google"></i
+                ></a>
+            </section>
+            <!-- Section: Social media -->
+            <div>
+                <!-- Section: Text -->
+                <div class="footer-widget-1">
+                    <p class="fs-6">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
+                        repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
+                        eum harum corrupti dicta, aliquam sequi voluptate quas.
+                    </p>
                 </div>
-                <div class="col-2"></div>
+                <!-- Section: Text -->
+                <div class="footer-widget-2"></div>
+                <!-- Section: Links -->
+                <div class="footer-widget-3">
+                    <!--Grid row-->
+                    <sec class="row">
+                        <!--Grid column-->
+                        <div>
+                            <h5 class="text-uppercase">Enlaces</h5>
+                            <ul class="list-unstyled mb-0">
+                                <li>
+                                    <a style="text-decoration: none" href="/politicas" class="text-white">Políticas de Privacidad</a>
+                                </li>
+                                <li>
+                                    <a style="text-decoration: none" href="/quienessomos" class="text-white">Quiénes Somos</a>
+                                </li>
+                                <li>
+                                    <a style="text-decoration: none" href="contacto" class="text-white">Contáctanos</a>
+                                </li>
+                                <li>
+                                    <a style="text-decoration: none" href="recuperarcontraseña" class="text-white">Recuperación de Contraseña</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--Grid column-->
+                        <!-- Copyright -->
+                        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                            SuperMaestros© 2021 Copyright:
+                            <a style="text-decoration: none" class="text-white " href="/">supermaestros.com</a>
+                        </div>
+                        <!-- Copyright -->
+                    </sec>
+                </div>
             </div>
         </div>
+    </footer>
 </body>
 </html>

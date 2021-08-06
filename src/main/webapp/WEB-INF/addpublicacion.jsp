@@ -48,6 +48,7 @@
                     <p class="col">
                         <form:label path="type_publication">Tipo de publicación:</form:label>
                         <form:select cssClass="form-control" path="type_publication">
+                            <option disabled selected value="">Selecciona una</option>
                             <form:option value="1">Quiero contratar a una persona</form:option>
                             <form:option value="2">Quiero trabajar</form:option>
                         </form:select>

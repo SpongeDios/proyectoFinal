@@ -29,7 +29,7 @@
     <div class="container">
         <div class="row mt-5 mb-5">
             <div class="col-2"></div>
-            <div class="formulario col mt-5 mb-5">
+            <div class="formulario col border-1 p-5 mr-3">
                 <h1>Editar Publicación</h1>
                 <span style="color: red;"><form:errors path="publication.*"/></span>
                 <form:form method="POST" action="" enctype="multipart/form-data" modelAttribute="publication" >
