@@ -9,8 +9,8 @@
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link rel="stylesheet" href="/css/allPublicaciones.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <title>Publicaciones</title>
     <script src="/js/backbutton.js"></script>
+    <title>Publicaciones</title>
 </head>
 <body>
 <header class="navbar p-2">
@@ -37,7 +37,7 @@
                     <th scope="col">Precio</th>
                     <th scope="col">Categoría</th>
                     <th scope="col">Tipo de publicación</th>
-                    <th scope="col">Acción | Estado</th>
+                    <th scope="col">Acciones</th>
                 </tr>
                 </thead>
                 <tbody class=tbody>
@@ -45,7 +45,7 @@
                     <c:forEach var="publicacion" items="${publicationList}">
                         <c:if test="${publicacion.estado == true}">
                             <tr>
-                                <th scope="row"><a class="link-light" href="/publicaciones/${publicacion.id}"><c:out value="${publicacion.title}"/></a></th>
+                                <th scope="row"><a style="text-decoration: none" class="link-dark" href="/publicaciones/${publicacion.id}"><c:out value="${publicacion.title}"/></a></th>
                                 <td>
                                     <a target="_blank" href="${publicacion.photo_publication}">
                                         <img src="${publicacion.photo_publication}" height="80px" width="120px">
@@ -58,8 +58,8 @@
                                     <c:if test="${publicacion.type_publication == 2}">Buscar trabajo</c:if>
                                 </td>
                                 <td>
-                                    <a class="btn btn-outline-warning" href="/publicaciones/${publicacion.id}/edit"><i class="bi bi-pencil-square"> Editar</i></a>
-                                    <a class="btn btn-outline-danger" href="/publicaciones/${publicacion.id}/delete"><i class="bi bi-trash-fill"> Eliminar</i></a>
+                                    <a class="btn btn-outline-warning" href="/publicaciones/${publicacion.id}/edit"><i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a class="btn btn-outline-danger" href="/publicaciones/${publicacion.id}/delete"><i class="bi bi-trash-fill"></i> Eliminar</a>
                                 </td>
                             </tr>
                         </c:if>

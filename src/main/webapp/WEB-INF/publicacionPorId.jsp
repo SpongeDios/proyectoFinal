@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link href="/css/publicacionPorId.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
@@ -58,8 +59,8 @@
                     </a>
                 </div>
             </div>
+        <c:if test="${user.id != publication.user.id && user != null}">
             <div class="p-5 bordeado">
-                <c:if test="${user.id != publication.user.id && user != null}">
                 <h2 class="">¿Quieres realizar una consulta?</h2>
                 <form:errors path="message.*"/>
                 <form:form action="/publicaciones/${publication.id}" method="post" modelAttribute="message">
@@ -87,19 +88,22 @@
                                         <p>
 
                                             <span style="color: red;"> Pregunta: </span> <c:out value="${messages.text}"/>
-                                            <a class="btn btn-danger" href="/denuncia/${messages.id}">Denunciar</a>
+<%--                                            <a class="btn btn-danger" href="/denuncia/${messages.id}">Denunciar</a>--%>
                                         </p>
                                         <p>
                                             <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
                                         </p>
                                     </c:if>
                                     <c:if test="${user.id == publication.user.id && messages.respuesta.id == null}">
-                                        <div class="d-flex justify-content-between">
+                                        <div>
                                             <p>
-                                                <c:out value="${messages.text}"/>
+                                                <span style="color: red;"> Pregunta: </span> <c:out value="${messages.text}"/>
+                                                <a class="btn btn-primary" href="/publicaciones/${messages.publication.id}/${messages.id}">Responder</a>
                                                 <a class="btn btn-danger" href="/denuncia/${messages.id}">Denunciar</a>
                                             </p>
-                                            <a class="btn btn-warning" href="/publicaciones/${messages.publication.id}/${messages.id}">responder</a>
+                                            <p>
+                                                <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
+                                            </p>
                                         </div>
                                     </c:if>
                                     <c:if test="${user.id == publication.user.id && messages.respuesta.id != null}">
@@ -119,8 +123,8 @@
                 </table>
             </div>
         <div class="dejarFeedback">
+            <c:if test="${user.id != publication.user.id && user != null}">
             <div class="bordeado p-5">
-                <c:if test="${user.id != publication.user.id && user != null}">
                     <h2>Dejar Feedback</h2>
                     <form:form method="POST" action="/publicaciones/${publication.id}/feedback" enctype="multipart/form-data" modelAttribute="feedback" >
                         <div class="rating">
@@ -182,17 +186,13 @@
                 </table>
             </div>
         </div>
-        <div class="botonSOS">
-            <c:out value="${publication.sos}"/>
+        <div class="botonSOS mt-5 mb-5 d-flex justify-content-center align-items-center">
+<%--            <c:out value="${publication.sos}"/>--%>
             <c:if test="${publication.sos == true}">
-                <a href="/sos/${publication.id}/addRemove">
-                    Desactivar
-                </a>
+                <a class="btn btn-danger" href="/sos/${publication.id}/addRemove"><i class="bi bi-alarm"></i> Desactivar SOS</a>
             </c:if>
             <c:if test="${publication.sos == false}">
-                <a href="/sos/${publication.id}/addRemove">
-                    Activar
-                </a>
+                <a class="btn btn-outline-danger" href="/sos/${publication.id}/addRemove"><i class="bi bi-alarm"></i> Activar SOS</a>
             </c:if>
         </div>
     </div>

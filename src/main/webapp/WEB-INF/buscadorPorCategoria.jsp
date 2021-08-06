@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    <title>Buscar por Categoría</title>
     <link rel="stylesheet" href="/css/allPublicaciones.css">
     <script src="/js/backbutton.js"></script>
+    <title>Buscar por Categoría</title>
 </head>
 <body>
     <header class="navbar p-2">
@@ -36,7 +37,6 @@
                     <li class="list-group-item">Descripción: <c:out value="${publicacion.description}"/></li>
                     <li class="list-group-item">Dirección: <c:out value="${publicacion.user.address.comuna.region.nameRegion} ${publicacion.user.address.comuna.nameComuna} ${publicacion.user.address.nameCalle}"/></li>
                     <li class="list-group-item">Precio: <c:out value="${publicacion.price}"/></li>
-<%--                    <li class="list-group-item">Visitar publicación: <a href="/publicaciones/${publicacion.id}">Link</a> </li>--%>
                     <a class="btn btn-primary" href="/publicaciones/${publicacion.id}">Ir a la publicación</a>
                 </ul>
                 <div class="mapouter col"><div class="gmap_canvas"><iframe width="100%" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=${publicacion.user.address.comuna.region.nameRegion}%20${publicacion.user.address.comuna.nameComuna}%20${publicacion.user.address.nameCalle}&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://123movies-to.org"></a><br><style>.mapouter{position:relative;text-align:right;height:300px;width:100%;}</style><a href="https://www.embedgooglemap.net"></a><style>.gmap_canvas {overflow:hidden;background:none!important;height:300px;width:100%;}</style></div></div>
