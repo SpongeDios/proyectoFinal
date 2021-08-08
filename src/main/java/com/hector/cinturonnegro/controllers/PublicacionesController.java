@@ -152,34 +152,18 @@ public class PublicacionesController {
             @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
-            Long userId = (Long) session.getAttribute("userid");
-            User user = userService.findById(userId);
-            List<Category> categories = categoryService.allData();
-            model.addAttribute("categories", categories);
-            model.addAttribute("user", user);
             return "addpublicacion.jsp";
         } else{
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
             int carpetaPubl = publicationService.allData().size() + 1;
-            String name = file.getOriginalFilename();
-            if (!file.isEmpty() && file.getSize() < 1048576) {
-                File directorio = new File("src/main/resources/static/archivos/" + user.getId() + "/" + carpetaPubl);//Reemplazar 1 por user.getId()
-                if(!directorio.exists()){
-                    directorio.mkdirs();
-                }
-                try {
-                    byte[] bytes = file.getBytes();
-                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
-                    stream.write(bytes);
-                    publication.setPhoto_publication("/archivos/" + user.getId() + "/" + carpetaPubl + "/" + name);
-                    stream.close();
-                    System.out.println("You successfully uploaded " + name + "!");
-                } catch (Exception e) {
-                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
-                }
-            } else {
-                System.out.println("You failed to upload " + name + " because the file was empty.");
+            String url ="img/"+user.getId()+"/"+carpetaPubl+"/";
+            try{
+                publicationService.setImage(user, file, url);
+                publication.setPhoto_publication(url+file.getOriginalFilename());
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                return "redirect:/error";
             }
             publication.setUser(user);
             publication.setAddress(user.getAddress());
@@ -227,44 +211,24 @@ public class PublicacionesController {
             @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
-            Long userId = (Long) session.getAttribute("userid");
-            User user = userService.findById(userId);
-            Publication p = publicationService.findById(idPublicacion);
-            List<Category> c = categoryService.allData();
-            model.addAttribute("p", p);
-            model.addAttribute("c", c);
-            model.addAttribute("user", user);
             return "editarPublicacion.jsp";
         }else{
             Long userId = (Long) session.getAttribute("userid");
             User user = userService.findById(userId);
             Publication p = publicationService.findById(idPublicacion);
-            List<Category> c = categoryService.allData();
             model.addAttribute("p", p);
-            model.addAttribute("c", c);
             p.setTitle(publication.getTitle());
             p.setDescription(publication.getDescription());
             p.setPrice(publication.getPrice());
             p.setType_publication(publication.getType_publication());
             p.setCategory(publication.getCategory());
-            String name = file.getOriginalFilename();
-            if (!file.isEmpty() && file.getSize() < 1048576) {
-                File directorio = new File("src/main/resources/static/archivos/" + user.getId() + "/" + p.getId());//Reemplazar 1 por user.getId()
-                if(!directorio.exists()){
-                    directorio.mkdirs();
-                }
-                try {
-                    byte[] bytes = file.getBytes();
-                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
-                    stream.write(bytes);
-                    p.setPhoto_publication("/archivos/" + user.getId() + "/" + p.getId() + "/" + name);
-                    stream.close();
-                    System.out.println("You successfully uploaded " + name + "!");
-                } catch (Exception e) {
-                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
-                }
-            } else {
-                System.out.println("You failed to upload " + name + " because the file was empty.");
+            String url ="img/"+user.getId()+"/"+p.getId()+"/";
+            try{
+                publicationService.setImage(user, file, url);
+                p.setPhoto_publication(url+file.getOriginalFilename());
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                return "redirect:/error";
             }
             publicationService.update(p);
             return "redirect:/publicaciones/"+idPublicacion;
@@ -292,9 +256,6 @@ public class PublicacionesController {
             }
         }
     }
-
-
-
 }
 
 

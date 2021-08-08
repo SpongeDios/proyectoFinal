@@ -73,32 +73,21 @@ public class UserController {
             FieldError error = new FieldError("email", "email", "El email " + user.getEmail() + " ya se encuentra registrado");
             result.addError(error);
             return "registration.jsp";
-        } else {
-            int userPhoto = userService.allData().size() + 1;
-            String name = file.getOriginalFilename();
-            if (!file.isEmpty() && file.getSize() < 1048576) {
-                File directorio = new File("src/main/resources/static/archivos/" + userPhoto + "/perfil");
-                if(!directorio.exists()){
-                    directorio.mkdirs();
-                }
-                try {
-                    byte[] bytes = file.getBytes();
-                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
-                    stream.write(bytes);
-                    user.setPhoto("/archivos/" + userPhoto + "/perfil" + "/" + name);
-                    stream.close();
-                    System.out.println("You successfully uploaded " + name + "!");
-                } catch (Exception e) {
-                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
-                }
-            } else {
-                System.out.println("You failed to upload " + name + " because the file was empty.");
-            }
-            Address address = new Address();
+        } else{
+            Address address = new Address(null, null);
             address.setNameCalle(user.getAddress().getNameCalle());
             address.setComuna(user.getAddress().getComuna());
             addressService.update(address);
             user.setAddress(address);
+            int carpetaUser = userService.allData().size()+1;
+            String url ="img/"+carpetaUser+"/perfil/";
+            try{
+                userService.setImage(file, url);
+                user.setPhoto(url+file.getOriginalFilename());
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                return "redirect:/error";
+            }
             User u = userService.registerUser(user);
             session.setAttribute("userid", u.getId());
             return "redirect:/";
@@ -201,15 +190,9 @@ public class UserController {
             BindingResult result,
             @PathVariable("idUser") Long idUser,
             Model model,
-            HttpSession session,
             @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
-            Long idUserLog = (Long) session.getAttribute("userid");
-            User userLog = userService.findById(idUserLog);
-            model.addAttribute("regiones", regionService.allData());
-            model.addAttribute("comunas", comunaService.allData());
-            model.addAttribute("user", userLog);
             return "editUser.jsp";
         }else{
             User userLog = userService.findById(idUser);
@@ -221,29 +204,19 @@ public class UserController {
             userLog.getAddress().setNameCalle(user.getAddress().getNameCalle());
             userLog.getAddress().setComuna(user.getAddress().getComuna());
             userLog.getAddress().getComuna().setRegion(user.getAddress().getComuna().getRegion());
-            String name = file.getOriginalFilename();
-            if (!file.isEmpty() && file.getSize() < 1048576) {
-                File directorio = new File("src/main/resources/static/archivos/" + userLog.getId() + "/perfil");
-                if(!directorio.exists()){
-                    directorio.mkdirs();
-                }
-                try {
-                    byte[] bytes = file.getBytes();
-                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
-                    stream.write(bytes);
-                    userLog.setPhoto("/archivos/" + userLog.getId() + "/perfil" + "/" + name);
-                    stream.close();
-                    System.out.println("You successfully uploaded " + name + "!");
-                } catch (Exception e) {
-                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
-                }
-            } else {
-                System.out.println("You failed to upload " + name + " because the file was empty.");
+            String url ="img/"+userLog.getId()+"/perfil/";
+            try{
+                userService.setImage(file, url);
+                userLog.setPhoto("img/"+userLog.getId()+"/perfil/"+file.getOriginalFilename());
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                return "redirect:/error";
             }
             userService.update(userLog);
             return "redirect:/perfil/"+idUser;
         }
     }
+
 
     /////////////////////////////////////////////////////
     ////////////////Banear/"Eliminar" cuenta/////////////

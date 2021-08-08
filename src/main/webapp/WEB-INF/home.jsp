@@ -27,7 +27,6 @@
                     </ul>
                 </div>
             </c:if>
-
             <c:if test="${user.id == null}">
                 <a style="text-decoration: none" class="link-light" class="btn btn-link" href="/login">Iniciar Sesión</a>
                 <a style="text-decoration: none" class="link-light" href="/registration">Registrarse</a>
