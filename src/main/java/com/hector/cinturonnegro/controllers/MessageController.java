@@ -96,7 +96,7 @@ public class MessageController {
                 message.setRespuesta(respuesta);
                 messageService.create(respuesta);
                 messageService.update(message);
-                return "redirect:/notificacion/"+publication.getId()+"/"+message.getUser().getId()+"/"+user.getId();
+                return "redirect:/notificacion/"+publication.getId()+"/"+message.getUser().getId()+"/"+user.getId()+"/"+message.getId();
             }
     }
 }
