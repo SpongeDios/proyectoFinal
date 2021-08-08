@@ -51,4 +51,7 @@ public class Message extends BaseModel{
     @OneToMany(mappedBy = "message", fetch = FetchType.LAZY)
     private List<Denuncia> denuncias;
 
+    @OneToMany(mappedBy = "message", fetch = FetchType.LAZY)
+    private List<Notificacion> notificaciones;
+
 }

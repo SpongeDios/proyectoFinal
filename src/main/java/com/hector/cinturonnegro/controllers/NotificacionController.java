@@ -3,6 +3,8 @@ package com.hector.cinturonnegro.controllers;
 import com.hector.cinturonnegro.models.Notificacion;
 import com.hector.cinturonnegro.models.Publication;
 import com.hector.cinturonnegro.models.User;
+import com.hector.cinturonnegro.models.Message;
+import com.hector.cinturonnegro.services.MessageService;
 import com.hector.cinturonnegro.services.NotificacionService;
 import com.hector.cinturonnegro.services.PublicationService;
 import com.hector.cinturonnegro.services.UserService;
@@ -20,11 +22,13 @@ public class NotificacionController {
     private final UserService userService;
     private final PublicationService publicationService;
     private final NotificacionService notificacionService;
+    private final MessageService messageService;
 
-    public NotificacionController(UserService userService, PublicationService publicationService, NotificacionService notificacionService) {
+    public NotificacionController(UserService userService, PublicationService publicationService, NotificacionService notificacionService, MessageService messageService) {
         this.userService = userService;
         this.publicationService = publicationService;
         this.notificacionService = notificacionService;
+        this.messageService = messageService;
     }
 
     @GetMapping("/perfil/notificaciones")
@@ -37,8 +41,6 @@ public class NotificacionController {
         model.addAttribute("notificaciones", user.getNotificacions());
         return "notificaciones.jsp";
     }
-
-
 
     @GetMapping("/notificacion/{idPublicacion}/{idUserLogueado}/{idUserEmisor}/{idMessage}")
     public String pushNotification(
@@ -54,9 +56,11 @@ public class NotificacionController {
         Publication publication = publicationService.findById(idPublicacion);
         User emisor = userService.findById(idUserEmisor);
         User user = userService.findById(idUserLogueado);
+        Message message = messageService.findById(idMessage);
         Notificacion notificacion = new Notificacion();
         notificacion.setUser(user);
         notificacion.setContenido("El usuario "+ emisor.getFirstName() + " "+ emisor.getLastName() + " ha escrito algo en tu publicacion "+ publication.getTitle());
+        notificacion.setMessage(message);
         notificacion.setPublication(publication);
         notificacionService.update(notificacion);
         return "redirect:/publicaciones/"+idPublicacion+"#"+idMessage;
@@ -68,8 +72,17 @@ public class NotificacionController {
     ){
         Notificacion notificacion = notificacionService.findById(idNotificacion);
         notificacionService.delete(notificacion.getId());
-        return "redirect:/publicaciones/"+notificacion.getPublication().getId();
+        return "redirect:/publicaciones/"+notificacion.getPublication().getId()+"#"+notificacion.getMessage().getId();
     }
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/notificaciones/leer")
     @ResponseBody
