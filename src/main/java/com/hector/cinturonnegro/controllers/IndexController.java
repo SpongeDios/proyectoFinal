@@ -95,7 +95,6 @@ public class IndexController {
     public String buscador(
             @PathVariable(value = "region", required = false) String region,
             @PathVariable(value = "comuna", required = false) String comuna,
-            HttpSession session,
             Model model
     ){
         List<Publication> publicacionPorComuna = publicationService.publicacionesPorComuna(comuna);
