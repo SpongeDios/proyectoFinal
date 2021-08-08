@@ -195,9 +195,10 @@ public class PublicacionesController {
     @GetMapping("/publicaciones/{idPublicacion}/edit")
     public String formPublicacion(
             @PathVariable("idPublicacion") Long idPublicacion,
+            @ModelAttribute("publication") Publication publication,
             HttpSession session,
-            Model model,
-            @ModelAttribute("publication") Publication publication
+            Model model
+
     ){
         if(session.getAttribute("userid") == null){
             return "redirect:/";
@@ -211,6 +212,7 @@ public class PublicacionesController {
         }else{
             model.addAttribute("p", p);
             model.addAttribute("c", c);
+            model.addAttribute("user", user);
             return "editarPublicacion.jsp";
         }
     }
@@ -225,10 +227,13 @@ public class PublicacionesController {
             @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
+            Long userId = (Long) session.getAttribute("userid");
+            User user = userService.findById(userId);
             Publication p = publicationService.findById(idPublicacion);
             List<Category> c = categoryService.allData();
             model.addAttribute("p", p);
             model.addAttribute("c", c);
+            model.addAttribute("user", user);
             return "editarPublicacion.jsp";
         }else{
             Long userId = (Long) session.getAttribute("userid");

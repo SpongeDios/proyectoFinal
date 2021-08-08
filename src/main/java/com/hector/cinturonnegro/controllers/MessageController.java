@@ -67,6 +67,7 @@ public class MessageController {
         if (user.getId() == publication.getUser().getId()){
             Message message = messageService.findById(idMessage);
             model.addAttribute("message", message);
+            model.addAttribute("user", user);
             return "respuesta.jsp";
         }
         else {
