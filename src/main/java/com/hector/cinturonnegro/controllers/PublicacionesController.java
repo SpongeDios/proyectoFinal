@@ -211,6 +211,13 @@ public class PublicacionesController {
             @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
+            Long idUser = (Long) session.getAttribute("userid");
+            User user = userService.findById(idUser);
+            Publication p = publicationService.findById(idPublicacion);
+            List<Category> c = categoryService.allData();
+            model.addAttribute("p", p);
+            model.addAttribute("c", c);
+            model.addAttribute("user", user);
             return "editarPublicacion.jsp";
         }else{
             Long userId = (Long) session.getAttribute("userid");

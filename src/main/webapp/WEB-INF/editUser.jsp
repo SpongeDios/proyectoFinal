@@ -44,17 +44,17 @@
                     <form:input type="hidden" path="password" value="${user.password}"/>
                     <form:input type="hidden" path="passwordConfirmation" value="${user.passwordConfirmation}"/>
 
-                    <p class="form-group col">
+                    <p style="color: black;" class="form-group col">
                         <form:label path="firstName">Nombre: </form:label>
                         <form:input cssClass="form-control" path="firstName"/>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black;" class="col">
                         <form:label path="lastName">Apellido: </form:label>
                         <form:input cssClass="form-control" path="lastName"/>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black;" class="col">
                         <form:label path="address.comuna.region">Región: </form:label>
                         <form:select cssClass="form-control" path="address.comuna.region">
                             <c:forEach var="region" items="${regiones}">
@@ -63,7 +63,7 @@
                         </form:select>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black;" class="col">
                         <form:label path="address.comuna">Comuna: </form:label>
                         <form:select cssClass="form-control" path="address.comuna">
                             <c:forEach var="comuna" items="${comunas}">
@@ -72,17 +72,17 @@
                         </form:select>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black;" class="col">
                         <form:label path="address.nameCalle">Calle: </form:label>
                         <form:input cssClass="form-control" path="address.nameCalle"/>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black;" class="col">
                         <form:label path="phone">Celular: </form:label>
                         <form:input cssClass="form-control" path="phone"/>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black;" class="col">
                         <form:label path="rol">Rol: </form:label>
                         <form:select cssClass="form-control" path="rol">
                             <option disabled selected value="">Selecciona una</option>
@@ -92,7 +92,7 @@
                     </p>
 
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Subir una Foto</label>
+                        <label style="color: black;" for="formFile" class="form-label">Subir una Foto</label>
                         <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
                     </div>
 

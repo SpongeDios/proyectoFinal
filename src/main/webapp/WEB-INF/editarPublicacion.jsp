@@ -35,22 +35,22 @@
                 <form:form method="POST" action="" enctype="multipart/form-data" modelAttribute="publication" >
                     <input type="hidden" name="_method" value="PUT">
 
-                    <p class="form-group col">
+                    <p style="color: black" class="form-group col">
                     <form:label path="title">Título: </form:label>
                     <form:input value="${p.title}" cssClass="form-control" path="title"/>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black" class="col">
                     <form:label path="description">Descripción:</form:label>
                     <form:input value="${p.description}" cssClass="form-control" path="description"/>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black" class="col">
                     <form:label path="price">Precio estimado:</form:label>
                     <form:input type="number" value="${p.price}" cssClass="form-control" path="price"/>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black" class="col">
                         <form:label path="type_publication">Tipo de publicación:</form:label>
                         <form:select cssClass="form-control" path="type_publication">
                             <form:option value="1">Quiero contratar a una persona</form:option>
@@ -58,7 +58,7 @@
                         </form:select>
                     </p>
 
-                    <p class="col">
+                    <p style="color: black" class="col">
                         <form:label path="category">Categoría:</form:label>
                         <form:select class="form-select" path="category">
                             <c:forEach items="${c}" var="category">
@@ -68,7 +68,7 @@
                     </p>
 
                     <div class="mb-3">
-                        <label for="formFile" class="form-label">Cambiar Foto</label>
+                        <label style="color: black" for="formFile" class="form-label">Cambiar Foto</label>
                         <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

@@ -190,9 +190,15 @@ public class UserController {
             BindingResult result,
             @PathVariable("idUser") Long idUser,
             Model model,
-            @RequestParam("file") MultipartFile file
+            @RequestParam("file") MultipartFile file,
+            HttpSession session
     ){
         if(result.hasErrors()){
+            Long idUserLog = (Long) session.getAttribute("userid");
+            User userLog = userService.findById(idUserLog);
+            model.addAttribute("regiones", regionService.allData());
+            model.addAttribute("comunas", comunaService.allData());
+            model.addAttribute("user", userLog);
             return "editUser.jsp";
         }else{
             User userLog = userService.findById(idUser);
