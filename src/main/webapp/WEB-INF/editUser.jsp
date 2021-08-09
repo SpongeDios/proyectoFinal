@@ -92,6 +92,7 @@
                         </p>
                     </c:if>
                     <c:if test="${user.rol == 3}">
+                        <p style="color: black;" class="col">
                         <form:label path="rol">Rol: </form:label>
                         <form:select cssClass="form-control" path="rol">
                             <option disabled selected value="">Selecciona una</option>
@@ -99,6 +100,7 @@
                             <form:option value="2">Contratar Servicios</form:option>
                             <form:option value="3">Administrador</form:option>
                         </form:select>
+                        </p>
                     </c:if>
 
                     <div class="mb-3">
