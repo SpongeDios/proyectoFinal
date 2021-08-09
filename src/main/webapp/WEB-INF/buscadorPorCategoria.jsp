@@ -29,7 +29,6 @@
                 <c:if test="${user.id != null }">
                     <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
                 </c:if>
-
             </nav>
     </header>
     <div class="container mb-5 mt-5">
