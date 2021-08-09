@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,5 +38,8 @@ public class Feedback extends BaseModel{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "publication")
     private Publication publication;
+
+    @OneToMany(mappedBy = "feedback", fetch = FetchType.LAZY)
+    private List<Notificacion> notificaciones;
 
 }
