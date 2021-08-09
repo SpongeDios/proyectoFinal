@@ -19,7 +19,7 @@
                 <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/archivos/default/default.png" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}" /> </a>
             </c:if>
             <c:if test="${user.photo != null}">
-                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
+                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/${user.photo}" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
             </c:if>
             <c:if test="${user.rol == 3 }">
                 <a style="text-decoration: none" class="link-light" href="/admin">Administrar</a>
@@ -48,13 +48,13 @@
                     </ul>
                 </div>
                 <div class="col mx-4 imagen">
-                    <a target="_blank" href="${publication.photo_publication}">
+                    <a target="_blank" href="/${publication.photo_publication}">
 
                         <c:if test="${publication.photo_publication == null}">
                             <img src="/archivos/default/default.png" height="320px" width="500px">
                         </c:if>
                         <c:if test="${publication.photo_publication != null}">
-                            <img src="${publication.photo_publication}" height="320px" width="500px"/>
+                            <img src="/${publication.photo_publication}" height="320px" width="500px"/>
                         </c:if>
                     </a>
                 </div>

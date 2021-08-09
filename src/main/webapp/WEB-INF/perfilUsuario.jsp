@@ -34,7 +34,7 @@
         </div>
         <div class="row mb-5">
             <div class="col mt-5 mb-5" >
-                <img src="${user.photo}" height="320px" width="500px" class="img-thumbnail">
+                <img src="/${user.photo}" height="320px" width="500px" class="img-thumbnail">
             </div>
             <div class="col mt-5 mb-5 d-flex justify-content-center align-items-center bordeado">
                 <ul class="list-group">

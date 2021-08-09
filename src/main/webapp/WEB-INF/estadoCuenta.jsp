@@ -34,7 +34,7 @@
         </div>
         <div class="row mb-5">
             <div class="col mt-5 mb-5" >
-                <img src="${user.photo}" height="320px" width="500px" class="img-thumbnail">
+                <img src="/${user.photo}" height="320px" width="500px" class="img-thumbnail">
             </div>
             <div class="col mt-5 mb-5 d-flex justify-content-center align-items-center bordeado">
                 <ul class="list-group">
@@ -51,10 +51,10 @@
                     <li class="list-group-item">Comuna: <c:out value="${user.address.comuna.nameComuna}"/></li>
                     <li class="list-group-item">Región: <c:out value="${user.address.comuna.region.nameRegion}"/></li>
                         <c:if test="${user.available == false}">
-                        <a class="btn btn-danger" href="/${user.id}/estadoCuenta">Desbanear</a>
+                        <a class="btn btn-danger" href="/${user.id}/estadoCuenta">Habilitar Cuenta</a>
                         </c:if>
                         <c:if test="${user.available == true}">
-                            <a class="btn btn-danger" href="/${user.id}/estadoCuenta">Banear</a>
+                            <a class="btn btn-danger" href="/${user.id}/estadoCuenta">Deshabilitar Cuenta</a>
                         </c:if>
                 </ul>
             </div>

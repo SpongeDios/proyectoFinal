@@ -29,7 +29,7 @@
     <div class="container">
         <div class="col mt-5 text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             <h3 class="fs-2">
-                <img src="${user.photo}" width="50px" height="50px">
+                <img src="/${user.photo}" width="50px" height="50px">
                 <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/>
             </h3>
         </div>
@@ -81,15 +81,25 @@
                         <form:label path="phone">Celular: </form:label>
                         <form:input cssClass="form-control" path="phone"/>
                     </p>
-
-                    <p style="color: black;" class="col">
+                    <c:if test="${user.rol != 3}">
+                        <p style="color: black;" class="col">
+                            <form:label path="rol">Rol: </form:label>
+                            <form:select cssClass="form-control" path="rol">
+                                <option disabled selected value="">Selecciona una</option>
+                                <form:option value="1">Prestar Servicios</form:option>
+                                <form:option value="2">Contratar Servicios</form:option>
+                            </form:select>
+                        </p>
+                    </c:if>
+                    <c:if test="${user.rol == 3}">
                         <form:label path="rol">Rol: </form:label>
                         <form:select cssClass="form-control" path="rol">
                             <option disabled selected value="">Selecciona una</option>
                             <form:option value="1">Prestar Servicios</form:option>
                             <form:option value="2">Contratar Servicios</form:option>
+                            <form:option value="3">Administrador</form:option>
                         </form:select>
-                    </p>
+                    </c:if>
 
                     <div class="mb-3">
                         <label style="color: black;" for="formFile" class="form-label">Subir una Foto</label>

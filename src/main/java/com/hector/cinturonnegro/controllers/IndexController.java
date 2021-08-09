@@ -108,12 +108,23 @@ public class IndexController {
     @GetMapping("buscador/categoria/{idCategoria}")
     public String buscadorCategoria(
             @PathVariable("idCategoria") Long idCategoria,
+            HttpSession session,
             Model model
     ){
-        Category category = categoryService.findById(idCategoria);
-        List<Publication> publicacionesPorCategoria = publicationService.publicacionesPorCategoria(category);
-        model.addAttribute("publicacionesPorCategoria", publicacionesPorCategoria);
-        return "buscadorPorCategoria.jsp";
+        if (session.getAttribute("userid") == null) {
+            Category category = categoryService.findById(idCategoria);
+            List<Publication> publicacionesPorCategoria = publicationService.publicacionesPorCategoria(category);
+            model.addAttribute("publicacionesPorCategoria", publicacionesPorCategoria);
+            return "buscadorPorCategoria.jsp";
+        }else{
+            Long userId = (Long) session.getAttribute("userid");
+            User user = userService.findById(userId);
+            Category category = categoryService.findById(idCategoria);
+            List<Publication> publicacionesPorCategoria = publicationService.publicacionesPorCategoria(category);
+            model.addAttribute("publicacionesPorCategoria", publicacionesPorCategoria);
+            model.addAttribute("user",user);
+            return "buscadorPorCategoria.jsp";
+        }
     }
 
     @GetMapping("buscando")
@@ -121,49 +132,101 @@ public class IndexController {
             @RequestParam(value = "idCategoria", required = false) Long idCategoria,
             @RequestParam(value = "idRegion", required = false) Long idRegion,
             @RequestParam(value = "idComuna", required = false) Long idComuna,
+            HttpSession session,
             Model model
     ){
-        if(idCategoria == null && idRegion != null && idComuna != null){
-            List<Publication> publicaciones = publicationService.publicacionesPorComuna(idComuna);
-            model.addAttribute("publicaciones", publicaciones);
-            return "buscadorMaximo.jsp";
-        }
-        if(idCategoria == null && idRegion != null && idComuna == null){
-            List<Publication> publicaciones = publicationService.ouroHenrry(idRegion);
-            model.addAttribute("publicaciones", publicaciones);
-            return "buscadorMaximo.jsp";
-        }
-        if(idCategoria != null && idRegion == null && idComuna == null){
-            Category categoria = categoryService.findById(idCategoria);
-            List<Publication> publicaciones = publicationService.publicacionesPorCategoria(categoria);
-            model.addAttribute("publicacionesPorCategoria", publicaciones);
-            return "buscadorPorCategoria.jsp";
-        }
-        if(idCategoria != null && idRegion != null && idComuna == null){
-            Category categoria = categoryService.findById(idCategoria);
-            List<Publication> publicacionesRes = publicationService.ouroHenrry(idRegion);
-            List<Publication> publicacionesPorCategoriaYPorRegion = new ArrayList<>();
-            for (Publication publication: publicacionesRes) {
-                if(publication.getCategory() == categoria){
-                    publicacionesPorCategoriaYPorRegion.add(publication);
-                }
+        if (session.getAttribute("userid") == null) {
+            if (idCategoria == null && idRegion != null && idComuna != null) {
+                List<Publication> publicaciones = publicationService.publicacionesPorComuna(idComuna);
+                model.addAttribute("publicaciones", publicaciones);
+                return "buscadorMaximo.jsp";
             }
-            model.addAttribute("publicaciones", publicacionesPorCategoriaYPorRegion);
-            return "buscadorMaximo.jsp";
-        }
-        if(idCategoria != null && idRegion != null && idComuna != null){
-            Category categoria = categoryService.findById(idCategoria);
-            List<Publication> publicacionesCom = publicationService.publicacionesPorComuna(idComuna);
-            List<Publication> publicacionesPorCategoriaYPorComuna = new ArrayList<>();
-            for(Publication publication: publicacionesCom){
-                if(publication.getCategory() == categoria){
-                    publicacionesPorCategoriaYPorComuna.add(publication);
-                }
+            if (idCategoria == null && idRegion != null && idComuna == null) {
+                List<Publication> publicaciones = publicationService.ouroHenrry(idRegion);
+                model.addAttribute("publicaciones", publicaciones);
+                return "buscadorMaximo.jsp";
             }
-            model.addAttribute("publicaciones", publicacionesPorCategoriaYPorComuna);
-            return "buscadorMaximo.jsp";
+            if (idCategoria != null && idRegion == null && idComuna == null) {
+                Category categoria = categoryService.findById(idCategoria);
+                List<Publication> publicaciones = publicationService.publicacionesPorCategoria(categoria);
+                model.addAttribute("publicacionesPorCategoria", publicaciones);
+                return "buscadorPorCategoria.jsp";
+            }
+            if (idCategoria != null && idRegion != null && idComuna == null) {
+                Category categoria = categoryService.findById(idCategoria);
+                List<Publication> publicacionesRes = publicationService.ouroHenrry(idRegion);
+                List<Publication> publicacionesPorCategoriaYPorRegion = new ArrayList<>();
+                for (Publication publication : publicacionesRes) {
+                    if (publication.getCategory() == categoria) {
+                        publicacionesPorCategoriaYPorRegion.add(publication);
+                    }
+                }
+                model.addAttribute("publicaciones", publicacionesPorCategoriaYPorRegion);
+                return "buscadorMaximo.jsp";
+            }
+            if (idCategoria != null && idRegion != null && idComuna != null) {
+                Category categoria = categoryService.findById(idCategoria);
+                List<Publication> publicacionesCom = publicationService.publicacionesPorComuna(idComuna);
+                List<Publication> publicacionesPorCategoriaYPorComuna = new ArrayList<>();
+                for (Publication publication : publicacionesCom) {
+                    if (publication.getCategory() == categoria) {
+                        publicacionesPorCategoriaYPorComuna.add(publication);
+                    }
+                }
+                model.addAttribute("publicaciones", publicacionesPorCategoriaYPorComuna);
+                return "buscadorMaximo.jsp";
+            }
+            return "redirect:/";
+        }else {
+            Long userId = (Long) session.getAttribute("userid");
+            User user = userService.findById(userId);
+            if (idCategoria == null && idRegion != null && idComuna != null) {
+                List<Publication> publicaciones = publicationService.publicacionesPorComuna(idComuna);
+                model.addAttribute("publicaciones", publicaciones);
+                model.addAttribute("user",user);
+                return "buscadorMaximo.jsp";
+            }
+            if (idCategoria == null && idRegion != null && idComuna == null) {
+                List<Publication> publicaciones = publicationService.ouroHenrry(idRegion);
+                model.addAttribute("publicaciones", publicaciones);
+                model.addAttribute("user",user);
+                return "buscadorMaximo.jsp";
+            }
+            if (idCategoria != null && idRegion == null && idComuna == null) {
+                Category categoria = categoryService.findById(idCategoria);
+                List<Publication> publicaciones = publicationService.publicacionesPorCategoria(categoria);
+                model.addAttribute("publicacionesPorCategoria", publicaciones);
+                model.addAttribute("user",user);
+                return "buscadorPorCategoria.jsp";
+            }
+            if (idCategoria != null && idRegion != null && idComuna == null) {
+                Category categoria = categoryService.findById(idCategoria);
+                List<Publication> publicacionesRes = publicationService.ouroHenrry(idRegion);
+                List<Publication> publicacionesPorCategoriaYPorRegion = new ArrayList<>();
+                for (Publication publication : publicacionesRes) {
+                    if (publication.getCategory() == categoria) {
+                        publicacionesPorCategoriaYPorRegion.add(publication);
+                    }
+                }
+                model.addAttribute("publicaciones", publicacionesPorCategoriaYPorRegion);
+                model.addAttribute("user",user);
+                return "buscadorMaximo.jsp";
+            }
+            if (idCategoria != null && idRegion != null && idComuna != null) {
+                Category categoria = categoryService.findById(idCategoria);
+                List<Publication> publicacionesCom = publicationService.publicacionesPorComuna(idComuna);
+                List<Publication> publicacionesPorCategoriaYPorComuna = new ArrayList<>();
+                for (Publication publication : publicacionesCom) {
+                    if (publication.getCategory() == categoria) {
+                        publicacionesPorCategoriaYPorComuna.add(publication);
+                    }
+                }
+                model.addAttribute("publicaciones", publicacionesPorCategoriaYPorComuna);
+                model.addAttribute("user",user);
+                return "buscadorMaximo.jsp";
+            }
+            return "redirect:/";
         }
-        return "redirect:/";
     }
 
 
