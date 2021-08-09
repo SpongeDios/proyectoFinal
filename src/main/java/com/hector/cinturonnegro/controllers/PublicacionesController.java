@@ -10,9 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.List;
 
 @Controller
@@ -152,6 +149,11 @@ public class PublicacionesController {
             @RequestParam("file") MultipartFile file
     ){
         if(result.hasErrors()){
+            Long userId = (Long) session.getAttribute("userid");
+            User user = userService.findById(userId);
+            List<Category> categories = categoryService.allData();
+            model.addAttribute("categories", categories);
+            model.addAttribute("user", user);
             return "addpublicacion.jsp";
         } else{
             Long userId = (Long) session.getAttribute("userid");
