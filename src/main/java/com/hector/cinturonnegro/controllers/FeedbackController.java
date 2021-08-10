@@ -44,24 +44,13 @@ public class FeedbackController {
             feedbackService.create(feedback);
             feedback.setUser(user);
             feedback.setPublication(publication);
-            String name = file.getOriginalFilename();
-            if (!file.isEmpty() && file.getSize() < 1048576) {
-                File directorio = new File("src/main/resources/static/archivos/" + publication.getUser().getId() + "/" + publication.getId() + "/feedbacks");
-                if(!directorio.exists()){
-                    directorio.mkdirs();
-                }
-                try {
-                    byte[] bytes = file.getBytes();
-                    BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(directorio.getAbsolutePath()+"/"+name)));
-                    stream.write(bytes);
-                    feedback.setPhoto_feedback("/archivos/" + publication.getUser().getId() + "/" + publication.getId() + "/feedbacks/" + name);
-                    stream.close();
-                    System.out.println("You successfully uploaded " + name + "!");
-                } catch (Exception e) {
-                    System.out.println("You failed to upload " + name + " => " + e.getMessage());
-                }
-            } else {
-                System.out.println("You failed to upload " + name + " because the file was empty.");
+            String url ="img/"+publication.getUser().getId()+"/"+publication.getId()+"/feedbacks/";
+            try{
+                feedbackService.setImage(file, url);
+                feedback.setPhoto_feedback(url+file.getOriginalFilename());
+            }catch (Exception e){
+                System.out.println(e.getMessage());
+                return "redirect:/error";
             }
             feedbackService.create(feedback);
             return "redirect:/notificacion/feedback/"+publication.getId()+"/"+publication.getUser().getId()+"/"+feedback.getUser().getId()+"/"+feedback.getId();

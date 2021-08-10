@@ -175,7 +175,7 @@
                                         Comentario: <c:out value="${feedback.comment}"/>
                                     </p>
                                     <p>
-                                        <img src="${feedback.photo_feedback}" width="200px" height="100px">
+                                        <img src="/${feedback.photo_feedback}" width="200px" height="100px">
                                     </p>
 
                                 </div>
