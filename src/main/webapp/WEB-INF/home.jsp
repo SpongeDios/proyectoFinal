@@ -24,6 +24,7 @@
                             <li><a class="dropdown-item" href="/notificacion/${notificacion.id}/"> <c:out value="${notificacion.contenido}"/> </a></li>
                         </c:forEach>
                     </ul>
+
                 </div>
             </c:if>
             <c:if test="${user.id == null}">
