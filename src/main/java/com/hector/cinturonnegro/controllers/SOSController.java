@@ -29,6 +29,8 @@ public class SOSController {
             HttpSession session,
             Model model
     ){
+        Long userId = (Long) session.getAttribute("userid");
+        User user = userService.findById(userId);
         List<Publication> publicacionesEstadotrue = publicationService.publicacionesTrue();
         List<Publication> publicacionesSosTrue = new ArrayList<>();
         for (Publication publication : publicacionesEstadotrue) {
@@ -37,6 +39,7 @@ public class SOSController {
             }
         }
         model.addAttribute("publicacionesSOS", publicacionesSosTrue);
+        model.addAttribute("user", user);
         return "sos.jsp";
     }
 
