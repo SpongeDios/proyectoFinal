@@ -23,7 +23,7 @@
             <div class="col-2"></div>
             <div class="col border-1 p-5 mr-3">
                 <p><form:errors path="user.*"/></p>
-                <h1>Registrando al socio</h1>
+                <h1>Registro</h1>
                 <form:form method="POST" action="" cssClass="form" enctype="multipart/form-data" modelAttribute="user">
 
                     <p class="form-group">
@@ -62,7 +62,7 @@
                     </p>
                     <c:if test="${userList.size() != 0}">
                         <p class="form-group">
-                            <form:label path="rol">Rol: </form:label>
+                            <form:label path="rol">¿Que quieres hacer?: </form:label>
                             <form:select cssClass="form-control" path="rol">
                                 <option disabled selected value="">Selecciona una</option>
                                 <form:option value="1">Prestar Servicios</form:option>
@@ -72,7 +72,7 @@
                     </c:if>
                     <c:if test="${userList.size() == 0}">
                         <p class="form-group">
-                            <form:label path="rol">Rol: </form:label>
+                            <form:label path="rol">¿Que quieres hacer?: </form:label>
                             <form:select cssClass="form-control" path="rol">
                                 <option disabled selected value="">Selecciona una</option>
                                 <form:option value="1">Prestar Servicios</form:option>
