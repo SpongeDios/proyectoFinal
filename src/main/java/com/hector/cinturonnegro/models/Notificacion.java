@@ -27,5 +27,10 @@ public class Notificacion extends BaseModel {
     @JoinColumn(name = "message")
     private Message message;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "feedback")
+    private Feedback feedback;
+
+
 
 }

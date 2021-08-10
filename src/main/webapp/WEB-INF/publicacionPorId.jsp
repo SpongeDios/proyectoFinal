@@ -162,7 +162,7 @@
                 <table class="table table-dark table-striped">
                     <tbody>
                     <c:forEach items="${publication.feedback}" var="feedback">
-                        <tr>
+                        <tr id="feedback${feedback.id}">
                             <th><c:out value="${feedback.user.firstName}"/> <c:out value="${feedback.user.lastName}"/> </th>
                         </tr>
                         <tr>

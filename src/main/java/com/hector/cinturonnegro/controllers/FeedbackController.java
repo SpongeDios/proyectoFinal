@@ -63,9 +63,10 @@ public class FeedbackController {
             } else {
                 System.out.println("You failed to upload " + name + " because the file was empty.");
             }
-
             feedbackService.create(feedback);
-            return "redirect:/notificacion/"+publication.getId()+"/"+publication.getUser().getId()+"/"+user.getId();
+            return "redirect:/notificacion/feedback/"+publication.getId()+"/"+publication.getUser().getId()+"/"+feedback.getUser().getId()+"/"+feedback.getId();
+
+
         }
 
     }
