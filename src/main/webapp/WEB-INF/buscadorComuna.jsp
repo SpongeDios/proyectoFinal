@@ -51,22 +51,12 @@
             <!-- Section: Social media -->
             <section class="mb-4">
                 <!-- Facebook -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+                <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/SuperMaestros-153113033550715" target="_blank" role="button"
                 ><i class="fab fa-facebook-f"></i
                 ></a>
 
-                <!-- Twitter -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                ><i class="fab fa-twitter"></i
-                ></a>
-
-                <!-- Instagram -->
-                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
-                ><i class="fab fa-instagram"></i
-                ></a>
-
                 <!-- Google -->
-                <a class="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" role="button"
+                <a class="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" role="button"
                 ><i class="fab fa-google"></i
                 ></a>
             </section>
@@ -74,11 +64,7 @@
             <div>
                 <!-- Section: Text -->
                 <div class="footer-widget-1">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt distinctio earum
-                        repellat quaerat voluptatibus placeat nam, commodi optio pariatur est quia magnam
-                        eum harum corrupti dicta, aliquam sequi voluptate quas.
-                    </p>
+                    <p class="fs-6"></p>
                 </div>
                 <!-- Section: Text -->
                 <div class="footer-widget-2"></div>
@@ -108,7 +94,7 @@
                         <!-- Copyright -->
                         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                             SuperMaestros© 2021 Copyright:
-                            <a style="text-decoration: none" class="text-white" href="/">supermaestros.com</a>
+                            <a style="text-decoration: none" class="text-white " href="/">supermaestros.com</a>
                         </div>
                         <!-- Copyright -->
                     </sec>
