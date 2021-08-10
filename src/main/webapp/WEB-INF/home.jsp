@@ -41,14 +41,6 @@
             </c:if>
         </nav>
     </header>
-    <div class="container">
-        <div class="row">
-            <ul class="col">
-                <c:forEach var="region" items="${regiones}">
-                    <li><a style="text-decoration: none" class="link-light" href="/buscador/${region.nameRegion}"><c:out value="${region.nameRegion}"/></a></li>
-                </c:forEach>
-            </ul>
-        </div>
         <div class="row mt-5 mb-5">
             <div class="col-lg-4 col-sm-12"></div>
             <div class="col">

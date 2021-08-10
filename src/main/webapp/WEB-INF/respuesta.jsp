@@ -60,7 +60,6 @@
                 <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/SuperMaestros-153113033550715" target="_blank" role="button"
                 ><i class="fab fa-facebook-f"></i
                 ></a>
-
                 <!-- Google -->
                 <a class="btn btn-outline-light btn-floating m-1" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" role="button"
                 ><i class="fab fa-google"></i

@@ -42,6 +42,7 @@
             <div class="col-lg-4 col-sm-12"></div>
         </div>
         </div>
+        <div class="agrandar"></div>
     </div>
     <footer class="bg-dark text-center text-white">
         <!-- Grid container -->
