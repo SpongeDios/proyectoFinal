@@ -41,38 +41,40 @@
             </c:if>
         </nav>
     </header>
-        <div class="row mt-5 mb-5">
-            <div class="col-lg-4 col-sm-12"></div>
-            <div class="col">
-                <form method="get" action="/buscando" class="col align-self-center">
-                    <h3 class="fw-bolder" style="text-align: center">Buscar publicaciones</h3>
-                    <label class="m-2" for="categoria"> Categoría: </label>
-                    <select id="categoria" class="form-select" aria-label="Default select example" name="idCategoria">
-                        <option selected></option>
-                        <c:forEach var="categoria" items="${categorias}">
-                            <option value="${categoria.id}"> <c:out value="${categoria.name}"/></option>
-                        </c:forEach>
-                    </select>
+        <div class="container">
+            <div class="row mt-5 mb-5">
+                <div class="col-lg-4 col-sm-12"></div>
+                <div class="col">
+                    <form method="get" action="/buscando" class="col align-self-center">
+                        <h3 class="fw-bolder" style="text-align: center">Buscar publicaciones</h3>
+                        <label class="m-2" for="categoria"> Categoría: </label>
+                        <select id="categoria" class="form-select" aria-label="Default select example" name="idCategoria">
+                            <option selected></option>
+                            <c:forEach var="categoria" items="${categorias}">
+                                <option value="${categoria.id}"> <c:out value="${categoria.name}"/></option>
+                            </c:forEach>
+                        </select>
 
-                    <label class="m-2" for="region"> Región: </label>
-                    <select id="region" class="form-select" aria-label="Default select example" name="idRegion">
-                        <option selected value=""></option>
-                        <c:forEach var="region" items="${regiones}">
-                            <option value="${region.id}"> <c:out value="${region.nameRegion}"/></option>
-                        </c:forEach>
-                    </select>
+                        <label class="m-2" for="region"> Región: </label>
+                        <select id="region" class="form-select" aria-label="Default select example" name="idRegion">
+                            <option selected value=""></option>
+                            <c:forEach var="region" items="${regiones}">
+                                <option value="${region.id}"> <c:out value="${region.nameRegion}"/></option>
+                            </c:forEach>
+                        </select>
 
-                    <label class="m-2" for="comunas"> Comunas: </label>
-                    <select id="comunas" class="form-select" aria-label="Default select example" name="idComuna">
-                        <option selected value=""></option>
-                    </select>
-                    <br>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-light me-md-2" type="submit">Buscar</button>
-                    </div>
-                </form>
+                        <label class="m-2" for="comunas"> Comunas: </label>
+                        <select id="comunas" class="form-select" aria-label="Default select example" name="idComuna">
+                            <option selected value=""></option>
+                        </select>
+                        <br>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-light me-md-2" type="submit">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-4 col-sm-12"></div>
             </div>
-            <div class="col-lg-4 col-sm-12"></div>
         </div>
     </div>
     <div class="container">
