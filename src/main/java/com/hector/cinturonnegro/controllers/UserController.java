@@ -63,15 +63,20 @@ public class UserController {
             @Valid @ModelAttribute("user") User user,
             BindingResult result,
             HttpSession session,
-            @RequestParam("file") MultipartFile file
+            @RequestParam("file") MultipartFile file,
+            Model model
     ) {
         userValidator.validate(user, result);
         if (result.hasErrors()) {
+            model.addAttribute("regiones", regionService.allData());
+            model.addAttribute("comunas", comunaService.allData());
             return "registration.jsp";
         }
         if (userService.emailExist(user.getEmail())) {
             FieldError error = new FieldError("email", "email", "El email " + user.getEmail() + " ya se encuentra registrado");
             result.addError(error);
+            model.addAttribute("regiones", regionService.allData());
+            model.addAttribute("comunas", comunaService.allData());
             return "registration.jsp";
         } else{
             Address address = new Address(null, null);
