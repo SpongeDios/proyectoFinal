@@ -246,13 +246,16 @@ public class UserController {
     @PostMapping("/perfil/{idUser}/cambiarFoto")
     public String cambiarFotoPerfil(@ModelAttribute("user")User user,
                                     @RequestParam("file") MultipartFile file,
-                                    HttpSession session, Model model) {
+                                    HttpSession session, Model model,
+                                    @RequestParam(value = "fotoActual", required = false)String fotoActual) {
         Long idUserLog = (Long) session.getAttribute("userid");
         User userLog = userService.findById(idUserLog);
         if (file.isEmpty()){
             String error = "Error al subir la imagen, verifique que no esté vacía";
-            userLog.setPhoto(user.getPhoto());
+            userLog.setPhoto(fotoActual);
             model.addAttribute("error", error);
+            model.addAttribute("user", userLog);
+            userService.update(userLog);
             return "editFotoPerfil.jsp";
         }
         String url = "img/" + userLog.getId() + "/perfil/";

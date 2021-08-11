@@ -41,7 +41,7 @@
                         <li class="list-group-item">Descripción: <c:out value="${publication.description}"/> </li>
                         <li class="list-group-item">Precio: $<c:out value="${publication.price}"/> </li>
                         <li class="list-group-item">Categoría: <c:out value="${publication.category.name}"/> </li>
-                        <li class="list-group-item">Celular: <img src="/archivos/logos/wi.png" width="20px"> <c:out value="${publication.user.phone}"/></li>
+                        <li class="list-group-item">Celular: <c:out value="${publication.user.phone}"/></li>
                         <li class="list-group-item">Rating usuario: <c:out value="${ratingF}"/>
                         </li>
                         <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
@@ -84,11 +84,18 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <c:if test="${user.id != publication.user.id}">
+                                    <c:if test="${user.id != publication.user.id && messages.respuesta.id == null}">
                                         <p>
 
                                             <span style="color: red;"> Pregunta: </span> <c:out value="${messages.text}"/>
 <%--                                            <a class="btn btn-danger" href="/denuncia/${messages.id}">Denunciar</a>--%>
+                                        </p>
+                                    </c:if>
+                                    <c:if test="${user.id != publication.user.id && messages.respuesta.id != null}">
+                                        <p>
+
+                                            <span style="color: red;"> Pregunta: </span> <c:out value="${messages.text}"/>
+                                                <%--                                            <a class="btn btn-danger" href="/denuncia/${messages.id}">Denunciar</a>--%>
                                         </p>
                                         <p>
                                             <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
@@ -101,20 +108,20 @@
                                                 <a class="btn btn-primary" href="/publicaciones/${messages.publication.id}/${messages.id}">Responder</a>
                                                 <a class="btn btn-danger" href="/denuncia/${messages.id}">Denunciar</a>
                                             </p>
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${user.id == publication.user.id && messages.respuesta.id != null}">
+                                        <div>
+                                            <p>
+                                                <span style="color: red;"> Pregunta: </span> <c:out value="${messages.text}"/>
+                                                <a class="btn btn-danger" href="/denuncia/${messages.id}">Denunciar</a>
+                                            </p>
                                             <p>
                                                 <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
                                             </p>
                                         </div>
                                     </c:if>
-                                    <c:if test="${user.id == publication.user.id && messages.respuesta.id != null}">
-                                        <p>
-                                            <span style="color: red;"> Pregunta: </span><c:out value="${messages.text}"/>
-                                            <a class="btn btn-danger" href="/denuncia/${messages.id}">Denunciar</a>
-                                        </p>
-                                        <p>
-                                            <span style="color: red;"> Respuesta: </span> <c:out value="${messages.respuesta.text}"/>
-                                        </p>
-                                    </c:if>
+
                                 </td>
                             </tr>
                         </c:if>
@@ -188,10 +195,10 @@
         </div>
         <div class="botonSOS mt-5 mb-5 d-flex justify-content-center align-items-center">
 <%--            <c:out value="${publication.sos}"/>--%>
-            <c:if test="${publication.sos == true}">
+            <c:if test="${publication.sos == true && publication.user.id == user.id}">
                 <a class="btn btn-danger" href="/sos/${publication.id}/addRemove"><i class="bi bi-alarm"></i> Desactivar SOS</a>
             </c:if>
-            <c:if test="${publication.sos == false}">
+            <c:if test="${publication.sos == false && publication.user.id == user.id}">
                 <a class="btn btn-outline-danger" href="/sos/${publication.id}/addRemove"><i class="bi bi-alarm"></i> Activar SOS</a>
             </c:if>
         </div>

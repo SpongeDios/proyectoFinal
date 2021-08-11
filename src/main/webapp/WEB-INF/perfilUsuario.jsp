@@ -39,7 +39,7 @@
             </div>
             <div class="col mt-5 mb-5 d-flex justify-content-center align-items-center bordeado">
                 <ul class="list-group">
-                    <li class="list-group-item">Celular: <img src="/archivos/logos/wi.png" width="20px"><c:out value="${user.phone}"/></li>
+                    <li class="list-group-item">Celular: <c:out value="${user.phone}"/></li>
                     <li class="list-group-item">Email: <c:out value="${user.email}"/></li>
                     <li class="list-group-item">Número de publicaciones: <c:out value="${user.publications.size()}"/></li>
                     <li class="list-group-item">Direccion: <c:out value="${user.address.nameCalle}"/></li>

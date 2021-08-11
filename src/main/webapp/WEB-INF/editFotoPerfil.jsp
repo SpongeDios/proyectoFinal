@@ -37,6 +37,7 @@
         <form action="" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
+                <input type="hidden" name="fotoActual" value="${user.photo}">
             </div>
             <input type="submit" value="Subir Img!">
         </form>

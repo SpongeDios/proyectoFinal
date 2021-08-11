@@ -34,7 +34,7 @@
             <div class="row border d-flex justify-content-center p-3">
                 <ul class="list-group col">
                     <li class="list-group-item">Nombre: <c:out value="${publicacion.user.firstName} ${publicacion.user.lastName}"/></li>
-                    <li class="list-group-item">Celular: <img src="/archivos/logos/wi.png" width="20px"><c:out value="${publicacion.user.phone}"/></li>
+                    <li class="list-group-item">Celular: <c:out value="${publicacion.user.phone}"/></li>
                     <li class="list-group-item">Título: <c:out value="${publicacion.title}"/></li>
                     <li class="list-group-item">Descripción: <c:out value="${publicacion.description}"/></li>
                     <li class="list-group-item">Dirección: <c:out value="${publicacion.user.address.comuna.region.nameRegion} ${publicacion.user.address.comuna.nameComuna} ${publicacion.user.address.nameCalle}"/></li>
