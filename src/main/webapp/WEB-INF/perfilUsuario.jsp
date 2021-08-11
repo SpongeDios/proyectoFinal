@@ -34,12 +34,12 @@
         </div>
         <div class="row mb-5">
             <div class="col mt-5 mb-5" >
-                <h2>Cambiar Foto Perfil</h2>
+                <h2 style="color: #DDDDDD">Cambiar Foto Perfil</h2>
                 <a href="/perfil/${user.id}/cambiarFoto"><img src="/${user.photo}" height="320px" width="500px" class="img-thumbnail"></a>
             </div>
             <div class="col mt-5 mb-5 d-flex justify-content-center align-items-center bordeado">
                 <ul class="list-group">
-                    <li class="list-group-item">Celular: <c:out value="${user.phone}"/></li>
+                    <li class="list-group-item">Celular: <i style="color: 7FFF00" class="bi bi-whatsapp"></i><c:out value="${user.phone}"/></li>
                     <li class="list-group-item">Email: <c:out value="${user.email}"/></li>
                     <li class="list-group-item">Número de publicaciones: <c:out value="${user.publications.size()}"/></li>
                     <li class="list-group-item">Direccion: <c:out value="${user.address.nameCalle}"/></li>
