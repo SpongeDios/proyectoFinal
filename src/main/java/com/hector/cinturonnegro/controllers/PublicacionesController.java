@@ -209,8 +209,7 @@ public class PublicacionesController {
             @Valid @ModelAttribute("publication") Publication publication,
             BindingResult result,
             HttpSession session,
-            Model model,
-            @RequestParam("file") MultipartFile file
+            Model model
     ){
         if(result.hasErrors()){
             Long idUser = (Long) session.getAttribute("userid");
@@ -231,6 +230,51 @@ public class PublicacionesController {
             p.setPrice(publication.getPrice());
             p.setType_publication(publication.getType_publication());
             p.setCategory(publication.getCategory());
+            publicationService.update(p);
+            return "redirect:/publicaciones/"+idPublicacion;
+        }
+    }
+
+    /////////////////////////////////////////////////////////////
+    ////////////////////Cambiar Img Publicación//////////////////
+    /////////////////////////////////////////////////////////////
+
+    @GetMapping("/publicaciones/{idPublicacion}/editFoto")
+    public String cambiarFoto(            @PathVariable("idPublicacion") Long idPublicacion,
+                                          @ModelAttribute("publication") Publication publication,
+                                          HttpSession session,
+                                          Model model
+
+    ){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        Publication p = publicationService.findById(idPublicacion);
+        if(user.getPublications().contains(p) == false){
+            return "redirect:/";
+        }else{
+            model.addAttribute("p", p);
+            model.addAttribute("user", user);
+            return "cambiarFotoPublicación.jsp";
+        }
+    }
+
+    @PostMapping("/publicaciones/{idPublicacion}/editFoto")
+    public String editarFotoPublicación(@ModelAttribute("publication")Publication publication,
+                                        @RequestParam("file")MultipartFile file, Model model,
+                                        @PathVariable("idPublicacion")Long idPublicacion,
+                                        HttpSession session){
+        Publication p = publicationService.findById(idPublicacion);
+        Long idUser = (Long) session.getAttribute("userid");
+        User user = userService.findById(idUser);
+        if (file.isEmpty()){
+            String error = "Error al subir la imagen, verifique que no esté vacía";
+            model.addAttribute("error", error);
+            model.addAttribute("user", user);
+            return "cambiarFotoPublicación.jsp";
+        }else{
             String url ="img/"+user.getId()+"/"+p.getId()+"/";
             try{
                 publicationService.setImage(user, file, url);
@@ -239,10 +283,11 @@ public class PublicacionesController {
                 System.out.println(e.getMessage());
                 return "redirect:/error";
             }
-            publicationService.update(p);
-            return "redirect:/publicaciones/"+idPublicacion;
         }
+        publicationService.update(p);
+        return "redirect:/publicaciones/"+idPublicacion;
     }
+
 
     //////////////////////////////////////////////////////////
     ///////////////////"Borrar" publicacion///////////////////

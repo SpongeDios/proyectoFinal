@@ -34,20 +34,17 @@
         </div>
         <div class="row mb-5">
             <div class="col mt-5 mb-5" >
-                <img src="/${user.photo}" height="320px" width="500px" class="img-thumbnail">
+                <h2>Cambiar Foto Perfil</h2>
+                <a href="/perfil/${user.id}/cambiarFoto"><img src="/${user.photo}" height="320px" width="500px" class="img-thumbnail"></a>
             </div>
             <div class="col mt-5 mb-5 d-flex justify-content-center align-items-center bordeado">
                 <ul class="list-group">
                     <li class="list-group-item">Celular: <img src="/archivos/logos/wi.png" width="20px"><c:out value="${user.phone}"/></li>
                     <li class="list-group-item">Email: <c:out value="${user.email}"/></li>
-                    <li class="list-group-item">Direccion: <c:out value="${user.address.nameCalle}"/></li>
                     <li class="list-group-item">Número de publicaciones: <c:out value="${user.publications.size()}"/></li>
+                    <li class="list-group-item">Direccion: <c:out value="${user.address.nameCalle}"/></li>
                     <li class="list-group-item">Comuna: <c:out value="${user.address.comuna.nameComuna}"/></li>
                     <li class="list-group-item">Región: <c:out value="${user.address.comuna.region.nameRegion}"/></li>
-                    <li class="list-group-item">Estado:
-                        <c:if test="${user.available == true}">Activo</c:if>
-                        <c:if test="${user.available == false}">Baneado</c:if>
-                    </li>
                     <li class="list-group-item">Rol Usuario:
                         <c:if test="${user.rol == 1}">Prestador de Servicios</c:if>
                         <c:if test="${user.rol == 2}">Solicitador de Servicios</c:if>

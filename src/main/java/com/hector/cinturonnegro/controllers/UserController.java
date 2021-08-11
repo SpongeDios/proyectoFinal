@@ -78,18 +78,18 @@ public class UserController {
             model.addAttribute("regiones", regionService.allData());
             model.addAttribute("comunas", comunaService.allData());
             return "registration.jsp";
-        } else{
+        } else {
             Address address = new Address(null, null);
             address.setNameCalle(user.getAddress().getNameCalle());
             address.setComuna(user.getAddress().getComuna());
             addressService.update(address);
             user.setAddress(address);
-            int carpetaUser = userService.allData().size()+1;
-            String url ="img/"+carpetaUser+"/perfil/";
-            try{
+            int carpetaUser = userService.allData().size() + 1;
+            String url = "img/" + carpetaUser + "/perfil/";
+            try {
                 userService.setImage(file, url);
-                user.setPhoto(url+file.getOriginalFilename());
-            }catch (Exception e){
+                user.setPhoto(url + file.getOriginalFilename());
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 return "redirect:/error";
             }
@@ -121,11 +121,11 @@ public class UserController {
     ) {
         if (userService.autenticarUsuario(email, password)) {
             User user = userService.findUserByEmail(email);
-            if (user.isAvailable() == false){
+            if (user.isAvailable() == false) {
                 String error = "Esta cuenta está deshabilitada";
                 session.setAttribute("error", error);
                 return "redirect:/login";
-            }else {
+            } else {
                 session.setAttribute("userid", user.getId());
                 return "redirect:/";
             }
@@ -152,15 +152,15 @@ public class UserController {
     ////////////////////////////////////////////////////
 
     @GetMapping("/perfil/{idUser}")
-    public String perfilUser(@PathVariable("idUser") Long idUser,Model model, HttpSession session) {
-        if(session.getAttribute("userid") == null){
+    public String perfilUser(@PathVariable("idUser") Long idUser, Model model, HttpSession session) {
+        if (session.getAttribute("userid") == null) {
             return "redirect:/";
         }
         Long userId = (Long) session.getAttribute("userid");
         User user = userService.findById(userId);
-        if(user.getId() != idUser){
+        if (user.getId() != idUser) {
             return "redirect:/";
-        }else{
+        } else {
             model.addAttribute("user", user);
             return "perfilUsuario.jsp";
         }
@@ -173,15 +173,15 @@ public class UserController {
             @ModelAttribute("user") User user,
             HttpSession session,
             Model model
-    ){
-        if(session.getAttribute("userid") == null){
+    ) {
+        if (session.getAttribute("userid") == null) {
             return "redirect:/";
         }
         Long idUserLog = (Long) session.getAttribute("userid");
         User userLog = userService.findById(idUserLog);
-        if(userLog.getId() != idUser){
+        if (userLog.getId() != idUser) {
             return "redirect:/";
-        }else{
+        } else {
             model.addAttribute("regiones", regionService.allData());
             model.addAttribute("comunas", comunaService.allData());
             model.addAttribute("user", userLog);
@@ -195,17 +195,16 @@ public class UserController {
             BindingResult result,
             @PathVariable("idUser") Long idUser,
             Model model,
-            @RequestParam("file") MultipartFile file,
             HttpSession session
-    ){
-        if(result.hasErrors()){
+    ) {
+        if (result.hasErrors()) {
             Long idUserLog = (Long) session.getAttribute("userid");
             User userLog = userService.findById(idUserLog);
             model.addAttribute("regiones", regionService.allData());
             model.addAttribute("comunas", comunaService.allData());
             model.addAttribute("user", userLog);
             return "editUser.jsp";
-        }else{
+        } else {
             User userLog = userService.findById(idUser);
             model.addAttribute("user", userLog);
             userLog.setFirstName(user.getFirstName());
@@ -215,17 +214,57 @@ public class UserController {
             userLog.getAddress().setNameCalle(user.getAddress().getNameCalle());
             userLog.getAddress().setComuna(user.getAddress().getComuna());
             userLog.getAddress().getComuna().setRegion(user.getAddress().getComuna().getRegion());
-            String url ="img/"+userLog.getId()+"/perfil/";
-            try{
-                userService.setImage(file, url);
-                userLog.setPhoto("img/"+userLog.getId()+"/perfil/"+file.getOriginalFilename());
-            }catch (Exception e){
-                System.out.println(e.getMessage());
-                return "redirect:/error";
-            }
             userService.update(userLog);
-            return "redirect:/perfil/"+idUser;
+            return "redirect:/perfil/" + idUser;
         }
+    }
+
+    ///////////////////////////////////////////////////
+    ////////////////Cambiar Img Perfil////////////////
+    /////////////////////////////////////////////////
+
+    @GetMapping("/perfil/{idUser}/cambiarFoto")
+    public String cambiarFoto(@PathVariable("idUser") Long idUser,
+                              @ModelAttribute("user") User user,
+                              HttpSession session,
+                              Model model
+    ) {
+        if (session.getAttribute("userid") == null) {
+            return "redirect:/";
+        }
+        Long idUserLog = (Long) session.getAttribute("userid");
+        User userLog = userService.findById(idUserLog);
+        if (userLog.getId() != idUser) {
+            return "redirect:/";
+        } else {
+            model.addAttribute("user", userLog);
+            return "editFotoPerfil.jsp";
+        }
+
+    }
+
+    @PostMapping("/perfil/{idUser}/cambiarFoto")
+    public String cambiarFotoPerfil(@ModelAttribute("user")User user,
+                                    @RequestParam("file") MultipartFile file,
+                                    HttpSession session, Model model) {
+        Long idUserLog = (Long) session.getAttribute("userid");
+        User userLog = userService.findById(idUserLog);
+        if (file.isEmpty()){
+            String error = "Error al subir la imagen, verifique que no esté vacía";
+            userLog.setPhoto(user.getPhoto());
+            model.addAttribute("error", error);
+            return "editFotoPerfil.jsp";
+        }
+        String url = "img/" + userLog.getId() + "/perfil/";
+        try {
+            userService.setImage(file, url);
+            userLog.setPhoto(url + file.getOriginalFilename());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "redirect:/error";
+        }
+        userService.update(userLog);
+        return "redirect:/perfil/"+userLog.getId();
     }
 
 

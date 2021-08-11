@@ -34,7 +34,7 @@
                 <span style="color: red;"><form:errors path="publication.*"/></span>
                 <form:form method="POST" action="" enctype="multipart/form-data" modelAttribute="publication" >
                     <input type="hidden" name="_method" value="PUT">
-
+                    <form:input type="hidden" path="photo_publication" value="${p.photo_publication}"/>
                     <p style="color: black" class="form-group col">
                     <form:label path="title">Título: </form:label>
                     <form:input value="${p.title}" cssClass="form-control" path="title"/>
@@ -67,10 +67,6 @@
                         </form:select>
                     </p>
 
-                    <div class="mb-3">
-                        <label style="color: black" for="formFile" class="form-label">Cambiar Foto</label>
-                        <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
-                    </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <input class="btn btn-dark me-md-2" type="submit" value="Publicar!"/>
                     </div>

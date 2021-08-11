@@ -43,6 +43,7 @@
                     <form:input type="hidden" path="email" value="${user.email}"/>
                     <form:input type="hidden" path="password" value="${user.password}"/>
                     <form:input type="hidden" path="passwordConfirmation" value="${user.passwordConfirmation}"/>
+                    <form:input type="hidden" path="photo" value="${user.photo}"/>
 
                     <p style="color: black;" class="form-group col">
                         <form:label path="firstName">Nombre: </form:label>
@@ -102,11 +103,6 @@
                         </form:select>
                         </p>
                     </c:if>
-
-                    <div class="mb-3">
-                        <label style="color: black;" for="formFile" class="form-label">Subir una Foto</label>
-                        <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">
-                    </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                         <input class="btn btn-dark me-md-2" type="submit" value="Editar!"/>

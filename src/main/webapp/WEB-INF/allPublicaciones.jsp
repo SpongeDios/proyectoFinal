@@ -59,6 +59,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-outline-warning" href="/publicaciones/${publicacion.id}/edit"><i class="bi bi-pencil-square"></i> Editar</a>
+                                    <a class="btn btn-outline-warning" href="/publicaciones/${publicacion.id}/editFoto"><i class="bi bi-pencil-square"></i> Editar Imagen</a>
                                     <a class="btn btn-outline-danger" href="/publicaciones/${publicacion.id}/delete"><i class="bi bi-trash-fill"></i> Eliminar</a>
                                 </td>
                             </tr>
