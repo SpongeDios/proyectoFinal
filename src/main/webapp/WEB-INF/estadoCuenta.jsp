@@ -45,7 +45,7 @@
                         <c:if test="${user.rol == 3}">Administrador</c:if>
                     </li>
                     <li class="list-group-item">Email: <c:out value="${user.email}"/></li>
-                    <li class="list-group-item"> Celular: <img src="/archivos/logos/wi.png" width="20px"><c:out value="${user.phone}"/> </li>
+                    <li class="list-group-item"> Celular: <i style="color: 7FFF00" class="bi bi-whatsapp"></i><c:out value="${user.phone}"/> </li>
                     <li class="list-group-item">Número de publicaciones: <c:out value="${user.publications.size()}"/></li>
                     <li class="list-group-item">Dirección: <c:out value="${user.address.nameCalle}"/></li>
                     <li class="list-group-item">Comuna: <c:out value="${user.address.comuna.nameComuna}"/></li>

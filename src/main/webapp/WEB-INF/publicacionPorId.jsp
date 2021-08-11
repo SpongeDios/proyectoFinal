@@ -40,7 +40,7 @@
                         <li class="list-group-item">Título: <c:out value="${publication.title}"/> </li>
                         <li class="list-group-item">Descripción: <c:out value="${publication.description}"/> </li>
                         <li class="list-group-item">Precio: $<c:out value="${publication.price}"/> </li>
-                        <li class="list-group-item">Categoría: <c:out value="${publication.category.name}"/> </li>
+                        <li class="list-group-item">Categoría: <i style="color: 7FFF00" class="bi bi-whatsapp"></i><c:out value="${publication.category.name}"/> </li>
                         <li class="list-group-item">Celular: <c:out value="${publication.user.phone}"/></li>
                         <li class="list-group-item">Rating usuario: <c:out value="${ratingF}"/>
                         </li>
