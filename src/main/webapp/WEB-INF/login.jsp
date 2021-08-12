@@ -17,6 +17,7 @@
 <header class="navbar p-2">
     <nav class="container">
         <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"><i class="bi bi-arrow-left-circle"></i> Volver atrás</a>
+        <a style="text-decoration: none" class="link-light" href="/registration"> ¿No estás registrado? Registrate aquí</a>
     </nav>
 </header>
     <div class="container">
