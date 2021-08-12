@@ -38,9 +38,9 @@ public class SOSController {
                 publicacionesSosTrue.add(publication);
             }
         }
-        model.addAttribute("publicacionesSOS", publicacionesSosTrue);
+        model.addAttribute("publicaciones", publicacionesSosTrue);
         model.addAttribute("user", user);
-        return "sos.jsp";
+        return "buscadorMaximo.jsp";
     }
 
     @GetMapping("/sos/{idPublicacion}/addRemove")
