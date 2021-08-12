@@ -14,12 +14,12 @@
 <body>
     <header class="navbar p-2">
         <nav class="container">
-            <a class="link-light" href="/">Inicio</a>
+            <a style="text-decoration: none" class="link-light" href="/">Inicio</a>
             <c:if test="${user.rol == 3 }">
-                <a class="link-light" href="/admin">Administrar</a>
+                <a style="text-decoration: none" class="link-light" href="/admin">Administrar</a>
             </c:if>
-            <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
-            <a class="link-light" href="/perfil/${user.id}/estadoCuenta">Deshabilitar Cuenta</a>
+            <a style="text-decoration: none" class="link-light" href="/publicaciones/add">Crear Publicación</a>
+            <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}/estadoCuenta">Deshabilitar Cuenta</a>
             <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"><i class="bi bi-arrow-left-circle"></i> Volver atrás</a>
             <c:if test="${user.id != null }">
                 <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>

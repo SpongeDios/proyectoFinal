@@ -15,17 +15,17 @@
     <header class="navbar p-2">
         <nav class="container">
             <c:if test="${user.photo == null}">
-                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/archivos/default/default.png" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}" /> </a>
+                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/archivos/default/default.png" width="50px" height="50px"> <c:out value="${user.firstName} ${user.lastName}" /> </a>
             </c:if>
             <c:if test="${user.photo != null}">
-                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/${user.photo}" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
+                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
             </c:if>
             <a class="link-light" href="/">Inicio</a>
             <c:if test="${user.rol == 3 }">
-                <a class="link-light" href="/admin">Administrar</a>
+                <a style="text-decoration: none" class="link-light" href="/admin">Administrar</a>
             </c:if>
-            <a class="link-light" href="/publicaciones/add">Crear Publicación</a>
-            <a class="link-light" href="/perfil/${user.id}/estadoCuenta">Deshabilitar Cuenta</a>
+            <a style="text-decoration: none" class="link-light" href="/publicaciones/add">Crear Publicación</a>
+            <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}/estadoCuenta">Deshabilitar Cuenta</a>
             <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"><i class="bi bi-arrow-left-circle"></i> Volver atrás</a>
             <c:if test="${user.id != null }">
                 <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>
@@ -39,7 +39,7 @@
             </h3>
         </div>
         <div class="col mt-5 text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            <c:out value="${error}"/>
+            <p><span style="color: red"><c:out value="${error}"/></span></p>
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <input class="form-control" type="file" id="formFile" accept="image/png, image/jpeg" name="file">

@@ -50,7 +50,7 @@
                         <h3 class="fw-bolder" style="text-align: center">Buscar publicaciones</h3>
                         <label class="m-2" for="categoria"> Categoría: </label>
                         <select id="categoria" class="form-select" aria-label="Default select example" name="idCategoria">
-                            <option selected></option>
+                            <option disabled selected value="">Selecciona una</option>
                             <c:forEach var="categoria" items="${categorias}">
                                 <option value="${categoria.id}"> <c:out value="${categoria.name}"/></option>
                             </c:forEach>
@@ -58,7 +58,7 @@
 
                         <label class="m-2" for="region"> Región: </label>
                         <select id="region" class="form-select" aria-label="Default select example" name="idRegion">
-                            <option selected value=""></option>
+                            <option disabled selected value="">Selecciona una</option>
                             <c:forEach var="region" items="${regiones}">
                                 <option value="${region.id}"> <c:out value="${region.nameRegion}"/></option>
                             </c:forEach>
@@ -66,7 +66,7 @@
 
                         <label class="m-2" for="comunas"> Comunas: </label>
                         <select id="comunas" class="form-select" aria-label="Default select example" name="idComuna">
-                            <option selected value=""></option>
+                            <option disabled selected value="">Selecciona una</option>
                         </select>
                         <br>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -78,6 +78,11 @@
             </div>
         </div>
     </div>
+    <c:if test="${user != null}">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center mb-5">
+            <a class="btn btn-danger" href="/sos">Anuncios SOS</a>
+        </div>
+    </c:if>
     <div class="container">
         <div class="d-flex justify-content-center row mt-5 mb-5">
             <c:forEach var="categoria" items="${categorias}">

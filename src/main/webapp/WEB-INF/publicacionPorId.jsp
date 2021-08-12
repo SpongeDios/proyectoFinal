@@ -16,10 +16,10 @@
     <header class="navbar p-2">
         <nav class="container">
             <c:if test="${user.photo == null}">
-                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/archivos/default/default.png" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}" /> </a>
+                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/archivos/default/default.png" width="50px" height="50px"> <c:out value="${user.firstName} ${user.lastName}" /> </a>
             </c:if>
             <c:if test="${user.photo != null}">
-                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/${user.photo}" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
+                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
             </c:if>
             <c:if test="${user.rol == 3 }">
                 <a style="text-decoration: none" class="link-light" href="/admin">Administrar</a>
@@ -40,8 +40,8 @@
                         <li class="list-group-item">Título: <c:out value="${publication.title}"/> </li>
                         <li class="list-group-item">Descripción: <c:out value="${publication.description}"/> </li>
                         <li class="list-group-item">Precio: $<c:out value="${publication.price}"/> </li>
-                        <li class="list-group-item">Categoría: <i style="color: 7FFF00" class="bi bi-whatsapp"></i><c:out value="${publication.category.name}"/> </li>
-                        <li class="list-group-item">Celular: <c:out value="${publication.user.phone}"/></li>
+                        <li class="list-group-item">Categoría: <c:out value="${publication.category.name}"/> </li>
+                        <li class="list-group-item">Celular: <i style="color: 7FFF00" class="bi bi-whatsapp"></i><c:out value="${publication.user.phone}"/></li>
                         <li class="list-group-item">Rating usuario: <c:out value="${ratingF}"/>
                         </li>
                         <li class="list-group-item">Anuncio creado el <fmt:formatDate value="${publication.createdAt}" pattern="dd 'de' MMMM 'de' yyyy"/></li>
@@ -59,6 +59,16 @@
                     </a>
                 </div>
             </div>
+            <div class="botonSOS mt-5 mb-5 d-flex justify-content-center align-items-center">
+                <%--            <c:out value="${publication.sos}"/>--%>
+                <c:if test="${publication.sos == true && publication.user.id == user.id}">
+                    <a class="btn btn-danger" href="/sos/${publication.id}/addRemove"><i class="bi bi-alarm"></i> Desactivar SOS</a>
+                </c:if>
+                <c:if test="${publication.sos == false && publication.user.id == user.id}">
+                    <a class="btn btn-outline-danger" href="/sos/${publication.id}/addRemove"><i class="bi bi-alarm"></i> Activar SOS</a>
+                </c:if>
+            </div>
+        </div>
         <c:if test="${user.id != publication.user.id && user != null}">
             <div class="p-5 bordeado">
                 <h2 class="">¿Quieres realizar una consulta?</h2>
@@ -193,16 +203,6 @@
                 </table>
             </div>
         </div>
-        <div class="botonSOS mt-5 mb-5 d-flex justify-content-center align-items-center">
-<%--            <c:out value="${publication.sos}"/>--%>
-            <c:if test="${publication.sos == true && publication.user.id == user.id}">
-                <a class="btn btn-danger" href="/sos/${publication.id}/addRemove"><i class="bi bi-alarm"></i> Desactivar SOS</a>
-            </c:if>
-            <c:if test="${publication.sos == false && publication.user.id == user.id}">
-                <a class="btn btn-outline-danger" href="/sos/${publication.id}/addRemove"><i class="bi bi-alarm"></i> Activar SOS</a>
-            </c:if>
-        </div>
-    </div>
     <footer class="bg-dark text-center text-white">
         <!-- Grid container -->
         <div class="container p-4">

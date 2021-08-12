@@ -15,11 +15,11 @@
 <body>
 <header class="navbar p-2">
     <nav class="container">
-        <a class="link-light" href="/perfil/${user.id}"> <img src="/${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
+        <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"> <img src="/${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName}"/> <c:out value="${user.lastName}"/></a>
         <c:if test="${user.rol == 3 }">
-            <a class="link-light" href="/admin">Administrar</a>
+            <a style="text-decoration: none" class="link-light" href="/admin">Administrar</a>
         </c:if>
-        <a class="link-light" href="/">Inicio</a>
+        <a style="text-decoration: none" class="link-light" href="/">Inicio</a>
         <a style="text-decoration: none" class="link-light" href="javascript: history.go(-1)"><i class="bi bi-arrow-left-circle"></i> Volver atrás</a>
         <c:if test="${user.id != null }">
             <a style="text-decoration: none" class="link-light" href="/logout">Cerrar Sesión</a>

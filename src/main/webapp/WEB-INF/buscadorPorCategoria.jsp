@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="/archivos/logos/iconoSuperMaestro.png" type="image/x'icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    <title>Buscar por Categoría</title>
-    <link rel="stylesheet" href="/css/allPublicaciones.css">
+    <link rel="stylesheet" href="/css/categoria.css">
     <script src="/js/backbutton.js"></script>
     <title>Buscar por Categoría</title>
 </head>
@@ -47,6 +47,7 @@
             </div>
         </c:forEach>
     </div>
+    <div class="agrandar"></div>
     <footer class="bg-dark text-center text-white">
         <!-- Grid container -->
         <div class="container p-4">

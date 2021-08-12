@@ -22,7 +22,7 @@
         <div class="row mt-5 mb-5">
             <div class="col-2"></div>
             <div class="col border-1 p-5 mr-3">
-                <p><form:errors path="user.*"/></p>
+                <p style="color: red"><form:errors path="user.*"/></p>
                 <h1>Registro</h1>
                 <form:form method="POST" action="" cssClass="form" enctype="multipart/form-data" modelAttribute="user">
 
