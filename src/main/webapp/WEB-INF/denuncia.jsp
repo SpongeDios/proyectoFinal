@@ -18,7 +18,7 @@
             <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/archivos/default/default.png" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}" /> </a>
         </c:if>
         <c:if test="${user.photo != null}">
-            <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="${user.photo}" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
+            <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/${user.photo}" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
         </c:if>
         <c:if test="${user.rol == 3 }">
             <a style="text-decoration: none" class="link-light" href="/admin">Administrar</a>
