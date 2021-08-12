@@ -29,6 +29,9 @@ public class SOSController {
             HttpSession session,
             Model model
     ){
+        if(session.getAttribute("userid") == null){
+            return "redirect:/";
+        }
         Long userId = (Long) session.getAttribute("userid");
         User user = userService.findById(userId);
         List<Publication> publicacionesEstadotrue = publicationService.publicacionesTrue();
