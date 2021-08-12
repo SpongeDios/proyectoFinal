@@ -18,7 +18,7 @@
                 <a style="text-decoration: none" style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/archivos/default/default.png" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}" /> </a>
             </c:if>
             <c:if test="${user.photo != null}">
-                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/${user.photo}" width="100px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
+                <a style="text-decoration: none" class="link-light" href="/perfil/${user.id}"><img src="/${user.photo}" width="50px" height="50px"> <c:out value="${user.firstName} ${user.lastName}"/> </a>
             </c:if>
             <a style="text-decoration: none" class="link-light" href="/">Inicio</a>
             <c:if test="${user.rol == 3 }">
@@ -35,7 +35,7 @@
     <div class="container mb-5">
         <div class="col mt-5 text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             <h3 class="fs-2">
-                Cambiar foto de perfil
+                Cambiar imagen principal
             </h3>
         </div>
         <div class="col mt-5 text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
